@@ -84,27 +84,27 @@
   .hint{text-align:center;font-style:italic;color:var(--gold);font-size:.85rem;margin:-2px 0 14px;}
   .footer{text-align:center;font-size:.78rem;color:var(--ink-soft);margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-style:italic;}
   /* ANNOTATIONS */
-  .anno-bubble{position:absolute;z-index:300;background:var(--ink);color:var(--parch);border-radius:999px;padding:5px 14px;font-size:.8rem;font-family:'Fraunces',serif;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);display:none;white-space:nowrap;}
-  .anno-bubble.show{display:block;}
-  .anno-panel{position:fixed;top:0;right:0;height:100%;width:300px;background:var(--card);border-left:1px solid var(--line);z-index:500;transform:translateX(100%);transition:transform .3s ease;box-shadow:-8px 0 28px rgba(0,0,0,.12);display:flex;flex-direction:column;}
-  .anno-panel.show{transform:translateX(0);}
-  .anno-ph{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;}
-  .anno-ph h3{font-family:'Fraunces',serif;font-weight:700;font-size:1rem;flex:1;color:var(--ink);}
-  .anno-ph button{background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--ink-soft);padding:2px 6px;}
-  .anno-pf{padding:14px 16px;border-bottom:1px solid var(--line);}
-  .anno-pf textarea{width:100%;height:80px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:'Spectral',serif;font-size:.9rem;resize:none;background:var(--parch);color:var(--ink);box-sizing:border-box;}
-  .anno-pf textarea:focus{outline:2px solid var(--gold);border-color:transparent;}
-  .anno-pf-btns{display:flex;gap:8px;margin-top:8px;}
-  .anno-pf-btns button{flex:1;padding:8px;border-radius:8px;border:none;cursor:pointer;font-family:'Fraunces',serif;font-weight:600;font-size:.84rem;}
-  .anno-save-btn{background:var(--ink);color:var(--parch);}
-  .anno-cancel-btn{background:var(--parch-2);color:var(--ink-soft);border:1px solid var(--line) !important;}
-  .anno-list{flex:1;overflow-y:auto;padding:14px 16px;}
-  .anno-item{background:var(--parch);border-left:3px solid var(--gold);padding:9px 28px 9px 11px;border-radius:4px;margin-bottom:9px;font-size:.87rem;line-height:1.5;position:relative;}
-  .anno-item-date{font-size:.68rem;opacity:.45;margin-top:3px;}
-  .anno-item-del{position:absolute;top:7px;right:8px;cursor:pointer;color:var(--rouge);font-size:.8rem;background:none;border:none;font-weight:700;padding:0;}
+  .anno-mark{background:rgba(192,138,44,.28);border-bottom:2px solid var(--gold-bright);border-radius:2px;cursor:help;transition:background .15s;}
+  .anno-mark:hover{background:rgba(192,138,44,.5);}
+  body.anno-mode{cursor:crosshair!important;}
+  body.anno-mode *{cursor:text!important;}
+  body.anno-mode button,body.anno-mode a{cursor:pointer!important;}
+  .anno-banner{position:fixed;top:0;left:0;right:0;z-index:600;background:var(--gold);color:var(--parch);padding:10px 16px;display:none;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:.88rem;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+  .anno-banner span{flex:1;}
+  .anno-banner button{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--parch);padding:4px 12px;border-radius:6px;cursor:pointer!important;font-family:'Fraunces',serif;font-weight:600;font-size:.82rem;}
+  .anno-popup{position:fixed;z-index:700;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;width:250px;box-shadow:0 8px 24px rgba(0,0,0,.18);display:none;}
+  .anno-popup input{width:100%;border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-family:'Spectral',serif;font-size:.9rem;background:var(--parch);color:var(--ink);box-sizing:border-box;margin-bottom:8px;}
+  .anno-popup input:focus{outline:2px solid var(--gold);border-color:transparent;}
+  .anno-popup-label{font-size:.78rem;color:var(--ink-soft);margin-bottom:5px;display:block;}
+  .anno-popup-btns{display:flex;gap:7px;}
+  .anno-popup-btns button{flex:1;padding:7px;border-radius:6px;border:none;cursor:pointer!important;font-family:'Fraunces',serif;font-weight:600;font-size:.82rem;}
+  .anno-popup-save{background:var(--ink);color:var(--parch);}
+  .anno-popup-cancel{background:var(--parch-2);color:var(--ink-soft);}
+  .anno-tip{position:fixed;z-index:800;background:var(--ink);color:var(--parch);padding:8px 12px;border-radius:8px;font-size:.83rem;max-width:220px;line-height:1.45;pointer-events:none;display:none;box-shadow:0 4px 14px rgba(0,0,0,.28);}
   .anno-fab-wrap{position:fixed;bottom:22px;right:22px;z-index:200;}
   .anno-fab{width:50px;height:50px;border-radius:50%;background:var(--gold);color:var(--parch);border:none;cursor:pointer;font-size:1.3rem;box-shadow:0 4px 16px rgba(0,0,0,.22);transition:all .2s;display:block;}
   .anno-fab:hover{background:var(--gold-bright);transform:scale(1.08);}
+  .anno-fab.active{background:var(--rouge);}
   .anno-badge{position:absolute;top:-3px;right:-3px;background:var(--rouge);color:#fff;border-radius:50%;width:18px;height:18px;font-size:.62rem;display:none;align-items:center;justify-content:center;font-weight:700;}
   .anno-badge.show{display:flex;}
   /* ENTRAÎNEMENT textarea */
@@ -614,112 +614,171 @@ document.addEventListener('click',e=>{
 });
 
 // ============ ANNOTATIONS ============
-let annotations=JSON.parse(localStorage.getItem('hdi-anno'))||{};
-let _pendingSel='';
+let _annos=JSON.parse(localStorage.getItem('hdi-anno'))||{};
+let _annoMode=false;
+let _pendingRange=null;
 
-function _saveAnno(){try{localStorage.setItem('hdi-anno',JSON.stringify(annotations));}catch(e){}}
+function _saveDisk(){try{localStorage.setItem('hdi-anno',JSON.stringify(_annos));}catch(e){}}
 
-function deleteAnno(id){delete annotations[id];_saveAnno();_renderAnnoList();}
-
-function _renderAnnoList(){
-  const list=document.getElementById('annoList');
-  if(!list)return;
-  const keys=Object.keys(annotations).reverse();
-  const badge=document.getElementById('annoBadge');
-  if(badge){badge.textContent=keys.length;badge.classList.toggle('show',keys.length>0);}
-  if(keys.length===0){list.innerHTML='<p style="font-size:.85rem;color:var(--ink-soft);font-style:italic;">Aucune annotation pour l\'instant.<br><br>Sélectionne du texte dans le cours pour annoter.</p>';return;}
-  list.innerHTML=keys.map(id=>{const a=annotations[id];return '<div class="anno-item">'+a.text+'<div class="anno-item-date">'+a.date+'</div><button class="anno-item-del" onclick="deleteAnno(\''+id+'\')">✕</button></div>';}).join('');
+function _updateBadge(){
+  const b=document.getElementById('annoBadge');
+  const n=Object.keys(_annos).length;
+  if(b){b.textContent=n;b.classList.toggle('show',n>0);}
 }
 
-function _openPanel(prefill){
-  const p=document.getElementById('annoPanel');
-  const ta=document.getElementById('annoInput');
-  if(!p||!ta)return;
-  p.classList.add('show');
-  ta.value=prefill||'';
-  ta.focus();
+function _toggleMode(){
+  _annoMode=!_annoMode;
+  document.body.classList.toggle('anno-mode',_annoMode);
+  document.getElementById('annoFab')?.classList.toggle('active',_annoMode);
+  const banner=document.getElementById('annoBanner');
+  if(banner) banner.style.display=_annoMode?'flex':'none';
+  if(!_annoMode) _hidePopup();
 }
 
-function _closePanel(){
-  const p=document.getElementById('annoPanel');
-  if(p)p.classList.remove('show');
-  const ta=document.getElementById('annoInput');
-  if(ta)ta.value='';
+function _hidePopup(){
+  const p=document.getElementById('annoPopup');
+  if(p) p.style.display='none';
+  _pendingRange=null;
 }
 
-function _saveInput(){
-  const ta=document.getElementById('annoInput');
-  const text=ta?.value?.trim();
-  if(!text||text.length<2)return;
-  annotations['a'+Date.now()]={text,date:new Date().toLocaleString('fr-FR')};
-  _saveAnno();
-  _renderAnnoList();
-  ta.value='';
+function _showPopup(cx,cy){
+  const p=document.getElementById('annoPopup');
+  const inp=document.getElementById('annoPopupInput');
+  if(!p||!inp) return;
+  inp.value='';
+  const left=Math.max(6,Math.min(cx,window.innerWidth-260));
+  const top=Math.max(6,Math.min(cy+10,window.innerHeight-150));
+  p.style.left=left+'px';
+  p.style.top=top+'px';
+  p.style.display='block';
+  setTimeout(()=>inp.focus(),50);
 }
 
-// Bulle au survol de sélection
-document.addEventListener('mouseup',()=>{
+function _wrapRange(range,id,note){
+  const mark=document.createElement('span');
+  mark.className='anno-mark';
+  mark.dataset.aid=id;
+  mark.dataset.note=note;
+  try{range.surroundContents(mark);return true;}catch(e){return false;}
+}
+
+function _saveAnno(){
+  const inp=document.getElementById('annoPopupInput');
+  const note=inp?.value?.trim();
+  if(!note||!_pendingRange){_hidePopup();return;}
+  const id='a'+Date.now();
+  const text=_pendingRange.toString().trim();
+  _annos[id]={text,note,date:new Date().toLocaleString('fr-FR')};
+  _saveDisk();
+  _wrapRange(_pendingRange,id,note);
+  _updateBadge();
+  _hidePopup();
+  window.getSelection()?.removeAllRanges();
+  _toggleMode();
+}
+
+function deleteAnno(id){
+  delete _annos[id];
+  _saveDisk();
+  const mark=document.querySelector('.anno-mark[data-aid="'+id+'"]');
+  if(mark){const p=mark.parentNode;while(mark.firstChild)p.insertBefore(mark.firstChild,mark);p.removeChild(mark);}
+  _updateBadge();
+}
+
+function _applyToDOM(text,id,note){
+  if(!text)return;
+  if(document.querySelector('.anno-mark[data-aid="'+id+'"]'))return;
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>{
+    const p=n.parentElement;
+    if(!p)return NodeFilter.FILTER_REJECT;
+    if(['SCRIPT','STYLE','NAV','BUTTON'].includes(p.tagName))return NodeFilter.FILTER_REJECT;
+    if(p.closest('.anno-mark,.anno-popup,.anno-banner,.anno-fab-wrap'))return NodeFilter.FILTER_REJECT;
+    return NodeFilter.FILTER_ACCEPT;
+  }});
+  let node;
+  while(node=walker.nextNode()){
+    const idx=node.textContent.indexOf(text);
+    if(idx>=0){
+      const r=document.createRange();
+      r.setStart(node,idx);r.setEnd(node,idx+text.length);
+      _wrapRange(r,id,note);return;
+    }
+  }
+}
+
+function _reapply(){
+  Object.entries(_annos).forEach(([id,a])=>_applyToDOM(a.text,id,a.note));
+  _updateBadge();
+}
+
+// Sélection en mode annotation
+document.addEventListener('mouseup',e=>{
+  if(!_annoMode)return;
+  if(e.target.closest('.anno-popup,.anno-banner'))return;
   const sel=window.getSelection();
   const txt=sel?.toString().trim();
-  const bubble=document.getElementById('annoBubble');
-  if(!bubble)return;
-  if(txt&&txt.length>3&&txt.length<600){
-    _pendingSel=txt;
-    try{
-      const r=sel.getRangeAt(0).getBoundingClientRect();
-      bubble.style.top=(window.scrollY+r.top-42)+'px';
-      bubble.style.left=Math.max(4,r.left+r.width/2-52)+'px';
-    }catch(e){}
-    bubble.classList.add('show');
-  }else{
-    bubble.classList.remove('show');
-  }
+  if(!txt||txt.length<2){_hidePopup();return;}
+  try{
+    _pendingRange=sel.getRangeAt(0).cloneRange();
+    const r=sel.getRangeAt(0).getBoundingClientRect();
+    _showPopup(r.left,r.bottom);
+  }catch(er){_hidePopup();}
 });
 
-// Délégation clics
+// Tooltip sur les surlignages
+const _tip=document.createElement('div');
+_tip.className='anno-tip';
+document.body.appendChild(_tip);
+
+document.addEventListener('mouseover',e=>{
+  const m=e.target.closest('.anno-mark');
+  if(m){_tip.textContent=m.dataset.note;_tip.style.display='block';}
+});
+document.addEventListener('mousemove',e=>{
+  if(_tip.style.display!=='none'){
+    _tip.style.left=Math.min(e.clientX+14,window.innerWidth-240)+'px';
+    _tip.style.top=Math.max(8,e.clientY-46)+'px';
+  }
+});
+document.addEventListener('mouseout',e=>{if(!e.target.closest('.anno-mark'))_tip.style.display='none';});
+
+// Clics
 document.addEventListener('click',e=>{
-  const bubble=document.getElementById('annoBubble');
-  if(e.target.id==='annoBubbleBtn'){
-    _openPanel(_pendingSel);
-    bubble?.classList.remove('show');
-    window.getSelection()?.removeAllRanges();
-    return;
-  }
-  if(e.target.id==='annoFab'){_openPanel('');return;}
-  if(e.target.id==='annoClose'){_closePanel();return;}
-  if(e.target.id==='annoSave'){_saveInput();return;}
-  if(e.target.id==='annoCancel'){_closePanel();return;}
-  if(bubble&&!bubble.contains(e.target))bubble.classList.remove('show');
+  if(e.target.id==='annoFab'){_toggleMode();return;}
+  if(e.target.id==='annoBannerClose'){_toggleMode();return;}
+  if(e.target.id==='annoPopupSave'){_saveAnno();return;}
+  if(e.target.id==='annoPopupCancel'){_hidePopup();return;}
 });
 
-_renderAnnoList();
+// Touche Entrée dans le champ
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&document.getElementById('annoPopup')?.style.display==='block'){e.preventDefault();_saveAnno();}
+  if(e.key==='Escape'&&_annoMode){_toggleMode();}
+});
+
+_reapply();
 
 </script>
 
-<!-- Bulle sélection -->
-<div id="annoBubble" class="anno-bubble">
-  <button id="annoBubbleBtn" style="background:none;border:none;color:inherit;cursor:pointer;font-family:'Fraunces',serif;font-weight:600;font-size:.8rem;padding:0;">✎ Annoter</button>
+<!-- Bandeau mode annotation -->
+<div id="annoBanner" class="anno-banner">
+  <span>✎ Mode annotation — Sélectionne le texte à surligner</span>
+  <button id="annoBannerClose">Annuler</button>
 </div>
 
-<!-- Panneau latéral -->
-<div id="annoPanel" class="anno-panel">
-  <div class="anno-ph">
-    <h3>📌 Mes annotations</h3>
-    <button id="annoClose">✕</button>
+<!-- Popup saisie de la légende -->
+<div id="annoPopup" class="anno-popup">
+  <span class="anno-popup-label">Légende de l'annotation :</span>
+  <input id="annoPopupInput" type="text" placeholder="Ex : à retenir, définition…" autocomplete="off">
+  <div class="anno-popup-btns">
+    <button id="annoPopupSave" class="anno-popup-save">Annoter ✓</button>
+    <button id="annoPopupCancel" class="anno-popup-cancel">Annuler</button>
   </div>
-  <div class="anno-pf">
-    <textarea id="annoInput" placeholder="Écris ta note ici…"></textarea>
-    <div class="anno-pf-btns">
-      <button id="annoSave" class="anno-save-btn">Enregistrer</button>
-      <button id="annoCancel" class="anno-cancel-btn">Annuler</button>
-    </div>
-  </div>
-  <div class="anno-list" id="annoList"></div>
 </div>
 
 <!-- Bouton flottant -->
 <div class="anno-fab-wrap">
-  <button id="annoFab" class="anno-fab" title="Mes annotations">📌</button>
+  <button id="annoFab" class="anno-fab" title="Annoter le cours">✎</button>
   <span id="annoBadge" class="anno-badge">0</span>
 </div>
 
