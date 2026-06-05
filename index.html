@@ -92,6 +92,28 @@
   .anno-notes .title{font-family:'Fraunces',serif;font-weight:600;color:var(--ink);margin-bottom:12px;font-size:.95rem;}
   .anno-note{background:var(--parch);padding:10px;border-left:3px solid var(--gold);margin-bottom:8px;border-radius:4px;font-size:.85rem;line-height:1.5;}
   .anno-note .del{cursor:pointer;color:var(--rouge);font-weight:600;float:right;font-size:.8rem;}
+  /* QUIZZ */
+  .quiz-q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px;box-shadow:0 5px 16px -12px var(--shadow);}
+  .quiz-q .num{font-size:.8rem;color:var(--gold);font-weight:600;letter-spacing:.05em;margin-bottom:6px;}
+  .quiz-q .text{font-size:1.1rem;font-weight:600;margin-bottom:16px;color:var(--ink);}
+  .quiz-opts{display:flex;flex-direction:column;gap:9px;}
+  .quiz-opt{padding:12px 14px;border:2px solid var(--line);border-radius:8px;cursor:pointer;background:var(--parch);font-size:.98rem;transition:all .18s ease;color:var(--ink);}
+  .quiz-opt:hover{border-color:var(--gold);background:#fbf8f0;}
+  .quiz-opt.selected{border-color:var(--ink);background:var(--ink);color:var(--parch);}
+  .quiz-opt.correct{border-color:#4a7c4e;background:#e8f5ea;}
+  .quiz-opt.wrong{border-color:var(--rouge);background:#fdeaea;}
+  .quiz-result{display:none;margin-top:12px;padding:12px;background:#fff8e1;border-left:4px solid var(--gold);border-radius:4px;font-size:.95rem;}
+  .quiz-result.show{display:block;}
+  .quiz-result strong{color:var(--gold);}
+  .quiz-score{text-align:center;padding:20px;background:var(--card);border:2px solid var(--line);border-radius:12px;}
+  /* ENTRAÎNEMENT */
+  .train-q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 5px 16px -12px var(--shadow);}
+  .train-q .num{font-size:.8rem;color:var(--gold);font-weight:600;margin-bottom:6px;}
+  .train-q .text{font-size:1rem;font-weight:600;margin-bottom:12px;color:var(--ink);}
+  .train-answer{padding:12px;background:var(--parch);border-radius:8px;border-left:3px solid var(--line);max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .train-answer.show{max-height:500px;border-left-color:var(--gold);}
+  .train-answer .label{user-select:none;}
+  .train-answer p{font-size:.95rem;line-height:1.6;margin:0;color:var(--ink);}
   @media(min-width:620px){h1{font-size:2.5rem;}.reg-banner h2{font-size:1.8rem;}}
 </style>
 </head>
@@ -201,6 +223,9 @@
 <section class="view" id="r5"></section>
 <section class="view" id="r6"></section>
 <section class="view" id="r7"></section>
+
+<section class="view" id="quiz"></section>
+<section class="view" id="train"></section>
 
 </main>
 
