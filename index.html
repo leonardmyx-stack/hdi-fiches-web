@@ -551,11 +551,14 @@ function renderAnnotations(){
 }
 
 document.addEventListener('mouseup',function(){
-  const sel=window.getSelection().toString().trim();
-  if(sel.length>5){
-    const txt=window.prompt('Votre annotation :',sel.substring(0,50));
-    if(txt) addAnnotation(txt);
-  }
+  setTimeout(function(){
+    const sel=window.getSelection().toString().trim();
+    console.log('Selection:',sel.length);
+    if(sel.length>5 && sel.length<300){
+      const txt=window.prompt('Annotez ce texte:\n\n'+sel.substring(0,80)+(sel.length>80?'...':''),sel.substring(0,50));
+      if(txt && txt.trim()) addAnnotation(txt.trim());
+    }
+  },100);
 });
 
 renderAnnotations();
