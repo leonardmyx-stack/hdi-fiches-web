@@ -83,6 +83,15 @@
   .b-loc{--accent:var(--vert);} .b-arm{--accent:#7a5230;} .b-key{--accent:#6a4a8a;} .b-eg{--accent:#2f6e6e;}
   .hint{text-align:center;font-style:italic;color:var(--gold);font-size:.85rem;margin:-2px 0 14px;}
   .footer{text-align:center;font-size:.78rem;color:var(--ink-soft);margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-style:italic;}
+  /* ANNOTATIONS */
+  .anno-toolbar{position:fixed;bottom:20px;right:20px;z-index:50;display:flex;flex-direction:column;gap:8px;}
+  .anno-btn{width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--parch);border:none;cursor:pointer;font-size:1.2rem;transition:all .2s ease;box-shadow:0 4px 12px rgba(0,0,0,.15);}
+  .anno-btn:hover{background:var(--gold-bright);transform:scale(1.1);}
+  .anno-notes{position:fixed;bottom:80px;right:20px;z-index:49;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;width:280px;max-height:400px;overflow-y:auto;box-shadow:0 10px 30px -14px var(--shadow);display:none;}
+  .anno-notes.show{display:block;}
+  .anno-notes .title{font-family:'Fraunces',serif;font-weight:600;color:var(--ink);margin-bottom:12px;font-size:.95rem;}
+  .anno-note{background:var(--parch);padding:10px;border-left:3px solid var(--gold);margin-bottom:8px;border-radius:4px;font-size:.85rem;line-height:1.5;}
+  .anno-note .del{cursor:pointer;color:var(--rouge);font-weight:600;float:right;font-size:.8rem;}
   @media(min-width:620px){h1{font-size:2.5rem;}.reg-banner h2{font-size:1.8rem;}}
 </style>
 </head>
@@ -508,6 +517,45 @@ document.addEventListener('click',e=>{
     });
   }
 });
+
+// ============ ANNOTATIONS ============
+let annotations=JSON.parse(localStorage.getItem('hdi-annotations'))||{};
+
+function toggleAnnotations(){document.getElementById('annoNotes').classList.toggle('show');}
+document.getElementById('annoToggle').addEventListener('click',toggleAnnotations);
+
+function addAnnotation(text){
+  const id=Date.now();annotations[id]={text,date:new Date().toLocaleString('fr-FR')};
+  localStorage.setItem('hdi-annotations',JSON.stringify(annotations));
+  renderAnnotations();
+}
+
+function delAnnotation(id){delete annotations[id];localStorage.setItem('hdi-annotations',JSON.stringify(annotations));renderAnnotations();}
+
+function renderAnnotations(){
+  const list=document.getElementById('annoList');
+  if(Object.keys(annotations).length===0){list.innerHTML='<div style="font-size:.85rem;color:var(--ink-soft);font-style:italic;">Aucune annotation pour le moment. Sélectionnez du texte et annotez !</div>';return;}
+  list.innerHTML=Object.entries(annotations).map(([id,a])=>`<div class="anno-note">${a.text}<span class="del" onclick="delAnnotation(${id})" title="Supprimer">✕</span><br><span style="font-size:.75rem;opacity:.6;">${a.date}</span></div>`).join('');
+}
+
+document.addEventListener('mouseup',()=>{
+  const sel=window.getSelection().toString().trim();
+  if(sel.length>10&&sel.length<200){
+    const txt=prompt('Annotez ce passage :',sel.substring(0,50)+'...');
+    if(txt) addAnnotation(txt);
+  }
+});
+
+renderAnnotations();
 </script>
+
+<div class="anno-toolbar">
+  <button class="anno-btn" id="annoToggle" title="Afficher les annotations">📌</button>
+</div>
+<div class="anno-notes" id="annoNotes">
+  <div class="title">Mes annotations</div>
+  <div id="annoList"></div>
+</div>
+
 </body>
 </html>
