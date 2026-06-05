@@ -84,14 +84,33 @@
   .hint{text-align:center;font-style:italic;color:var(--gold);font-size:.85rem;margin:-2px 0 14px;}
   .footer{text-align:center;font-size:.78rem;color:var(--ink-soft);margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-style:italic;}
   /* ANNOTATIONS */
-  .anno-toolbar{position:fixed;bottom:20px;right:20px;z-index:50;display:flex;flex-direction:column;gap:8px;}
-  .anno-btn{width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--parch);border:none;cursor:pointer;font-size:1.2rem;transition:all .2s ease;box-shadow:0 4px 12px rgba(0,0,0,.15);}
-  .anno-btn:hover{background:var(--gold-bright);transform:scale(1.1);}
-  .anno-notes{position:fixed;bottom:80px;right:20px;z-index:49;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;width:280px;max-height:400px;overflow-y:auto;box-shadow:0 10px 30px -14px var(--shadow);display:none;}
-  .anno-notes.show{display:block;}
-  .anno-notes .title{font-family:'Fraunces',serif;font-weight:600;color:var(--ink);margin-bottom:12px;font-size:.95rem;}
-  .anno-note{background:var(--parch);padding:10px;border-left:3px solid var(--gold);margin-bottom:8px;border-radius:4px;font-size:.85rem;line-height:1.5;}
-  .anno-note .del{cursor:pointer;color:var(--rouge);font-weight:600;float:right;font-size:.8rem;}
+  .anno-bubble{position:absolute;z-index:300;background:var(--ink);color:var(--parch);border-radius:999px;padding:5px 14px;font-size:.8rem;font-family:'Fraunces',serif;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);display:none;white-space:nowrap;}
+  .anno-bubble.show{display:block;}
+  .anno-panel{position:fixed;top:0;right:0;height:100%;width:300px;background:var(--card);border-left:1px solid var(--line);z-index:500;transform:translateX(100%);transition:transform .3s ease;box-shadow:-8px 0 28px rgba(0,0,0,.12);display:flex;flex-direction:column;}
+  .anno-panel.show{transform:translateX(0);}
+  .anno-ph{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;}
+  .anno-ph h3{font-family:'Fraunces',serif;font-weight:700;font-size:1rem;flex:1;color:var(--ink);}
+  .anno-ph button{background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--ink-soft);padding:2px 6px;}
+  .anno-pf{padding:14px 16px;border-bottom:1px solid var(--line);}
+  .anno-pf textarea{width:100%;height:80px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:'Spectral',serif;font-size:.9rem;resize:none;background:var(--parch);color:var(--ink);box-sizing:border-box;}
+  .anno-pf textarea:focus{outline:2px solid var(--gold);border-color:transparent;}
+  .anno-pf-btns{display:flex;gap:8px;margin-top:8px;}
+  .anno-pf-btns button{flex:1;padding:8px;border-radius:8px;border:none;cursor:pointer;font-family:'Fraunces',serif;font-weight:600;font-size:.84rem;}
+  .anno-save-btn{background:var(--ink);color:var(--parch);}
+  .anno-cancel-btn{background:var(--parch-2);color:var(--ink-soft);border:1px solid var(--line) !important;}
+  .anno-list{flex:1;overflow-y:auto;padding:14px 16px;}
+  .anno-item{background:var(--parch);border-left:3px solid var(--gold);padding:9px 28px 9px 11px;border-radius:4px;margin-bottom:9px;font-size:.87rem;line-height:1.5;position:relative;}
+  .anno-item-date{font-size:.68rem;opacity:.45;margin-top:3px;}
+  .anno-item-del{position:absolute;top:7px;right:8px;cursor:pointer;color:var(--rouge);font-size:.8rem;background:none;border:none;font-weight:700;padding:0;}
+  .anno-fab-wrap{position:fixed;bottom:22px;right:22px;z-index:200;}
+  .anno-fab{width:50px;height:50px;border-radius:50%;background:var(--gold);color:var(--parch);border:none;cursor:pointer;font-size:1.3rem;box-shadow:0 4px 16px rgba(0,0,0,.22);transition:all .2s;display:block;}
+  .anno-fab:hover{background:var(--gold-bright);transform:scale(1.08);}
+  .anno-badge{position:absolute;top:-3px;right:-3px;background:var(--rouge);color:#fff;border-radius:50%;width:18px;height:18px;font-size:.62rem;display:none;align-items:center;justify-content:center;font-weight:700;}
+  .anno-badge.show{display:flex;}
+  /* ENTRAÎNEMENT textarea */
+  .train-ta-label{font-size:.82rem;color:var(--ink-soft);margin:10px 0 4px;display:block;}
+  .train-ta{width:100%;min-height:110px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:'Spectral',serif;font-size:.95rem;resize:vertical;background:var(--parch);color:var(--ink);box-sizing:border-box;line-height:1.6;}
+  .train-ta:focus{outline:2px solid var(--gold);border-color:transparent;}
   /* QUIZZ */
   .quiz-q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px;box-shadow:0 5px 16px -12px var(--shadow);}
   .quiz-q .num{font-size:.8rem;color:var(--gold);font-weight:600;letter-spacing:.05em;margin-bottom:6px;}
@@ -237,7 +256,7 @@ let quizState={started:false,current:0,questions:[],answers:[]};
 function startQuiz(){quizState.questions=QUIZ.sort(()=>Math.random()-.5);quizState.answers=new Array(quizState.questions.length).fill(null);quizState.current=0;quizState.started=true;renderQuiz();}
 function renderQuiz(){const sec=document.getElementById('quiz');if(!quizState.started){sec.innerHTML='<div style="max-width:780px;margin:0 auto;padding:22px 16px;"><div class="recit-intro"><p><strong>Quizz de révision</strong> — Questions aléatoires du cours.</p></div><div style="text-align:center;margin-top:24px;"><button onclick="startQuiz()" style="padding:12px 28px;background:var(--ink);color:var(--parch);border:none;border-radius:8px;font-family:Fraunces;font-weight:600;cursor:pointer;font-size:1rem;">Démarrer le quizz</button></div></div>';return;}const q=quizState.questions[quizState.current];const ans=quizState.answers[quizState.current];let html='<div style="max-width:780px;margin:0 auto;padding:22px 16px;"><div class="quiz-q"><div class="num">Q'+(quizState.current+1)+'/'+quizState.questions.length+'</div><div class="text">'+q.q+'</div><div class="quiz-opts">';q.o.forEach((opt,i)=>{const sel=ans===i?' selected':'';const correct=ans!==null&&i===q.c?' correct':'';const wrong=ans!==null&&ans!==q.c&&i===ans?' wrong':'';html+='<div class="quiz-opt'+sel+correct+wrong+'" onclick="quizSelect('+i+')">'+opt+'</div>';});html+='</div>';if(ans!==null){html+='<div class="quiz-result show"><strong>'+(ans===q.c?'✓ Correct !':'✗ Incorrect')+'</strong><p style="margin-top:6px;">'+q.x+'</p></div>';}html+='<div style="margin-top:16px;display:flex;gap:8px;"><button onclick="if(quizState.current>0){quizState.current--;renderQuiz();}" '+(quizState.current===0?'disabled':'')+'>&lt; Précédente</button><button onclick="if(quizState.current<quizState.questions.length-1){quizState.current++;renderQuiz();}" '+(quizState.current===quizState.questions.length-1?'disabled':'')+'>Suivante &gt;</button></div>';if(quizState.answers.every(a=>a!==null)){const score=quizState.answers.filter((a,i)=>a===quizState.questions[i].c).length;html+='<div class="quiz-score" style="margin-top:20px;"><div style="font-size:2.5rem;font-weight:800;color:var(--gold-bright);">'+score+'/'+quizState.questions.length+'</div><div style="font-size:.95rem;margin-top:8px;">Bravo ! Votre score</div></div><div style="text-align:center;margin-top:20px;"><button onclick="quizState.started=false;renderQuiz();" style="padding:10px 20px;background:var(--ink);color:var(--parch);border:none;border-radius:8px;cursor:pointer;font-family:Fraunces;font-weight:600;">Relancer un quizz</button></div>';}html+='</div>';sec.innerHTML=html;}
 window.quizSelect=(i)=>{quizState.answers[quizState.current]=i;renderQuiz();};
-function renderTrain(){const sec=document.getElementById('train');let html='<div style="max-width:780px;margin:0 auto;padding:22px 16px;"><div class="recit-intro"><p><strong>Entraînement à la rédaction</strong> — Questions demandant des réponses développées.</p></div>';TRAIN.forEach((q,i)=>{html+='<div class="train-q"><div class="num">Q'+(i+1)+'</div><div class="text">'+q.q+'</div><div class="train-answer" id="ans-'+i+'"><div class="label" onclick="document.getElementById(\'ans-'+i+'\').classList.toggle(\'show\')" style="cursor:pointer;color:var(--rouge);font-weight:600;margin-bottom:8px;">Afficher la correction →</div><p>'+q.x+'</p></div></div>';});html+='</div>';sec.innerHTML=html;}
+function renderTrain(){const sec=document.getElementById('train');let html='<div style="max-width:780px;margin:0 auto;padding:22px 16px;"><div class="recit-intro"><p><strong>Entraînement à la rédaction</strong> — Rédige ta réponse, puis affiche la correction.</p></div>';TRAIN.forEach((q,i)=>{html+='<div class="train-q"><div class="num">Q'+(i+1)+'</div><div class="text">'+q.q+'</div><span class="train-ta-label">Ta réponse :</span><textarea class="train-ta" placeholder="Rédige ta réponse ici…"></textarea><div class="train-answer" id="ans-'+i+'"><div class="label" onclick="document.getElementById(\'ans-'+i+'\').classList.toggle(\'show\')" style="cursor:pointer;color:var(--rouge);font-weight:600;margin:10px 0 6px;font-size:.9rem;">Afficher la correction →</div><p>'+q.x+'</p></div></div>';});html+='</div>';sec.innerHTML=html;}
 
 const REGIMES = {
  r1:{yr:"481 – 751", titre:"Les institutions mérovingiennes", tag:"La royauté franque : synthèse de la tradition germanique et de l'héritage romain.",
@@ -557,58 +576,112 @@ document.addEventListener('click',e=>{
 
 // ============ ANNOTATIONS ============
 let annotations=JSON.parse(localStorage.getItem('hdi-anno'))||{};
+let _pendingSel='';
 
-function toggleAnnotations(){
-  const panel=document.getElementById('annoNotes');
-  if(panel) panel.classList.toggle('show');
-}
+function _saveAnno(){try{localStorage.setItem('hdi-anno',JSON.stringify(annotations));}catch(e){}}
 
-function addAnnotation(text){
-  if(!text||text.trim().length<3) return;
-  const id='a'+Date.now();
-  annotations[id]={text:text.trim(),date:new Date().toLocaleString('fr-FR')};
-  try{localStorage.setItem('hdi-anno',JSON.stringify(annotations));}catch(e){}
-  renderAnnotations();
-}
+function deleteAnno(id){delete annotations[id];_saveAnno();_renderAnnoList();}
 
-function delAnnotation(id){
-  delete annotations[id];
-  try{localStorage.setItem('hdi-anno',JSON.stringify(annotations));}catch(e){}
-  renderAnnotations();
-}
-
-function renderAnnotations(){
+function _renderAnnoList(){
   const list=document.getElementById('annoList');
-  if(!list) return;
-  if(Object.keys(annotations).length===0){
-    list.innerHTML='<div style="font-size:.85rem;color:var(--ink-soft);font-style:italic;padding:8px;">Sélectionne du texte pour annoter</div>';
-    return;
-  }
-  list.innerHTML=Object.keys(annotations).reverse().map(id=>{
-    const a=annotations[id];
-    return '<div class="anno-note">'+a.text+'<div style="font-size:.7rem;opacity:.5;margin-top:4px;">'+a.date+'</div><span class="del" onclick="delAnnotation(\''+id+'\')">✕</span></div>';
-  }).join('');
+  if(!list)return;
+  const keys=Object.keys(annotations).reverse();
+  const badge=document.getElementById('annoBadge');
+  if(badge){badge.textContent=keys.length;badge.classList.toggle('show',keys.length>0);}
+  if(keys.length===0){list.innerHTML='<p style="font-size:.85rem;color:var(--ink-soft);font-style:italic;">Aucune annotation pour l\'instant.<br><br>Sélectionne du texte dans le cours pour annoter.</p>';return;}
+  list.innerHTML=keys.map(id=>{const a=annotations[id];return '<div class="anno-item">'+a.text+'<div class="anno-item-date">'+a.date+'</div><button class="anno-item-del" onclick="deleteAnno(\''+id+'\')">✕</button></div>';}).join('');
 }
 
-document.addEventListener('mouseup',function(){
-  const sel=window.getSelection().toString().trim();
-  if(sel.length>3 && sel.length<500){
-    const note=window.prompt('Votre note:',sel.substring(0,60)+(sel.length>60?'...':''));
-    if(note) addAnnotation(note);
+function _openPanel(prefill){
+  const p=document.getElementById('annoPanel');
+  const ta=document.getElementById('annoInput');
+  if(!p||!ta)return;
+  p.classList.add('show');
+  ta.value=prefill||'';
+  ta.focus();
+}
+
+function _closePanel(){
+  const p=document.getElementById('annoPanel');
+  if(p)p.classList.remove('show');
+  const ta=document.getElementById('annoInput');
+  if(ta)ta.value='';
+}
+
+function _saveInput(){
+  const ta=document.getElementById('annoInput');
+  const text=ta?.value?.trim();
+  if(!text||text.length<2)return;
+  annotations['a'+Date.now()]={text,date:new Date().toLocaleString('fr-FR')};
+  _saveAnno();
+  _renderAnnoList();
+  ta.value='';
+}
+
+// Bulle au survol de sélection
+document.addEventListener('mouseup',()=>{
+  const sel=window.getSelection();
+  const txt=sel?.toString().trim();
+  const bubble=document.getElementById('annoBubble');
+  if(!bubble)return;
+  if(txt&&txt.length>3&&txt.length<600){
+    _pendingSel=txt;
+    try{
+      const r=sel.getRangeAt(0).getBoundingClientRect();
+      bubble.style.top=(window.scrollY+r.top-42)+'px';
+      bubble.style.left=Math.max(4,r.left+r.width/2-52)+'px';
+    }catch(e){}
+    bubble.classList.add('show');
+  }else{
+    bubble.classList.remove('show');
   }
 });
 
-document.getElementById('annoToggle')?.addEventListener('click',toggleAnnotations);
-renderAnnotations();
+// Délégation clics
+document.addEventListener('click',e=>{
+  const bubble=document.getElementById('annoBubble');
+  if(e.target.id==='annoBubbleBtn'){
+    _openPanel(_pendingSel);
+    bubble?.classList.remove('show');
+    window.getSelection()?.removeAllRanges();
+    return;
+  }
+  if(e.target.id==='annoFab'){_openPanel('');return;}
+  if(e.target.id==='annoClose'){_closePanel();return;}
+  if(e.target.id==='annoSave'){_saveInput();return;}
+  if(e.target.id==='annoCancel'){_closePanel();return;}
+  if(bubble&&!bubble.contains(e.target))bubble.classList.remove('show');
+});
+
+_renderAnnoList();
 
 </script>
 
-<div class="anno-toolbar">
-  <button class="anno-btn" id="annoToggle" title="Afficher les annotations">📌</button>
+<!-- Bulle sélection -->
+<div id="annoBubble" class="anno-bubble">
+  <button id="annoBubbleBtn" style="background:none;border:none;color:inherit;cursor:pointer;font-family:'Fraunces',serif;font-weight:600;font-size:.8rem;padding:0;">✎ Annoter</button>
 </div>
-<div class="anno-notes" id="annoNotes">
-  <div class="title">Mes annotations</div>
-  <div id="annoList"></div>
+
+<!-- Panneau latéral -->
+<div id="annoPanel" class="anno-panel">
+  <div class="anno-ph">
+    <h3>📌 Mes annotations</h3>
+    <button id="annoClose">✕</button>
+  </div>
+  <div class="anno-pf">
+    <textarea id="annoInput" placeholder="Écris ta note ici…"></textarea>
+    <div class="anno-pf-btns">
+      <button id="annoSave" class="anno-save-btn">Enregistrer</button>
+      <button id="annoCancel" class="anno-cancel-btn">Annuler</button>
+    </div>
+  </div>
+  <div class="anno-list" id="annoList"></div>
+</div>
+
+<!-- Bouton flottant -->
+<div class="anno-fab-wrap">
+  <button id="annoFab" class="anno-fab" title="Mes annotations">📌</button>
+  <span id="annoBadge" class="anno-badge">0</span>
 </div>
 
 </body>
