@@ -522,26 +522,38 @@ document.addEventListener('click',e=>{
 let annotations=JSON.parse(localStorage.getItem('hdi-annotations'))||{};
 
 function toggleAnnotations(){document.getElementById('annoNotes').classList.toggle('show');}
-document.getElementById('annoToggle').addEventListener('click',toggleAnnotations);
+if(document.getElementById('annoToggle')) document.getElementById('annoToggle').addEventListener('click',toggleAnnotations);
 
 function addAnnotation(text){
-  const id=Date.now();annotations[id]={text,date:new Date().toLocaleString('fr-FR')};
+  if(!text||text.trim().length===0) return;
+  const id=Date.now();
+  annotations[id]={text,date:new Date().toLocaleString('fr-FR')};
   localStorage.setItem('hdi-annotations',JSON.stringify(annotations));
   renderAnnotations();
 }
 
-function delAnnotation(id){delete annotations[id];localStorage.setItem('hdi-annotations',JSON.stringify(annotations));renderAnnotations();}
+function delAnnotation(id){
+  delete annotations[id];
+  localStorage.setItem('hdi-annotations',JSON.stringify(annotations));
+  renderAnnotations();
+}
 
 function renderAnnotations(){
   const list=document.getElementById('annoList');
-  if(Object.keys(annotations).length===0){list.innerHTML='<div style="font-size:.85rem;color:var(--ink-soft);font-style:italic;">Aucune annotation pour le moment. Sélectionnez du texte et annotez !</div>';return;}
-  list.innerHTML=Object.entries(annotations).map(([id,a])=>`<div class="anno-note">${a.text}<span class="del" onclick="delAnnotation(${id})" title="Supprimer">✕</span><br><span style="font-size:.75rem;opacity:.6;">${a.date}</span></div>`).join('');
+  if(!list) return;
+  if(Object.keys(annotations).length===0){
+    list.innerHTML='<div style="font-size:.85rem;color:var(--ink-soft);font-style:italic;">Sélectionnez du texte pour annoter</div>';
+    return;
+  }
+  list.innerHTML=Object.entries(annotations).map(([id,a])=>{
+    return '<div class="anno-note">'+a.text+'<span class="del" onclick="delAnnotation('+id+')" title="Supprimer">✕</span><br><span style="font-size:.75rem;opacity:.6;">'+a.date+'</span></div>';
+  }).join('');
 }
 
-document.addEventListener('mouseup',()=>{
+document.addEventListener('mouseup',function(){
   const sel=window.getSelection().toString().trim();
-  if(sel.length>10&&sel.length<200){
-    const txt=prompt('Annotez ce passage :',sel.substring(0,50)+'...');
+  if(sel.length>5){
+    const txt=window.prompt('Votre annotation :',sel.substring(0,50));
     if(txt) addAnnotation(txt);
   }
 });
