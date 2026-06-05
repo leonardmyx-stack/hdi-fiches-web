@@ -527,7 +527,10 @@ tabs.forEach(t=>t.addEventListener('click',()=>{
   tabs.forEach(x=>x.classList.remove('active'));
   views.forEach(v=>v.classList.remove('active'));
   t.classList.add('active');
-  document.getElementById(t.dataset.v).classList.add('active');
+  const vid=t.dataset.v;
+  document.getElementById(vid).classList.add('active');
+  if(vid==='quiz') renderQuiz();
+  if(vid==='train') renderTrain();
   window.scrollTo({top:0,behavior:'smooth'});
 }));
 
