@@ -256,7 +256,46 @@ let quizState={started:false,current:0,questions:[],answers:[]};
 function startQuiz(){quizState.questions=QUIZ.sort(()=>Math.random()-.5);quizState.answers=new Array(quizState.questions.length).fill(null);quizState.current=0;quizState.started=true;renderQuiz();}
 function renderQuiz(){const sec=document.getElementById('quiz');if(!quizState.started){sec.innerHTML='<div style="max-width:780px;margin:0 auto;padding:22px 16px;"><div class="recit-intro"><p><strong>Quizz de révision</strong> — Questions aléatoires du cours.</p></div><div style="text-align:center;margin-top:24px;"><button onclick="startQuiz()" style="padding:12px 28px;background:var(--ink);color:var(--parch);border:none;border-radius:8px;font-family:Fraunces;font-weight:600;cursor:pointer;font-size:1rem;">Démarrer le quizz</button></div></div>';return;}const q=quizState.questions[quizState.current];const ans=quizState.answers[quizState.current];let html='<div style="max-width:780px;margin:0 auto;padding:22px 16px;"><div class="quiz-q"><div class="num">Q'+(quizState.current+1)+'/'+quizState.questions.length+'</div><div class="text">'+q.q+'</div><div class="quiz-opts">';q.o.forEach((opt,i)=>{const sel=ans===i?' selected':'';const correct=ans!==null&&i===q.c?' correct':'';const wrong=ans!==null&&ans!==q.c&&i===ans?' wrong':'';html+='<div class="quiz-opt'+sel+correct+wrong+'" onclick="quizSelect('+i+')">'+opt+'</div>';});html+='</div>';if(ans!==null){html+='<div class="quiz-result show"><strong>'+(ans===q.c?'✓ Correct !':'✗ Incorrect')+'</strong><p style="margin-top:6px;">'+q.x+'</p></div>';}html+='<div style="margin-top:16px;display:flex;gap:8px;"><button onclick="if(quizState.current>0){quizState.current--;renderQuiz();}" '+(quizState.current===0?'disabled':'')+'>&lt; Précédente</button><button onclick="if(quizState.current<quizState.questions.length-1){quizState.current++;renderQuiz();}" '+(quizState.current===quizState.questions.length-1?'disabled':'')+'>Suivante &gt;</button></div>';if(quizState.answers.every(a=>a!==null)){const score=quizState.answers.filter((a,i)=>a===quizState.questions[i].c).length;html+='<div class="quiz-score" style="margin-top:20px;"><div style="font-size:2.5rem;font-weight:800;color:var(--gold-bright);">'+score+'/'+quizState.questions.length+'</div><div style="font-size:.95rem;margin-top:8px;">Bravo ! Votre score</div></div><div style="text-align:center;margin-top:20px;"><button onclick="quizState.started=false;renderQuiz();" style="padding:10px 20px;background:var(--ink);color:var(--parch);border:none;border-radius:8px;cursor:pointer;font-family:Fraunces;font-weight:600;">Relancer un quizz</button></div>';}html+='</div>';sec.innerHTML=html;}
 window.quizSelect=(i)=>{quizState.answers[quizState.current]=i;renderQuiz();};
-function renderTrain(){const sec=document.getElementById('train');let html='<div style="max-width:780px;margin:0 auto;padding:22px 16px;"><div class="recit-intro"><p><strong>Entraînement à la rédaction</strong> — Rédige ta réponse, puis affiche la correction.</p></div>';TRAIN.forEach((q,i)=>{html+='<div class="train-q"><div class="num">Q'+(i+1)+'</div><div class="text">'+q.q+'</div><span class="train-ta-label">Ta réponse :</span><textarea class="train-ta" placeholder="Rédige ta réponse ici…"></textarea><div class="train-answer" id="ans-'+i+'"><div class="label" onclick="document.getElementById(\'ans-'+i+'\').classList.toggle(\'show\')" style="cursor:pointer;color:var(--rouge);font-weight:600;margin:10px 0 6px;font-size:.9rem;">Afficher la correction →</div><p>'+q.x+'</p></div></div>';});html+='</div>';sec.innerHTML=html;}
+let trainState={started:false,current:0,revealed:false,saved:''};
+function startTrain(){trainState={started:true,current:0,revealed:false,saved:''};renderTrain();}
+function trainReveal(){trainState.saved=document.getElementById('trainTA')?.value||'';trainState.revealed=true;renderTrain();}
+function trainNext(){trainState.current++;trainState.revealed=false;trainState.saved='';renderTrain();}
+function renderTrain(){
+  const sec=document.getElementById('train');
+  if(!sec)return;
+  if(!trainState.started){
+    sec.innerHTML='<div style="max-width:780px;margin:0 auto;padding:22px 16px;"><div class="recit-intro"><p><strong>Entraînement à la rédaction</strong></p><p style="margin-top:8px;font-size:.95rem;">'+TRAIN.length+' questions. Lis chaque question, rédige ta réponse puis affiche la correction.</p></div><div style="text-align:center;margin-top:28px;"><button onclick="startTrain()" style="padding:13px 32px;background:var(--ink);color:var(--parch);border:none;border-radius:8px;font-family:Fraunces;font-weight:600;cursor:pointer;font-size:1rem;">Commencer ✍️</button></div></div>';
+    return;
+  }
+  if(trainState.current>=TRAIN.length){
+    sec.innerHTML='<div style="max-width:780px;margin:0 auto;padding:22px 16px;text-align:center;"><div class="recit-intro"><p style="font-size:1.15rem;font-family:Fraunces;font-weight:700;">✓ Entraînement terminé !</p><p style="margin-top:8px;">Tu as parcouru les '+TRAIN.length+' questions.</p></div><button onclick="startTrain()" style="margin-top:24px;padding:12px 28px;background:var(--ink);color:var(--parch);border:none;border-radius:8px;font-family:Fraunces;font-weight:600;cursor:pointer;font-size:1rem;">Recommencer</button></div>';
+    return;
+  }
+  const q=TRAIN[trainState.current];
+  const n=trainState.current+1;
+  const pct=Math.round((n/TRAIN.length)*100);
+  let html='<div style="max-width:780px;margin:0 auto;padding:22px 16px;">'
+    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">'
+    +'<span style="font-size:.78rem;color:var(--gold);font-weight:600;white-space:nowrap;">Q '+n+' / '+TRAIN.length+'</span>'
+    +'<div style="flex:1;height:5px;background:var(--parch-2);border-radius:3px;overflow:hidden;"><div style="height:100%;width:'+pct+'%;background:var(--gold);border-radius:3px;transition:width .4s;"></div></div>'
+    +'</div>'
+    +'<div class="train-q">'
+    +'<div class="text" style="font-size:1.08rem;font-weight:600;margin-bottom:14px;">'+q.q+'</div>'
+    +'<span class="train-ta-label">Ta réponse :</span>'
+    +'<textarea class="train-ta" id="trainTA" placeholder="Rédige ta réponse ici…">'+trainState.saved+'</textarea>';
+  if(trainState.revealed){
+    html+='<div style="margin-top:14px;padding:14px 16px;background:#fff8e1;border-left:4px solid var(--gold);border-radius:6px;">'
+      +'<div style="font-family:Fraunces;font-weight:700;color:var(--gold);margin-bottom:7px;font-size:.95rem;">Correction</div>'
+      +'<p style="font-size:.95rem;line-height:1.65;">'+q.x+'</p></div>'
+      +'<div style="text-align:right;margin-top:14px;">'
+      +'<button onclick="trainNext()" style="padding:10px 24px;background:var(--ink);color:var(--parch);border:none;border-radius:8px;font-family:Fraunces;font-weight:600;cursor:pointer;">'+(trainState.current<TRAIN.length-1?'Question suivante →':'Terminer ✓')+'</button></div>';
+  }else{
+    html+='<div style="text-align:right;margin-top:14px;">'
+      +'<button onclick="trainReveal()" style="padding:10px 24px;background:var(--rouge);color:#fff;border:none;border-radius:8px;font-family:Fraunces;font-weight:600;cursor:pointer;">Voir la correction →</button></div>';
+  }
+  html+='</div></div>';
+  sec.innerHTML=html;
+}
 
 const REGIMES = {
  r1:{yr:"481 – 751", titre:"Les institutions mérovingiennes", tag:"La royauté franque : synthèse de la tradition germanique et de l'héritage romain.",
