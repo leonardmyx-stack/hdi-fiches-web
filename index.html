@@ -742,12 +742,31 @@ document.addEventListener('mousemove',e=>{
 });
 document.addEventListener('mouseout',e=>{if(!e.target.closest('.anno-mark'))_tip.style.display='none';});
 
+// Popup suppression
+let _delId=null;
+function _showDelPopup(cx,cy,id,note){
+  const p=document.getElementById('annoDelPop');
+  const n=document.getElementById('annoDelNote');
+  if(!p||!n)return;
+  n.textContent='"'+note+'"';
+  _delId=id;
+  p.style.left=Math.max(6,Math.min(cx,window.innerWidth-220))+'px';
+  p.style.top=Math.max(6,Math.min(cy+10,window.innerHeight-110))+'px';
+  p.style.display='block';
+}
+function _hideDelPopup(){const p=document.getElementById('annoDelPop');if(p)p.style.display='none';_delId=null;}
+
 // Clics
 document.addEventListener('click',e=>{
   if(e.target.id==='annoFab'){_toggleMode();return;}
   if(e.target.id==='annoBannerClose'){_toggleMode();return;}
   if(e.target.id==='annoPopupSave'){_saveAnno();return;}
   if(e.target.id==='annoPopupCancel'){_hidePopup();return;}
+  if(e.target.id==='annoDelConfirm'){if(_delId)deleteAnno(_delId);_hideDelPopup();return;}
+  if(e.target.id==='annoDelCancel'){_hideDelPopup();return;}
+  const mark=e.target.closest('.anno-mark');
+  if(mark&&!_annoMode){_showDelPopup(e.clientX,e.clientY,mark.dataset.aid,mark.dataset.note);return;}
+  if(!e.target.closest('#annoDelPop,.anno-mark'))_hideDelPopup();
 });
 
 // Touche Entrée dans le champ
@@ -773,6 +792,15 @@ _reapply();
   <div class="anno-popup-btns">
     <button id="annoPopupSave" class="anno-popup-save">Annoter ✓</button>
     <button id="annoPopupCancel" class="anno-popup-cancel">Annuler</button>
+  </div>
+</div>
+
+<!-- Popup suppression -->
+<div id="annoDelPop" class="anno-popup" style="display:none;width:200px;">
+  <div id="annoDelNote" style="font-size:.82rem;color:var(--ink-soft);margin-bottom:10px;font-style:italic;"></div>
+  <div class="anno-popup-btns">
+    <button id="annoDelConfirm" class="anno-popup-save" style="background:var(--rouge);">Supprimer</button>
+    <button id="annoDelCancel" class="anno-popup-cancel">Garder</button>
   </div>
 </div>
 
