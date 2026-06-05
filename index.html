@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Histoire des Institutions — 481 à 1789</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2b2118;--ink-soft:#4a3d2f;--parch:#f3e9d6;--parch-2:#ece0c8;
+    --card:#fbf5e8;--line:#cdb98f;--gold:#9a6b1f;--gold-bright:#c08a2c;
+    --roi:#3a4a7a;--roi-light:#5a6da3;--rouge:#8a2f25;--vert:#4a6342;
+    --shadow:rgba(60,40,15,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Spectral',Georgia,serif;color:var(--ink);
+    background:radial-gradient(circle at 20% 0%, #f7eedd 0%, transparent 45%),
+      radial-gradient(circle at 90% 100%, #efe2c9 0%, transparent 50%),var(--parch);
+    line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:60px;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.4;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");}
+  header{position:relative;z-index:2;text-align:center;padding:34px 20px 18px;border-bottom:1px solid var(--line);}
+  .kicker{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  h1{font-family:'Fraunces',serif;font-weight:800;font-size:2rem;line-height:1.05;margin:8px 0 4px;color:var(--ink);}
+  .sub{font-style:italic;color:var(--ink-soft);font-size:1rem;}
+  .credit{font-size:.74rem;color:var(--gold);margin-top:10px;letter-spacing:.04em;}
+  nav{position:sticky;top:0;z-index:10;background:rgba(243,233,214,.94);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:8px 8px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;}
+  nav::-webkit-scrollbar{display:none;}
+  .tab{flex:0 0 auto;font-family:'Fraunces',serif;font-weight:600;font-size:.82rem;
+    border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
+    padding:8px 13px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:all .18s ease;}
+  .tab:hover{border-color:var(--gold);}
+  .tab.active{background:var(--ink);color:var(--parch);border-color:var(--ink);}
+  .tab .yr{display:block;font-size:.62rem;font-weight:400;opacity:.7;letter-spacing:.02em;}
+  main{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:22px 16px;}
+  .view{display:none;animation:fade .4s ease;}
+  .view.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .recit-intro{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px;margin-bottom:22px;box-shadow:0 6px 20px -12px var(--shadow);}
+  .recit-intro p{font-size:1rem;}
+  .recit-intro strong{color:var(--gold);}
+  .chapter{margin-bottom:30px;}
+  .chap-head{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:14px;}
+  .chap-yr{font-family:'Fraunces',serif;font-weight:800;color:var(--rouge);font-size:1.05rem;flex:0 0 auto;}
+  .chap-title{font-family:'Fraunces',serif;font-weight:600;font-size:1.18rem;}
+  .recit p{margin-bottom:13px;font-size:1.01rem;}
+  .recit p strong{color:var(--ink);background:linear-gradient(transparent 62%, #e7d2a3 62%);padding:0 1px;}
+  .recit .lead::first-letter{font-family:'Fraunces',serif;font-weight:800;float:left;font-size:3.1rem;line-height:.78;padding:6px 10px 0 0;color:var(--gold);}
+  .turn{font-style:italic;color:var(--roi);border-left:3px solid var(--roi-light);padding:2px 0 2px 14px;margin:14px 0;font-size:.98rem;}
+  .reg-banner{background:linear-gradient(135deg, var(--ink) 0%, #3d2f1f 100%);color:var(--parch);
+    border-radius:16px;padding:20px;margin-bottom:18px;position:relative;overflow:hidden;box-shadow:0 10px 30px -14px var(--shadow);}
+  .reg-banner::after{content:"";position:absolute;right:-30px;top:-30px;width:140px;height:140px;border:2px solid rgba(192,138,44,.35);border-radius:50%;}
+  .reg-banner .yr{color:var(--gold-bright);font-family:'Fraunces',serif;font-weight:800;font-size:.95rem;letter-spacing:.08em;}
+  .reg-banner h2{font-family:'Fraunces',serif;font-weight:800;font-size:1.5rem;line-height:1.05;margin:4px 0 8px;}
+  .reg-banner .tag{font-style:italic;opacity:.9;font-size:.98rem;}
+  .ctrl{display:flex;gap:8px;margin-bottom:12px;}
+  .ctrl button{flex:1;font-family:'Spectral',serif;font-size:.8rem;border:1px solid var(--line);
+    background:var(--card);color:var(--ink-soft);border-radius:999px;padding:7px;cursor:pointer;}
+  .ctrl button:hover{border-color:var(--gold);color:var(--gold);}
+  .mind{display:flex;flex-direction:column;gap:13px;}
+  .branch{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 5px 16px -12px var(--shadow);}
+  .branch-head{display:flex;align-items:center;gap:9px;padding:11px 15px;cursor:pointer;
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.04rem;border-left:6px solid var(--accent,var(--gold));user-select:none;}
+  .branch-head .ico{font-size:1.1rem;}
+  .branch-head .chev{margin-left:auto;transition:transform .25s ease;color:var(--ink-soft);font-size:.8rem;}
+  .branch.open .chev{transform:rotate(90deg);}
+  .branch-body{display:none;padding:0 15px 14px 15px;}
+  .branch.open .branch-body{display:block;animation:fade .25s ease;}
+  .node{margin:11px 0 0;padding-left:14px;border-left:2px solid var(--line);}
+  .node .k{font-family:'Fraunces',serif;font-weight:600;color:var(--accent,var(--gold));display:block;font-size:.98rem;margin-bottom:1px;}
+  .node p{font-size:.95rem;margin:1px 0 0;color:var(--ink-soft);}
+  .node em{color:var(--rouge);font-style:italic;}
+  .node b{color:var(--ink);}
+  .pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+  .pill{font-size:.74rem;background:var(--parch-2);border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-soft);}
+  .pill.date{background:#f0dcb6;color:var(--rouge);font-weight:600;font-family:'Fraunces',serif;}
+  .b-pol{--accent:var(--roi);} .b-exe{--accent:var(--gold);} .b-cen{--accent:var(--rouge);}
+  .b-loc{--accent:var(--vert);} .b-arm{--accent:#7a5230;} .b-key{--accent:#6a4a8a;} .b-eg{--accent:#2f6e6e;}
+  .hint{text-align:center;font-style:italic;color:var(--gold);font-size:.85rem;margin:-2px 0 14px;}
+  .footer{text-align:center;font-size:.78rem;color:var(--ink-soft);margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-style:italic;}
+  /* ========= QUIZZ & ENTRAÎNEMENT ========= */
+  .quiz-q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:20px;box-shadow:0 5px 16px -12px var(--shadow);}
+  .quiz-q .num{font-family:'Fraunces',serif;font-weight:600;color:var(--gold);font-size:.9rem;margin-bottom:8px;}
+  .quiz-q .text{font-size:1.02rem;margin-bottom:14px;color:var(--ink);}
+  .quiz-opts{display:flex;flex-direction:column;gap:8px;}
+  .quiz-opt{padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--parch-2);cursor:pointer;transition:all .2s ease;font-size:.98rem;}
+  .quiz-opt:hover{border-color:var(--gold);background:var(--parch);}
+  .quiz-opt.selected{background:var(--gold);color:var(--parch);border-color:var(--gold);}
+  .quiz-opt.correct{background:#4a6342;color:var(--parch);border-color:#4a6342;}
+  .quiz-opt.wrong{background:#8a2f25;color:var(--parch);border-color:#8a2f25;}
+  .quiz-result{background:var(--card);border-left:4px solid var(--gold);padding:14px;margin-top:12px;font-size:.95rem;border-radius:4px;}
+  .quiz-result.show{display:block;animation:fade .3s ease;}
+  .quiz-nav{display:flex;gap:8px;margin-bottom:20px;}
+  .quiz-nav button{padding:8px 14px;border:1px solid var(--line);background:var(--card);border-radius:8px;cursor:pointer;font-size:.9rem;}
+  .quiz-nav button:hover{border-color:var(--gold);}
+  .quiz-nav button:disabled{opacity:.5;cursor:default;}
+  .quiz-score{text-align:center;background:linear-gradient(135deg, var(--ink) 0%, #3d2f1f 100%);color:var(--parch);padding:24px;border-radius:14px;margin-bottom:20px;font-family:'Fraunces',serif;}
+  .quiz-score .big{font-size:2.5rem;font-weight:800;color:var(--gold-bright);}
+  .quiz-score .label{font-size:.95rem;margin-top:8px;}
+  .quiz-reset{text-align:center;margin-top:20px;}
+  .quiz-reset button{padding:10px 20px;background:var(--ink);color:var(--parch);border:none;border-radius:8px;cursor:pointer;font-family:'Fraunces',serif;font-weight:600;}
+  .quiz-reset button:hover{background:var(--gold);}
+  .train-q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:24px;box-shadow:0 5px 16px -12px var(--shadow);}
+  .train-q .num{font-family:'Fraunces',serif;font-weight:600;color:var(--rouge);font-size:.9rem;margin-bottom:8px;}
+  .train-q .text{font-size:1.05rem;margin-bottom:14px;color:var(--ink);font-weight:500;}
+  .train-answer{background:var(--parch-2);border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:12px;max-height:0;overflow:hidden;transition:max-height .4s ease;}
+  .train-answer.show{max-height:800px;}
+  .train-answer .label{font-family:'Fraunces',serif;font-weight:600;color:var(--rouge);font-size:.92rem;margin-bottom:8px;cursor:pointer;user-select:none;}
+  .train-answer p{font-size:.98rem;line-height:1.7;margin-bottom:10px;color:var(--ink);}
+  .train-answer p:last-child{margin-bottom:0;}
+  /* ========= ANNOTATIONS ========= */
+  .anno-toolbar{position:fixed;bottom:20px;right:20px;z-index:50;display:flex;flex-direction:column;gap:8px;}
+  .anno-btn{width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--parch);border:none;cursor:pointer;font-size:1.2rem;transition:all .2s ease;box-shadow:0 4px 12px rgba(0,0,0,.15);}
+  .anno-btn:hover{background:var(--gold-bright);transform:scale(1.1);}
+  .anno-mark{background:linear-gradient(transparent 60%, #e7d2a3 60%);padding:0 2px;}
+  .anno-notes{position:fixed;bottom:80px;right:20px;z-index:49;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;width:280px;max-height:400px;overflow-y:auto;box-shadow:0 10px 30px -14px var(--shadow);display:none;}
+  .anno-notes.show{display:block;animation:fade .3s ease;}
+  .anno-notes .title{font-family:'Fraunces',serif;font-weight:600;color:var(--ink);margin-bottom:12px;font-size:.95rem;}
+  .anno-note{background:var(--parch);padding:10px;border-left:3px solid var(--gold);margin-bottom:8px;border-radius:4px;font-size:.85rem;line-height:1.5;}
+  .anno-note .del{cursor:pointer;color:var(--rouge);font-weight:600;float:right;font-size:.8rem;}
+  @media(min-width:620px){h1{font-size:2.5rem;}.reg-banner h2{font-size:1.8rem;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">Histoire des Institutions · L1</div>
+  <h1>De Clovis à la Révolution</h1>
+  <div class="sub">Les institutions françaises, 481 – 1789</div>
+  <div class="credit">✦ Fiche de révision faite pour toi ✦</div>
+</header>
+
+<nav id="nav">
+  <button class="tab active" data-v="recit">📜 Le Récit<span class="yr">toute l'histoire</span></button>
+  <button class="tab" data-v="r1">Mérovingiens<span class="yr">481–751</span></button>
+  <button class="tab" data-v="r2">Carolingiens<span class="yr">751–987</span></button>
+  <button class="tab" data-v="r3">Ordre seigneurial<span class="yr">987–1108</span></button>
+  <button class="tab" data-v="r4">Royauté féodale<span class="yr">1108–1226</span></button>
+  <button class="tab" data-v="r5">Ordre monarchique<span class="yr">1226–1515</span></button>
+  <button class="tab" data-v="r6">État monarchique<span class="yr">1515–1661</span></button>
+  <button class="tab" data-v="r7">Monarchie absolue<span class="yr">1661–1789</span></button>
+  <button class="tab" data-v="quiz">🎯 Quizz<span class="yr">200 Q</span></button>
+  <button class="tab" data-v="train">✍️ Entraînement<span class="yr">rédaction</span></button>
+</nav>
+
+<main>
+
+<!-- ================= LE RÉCIT ================= -->
+<section class="view active" id="recit">
+  <div class="recit-intro">
+    <p>Tout le cours, c'est <strong>une seule grande histoire</strong> : comment le pouvoir passe d'un chef de guerre germanique à un roi absolu. Lis ça comme un récit pour avoir le fil. Ensuite, les autres onglets détaillent chaque régime en carte mentale (tout le contenu du cours est dedans).</p>
+    <p style="margin-top:8px;font-size:.92rem;">La trame en une phrase : <em>chef de guerre → roi sacré → empereur → roi écrasé par les seigneurs → suzerain (seigneur des seigneurs) → souverain → monarque absolu de droit divin… puis 1789.</em></p>
+  </div>
+
+  <div class="recit chapter">
+    <div class="chap-head"><span class="chap-yr">481</span><span class="chap-title">Clovis et les Mérovingiens</span></div>
+    <p class="lead">Au début, il y a <strong>Clovis</strong>, roi des Francs en 481, juste après l'effondrement de l'Empire romain d'Occident. Sa royauté est une <strong>synthèse</strong> : la tradition germanique (le roi chef de guerre qui nourrit et protège son clan) et le modèle romain (titre de « rex », administration, cités).</p>
+    <p>Il détient le <strong>mundium</strong> (pouvoir de protection) et le <strong>bannum</strong> (pouvoir de commander, punir, légiférer). Sa légitimité vient de son charisme d'origine divine. Le tournant, c'est le <strong>baptême de Clovis</strong> (Reims) : devenu catholique, il gagne le soutien des évêques gallo-romains. La royauté guerrière devient <strong>territoriale</strong>.</p>
+    <p>Faiblesse fatale : à la mort du roi, le royaume se <strong>partage entre tous ses fils</strong> → guerres entre frères, éclatement. Le grand gagnant : le <strong>maire du palais</strong>, dont la famille (les <strong>Pippinides</strong>) rend la charge héréditaire.</p>
+  </div>
+
+  <div class="recit chapter">
+    <div class="chap-head"><span class="chap-yr">751</span><span class="chap-title">Les Carolingiens : le roi devient sacré</span></div>
+    <p><strong>Pépin le Bref</strong> dépose le dernier Mérovingien (751). Pour se légitimer, il se fait <strong>sacrer</strong> avec l'appui du pape : naissance de la <strong>royauté sacrée</strong> (le roi choisi par Dieu). Son fils <strong>Charlemagne</strong> est couronné <strong>empereur en 800</strong> (renovatio imperii). Sa fonction = <strong>ministère théocratique</strong> (gouverner au nom de Dieu).</p>
+    <p class="turn">Le rapport spirituel/temporel bascule : Charlemagne domine l'Église ; sous Louis le Pieux, les évêques prennent le dessus (le roi n'est que le défenseur des Églises).</p>
+    <p>Pour tenir l'empire : la <strong>vassalité</strong> et les <strong>missi dominici</strong>. Mais après Charlemagne tout craque : <strong>Verdun 843</strong> (France/Allemagne), <strong>invasions</strong>, et les comtes rendent leurs charges <strong>héréditaires</strong> → <strong>émancipation comtale</strong>, éclatement en principautés puis seigneuries. En <strong>987</strong>, <strong>Hugues Capet</strong> (Capétiens).</p>
+  </div>
+
+  <div class="recit chapter">
+    <div class="chap-head"><span class="chap-yr">987</span><span class="chap-title">L'ordre seigneurial : le roi écrasé</span></div>
+    <p>Au <strong>XIe siècle</strong>, le vrai pouvoir est au <strong>seigneur</strong>, qui exerce le ban et la justice depuis son <strong>château</strong>, mais pour son <strong>profit privé</strong>. Les paysans sont des <strong>serfs</strong>, les terres des <strong>tenures</strong>. Seuls échappent à la dépendance les <strong>vassaux</strong> (hommage + fidélité) et les <strong>ministériaux</strong> (le prévôt).</p>
+    <p>Le roi est faible mais <strong>sacré</strong> (à Reims), <strong>thaumaturge</strong>, et il impose l'<strong>hérédité</strong> (sacre anticipé du fils) et la <strong>primogéniture</strong> (1025) : le royaume ne se partage plus. La dynastie s'enracine.</p>
+  </div>
+
+  <div class="recit chapter">
+    <div class="chap-head"><span class="chap-yr">1108</span><span class="chap-title">La royauté féodale : le roi suzerain</span></div>
+    <p>Au <strong>XIIe siècle</strong>, les villes s'<strong>émancipent</strong> (communes, consulats, chartes) et le <strong>fief change de nature</strong> (héréditaire puis aliénable). Les <strong>princes</strong> soumettent les seigneurs par le contrat féodo-vassalique ; puis le <strong>roi</strong> soumet les princes grâce à la <strong>théorie de la mouvance</strong> de <strong>Suger</strong> : le royaume est une pyramide de fiefs, le roi au sommet = <strong>suzerain</strong>.</p>
+    <p><strong>Philippe Auguste</strong> modernise l'administration (<strong>baillis</strong> sur <strong>prévôts</strong>) et prononce la <strong>commise des fiefs de Jean sans Terre</strong> (1202) → Normandie, Anjou.</p>
+    <p class="turn">Limite : « le vassal de mon vassal n'est pas mon vassal ». Suzerain, pas encore souverain.</p>
+  </div>
+
+  <div class="recit chapter">
+    <div class="chap-head"><span class="chap-yr">1226</span><span class="chap-title">L'ordre monarchique : le roi souverain</span></div>
+    <p>Dès <strong>Saint Louis</strong>, le roi revendique un <strong>pouvoir absolu</strong> via le <strong>droit romain</strong> : « empereur en son royaume », « roi très chrétien », au service de la <strong>Respublica</strong> (la Couronne, qui ne meurt jamais). Il récupère justice (cas royaux), loi, armée, finances, regalia.</p>
+    <p>Les <strong>États généraux</strong> (dès Philippe le Bel) ne deviennent jamais un vrai contre-pouvoir. On fixe les <strong>lois du royaume</strong> : <strong>loi salique</strong> (hérédité + primogéniture + masculinité + agnation), <strong>instantanéité</strong> (« le roi est mort, vive le roi ») et <strong>indisponibilité</strong>. L'administration grandit : officiers <strong>inamovibles</strong> (Louis XI, 1467) puis <strong>vénalité</strong> ; <strong>Conseil + Parlement</strong> ; prévôtés → baillages → gouvernements ; <strong>armée permanente</strong> (Charles VII) et <strong>taille</strong>.</p>
+  </div>
+
+  <div class="recit chapter">
+    <div class="chap-head"><span class="chap-yr">1515</span><span class="chap-title">La croissance de l'État monarchique</span></div>
+    <p>Au <strong>XVIe siècle</strong>, malgré les guerres d'Italie et de religion, l'État se renforce. <strong>Jean Bodin</strong> (1576) définit la <strong>souveraineté</strong> : « la puissance absolue et perpétuelle d'une République », une et indivisible → le roi. Deux camps : <strong>monarchomaques</strong> vs <strong>« politiques »</strong>. Le roi rejette les contre-pouvoirs : déclin des <strong>États généraux</strong>, ascension des <strong>parlements</strong> (remontrances).</p>
+    <p>Lois fondamentales précisées (<strong>catholicité</strong> du roi, indisponibilité, arrêt Lemaistre 1593). Administration : <strong>paulette</strong> (1604), <strong>commissaires</strong>, <strong>ministériat</strong> (Richelieu, Mazarin), <strong>intendants</strong>.</p>
+  </div>
+
+  <div class="recit chapter">
+    <div class="chap-head"><span class="chap-yr">1661</span><span class="chap-title">Apogée et déclin de la monarchie absolue</span></div>
+    <p>En <strong>1661</strong> (mort de Mazarin), <strong>Louis XIV</strong> règne seul : apogée. <strong>Bossuet</strong> pousse le <strong>droit divin</strong> à fond (le roi ne répond que devant Dieu). Les <strong>parlements</strong> sont matés (séance de la flagellation, 1766) mais renaissent sur l'impôt.</p>
+    <p>Lois fondamentales encore précisées (succession d'Espagne ; bâtards légitimés → « légitime et pas légitimé »). Puis crise profonde et durable → déclin → <strong>Révolution de 1789</strong> (Louis XVI). Fin de l'histoire.</p>
+  </div>
+
+  <div class="footer">Ouvre chaque régime en haut pour les cartes mentales complètes. 🤍</div>
+</section>
+
+<section class="view" id="r1"></section>
+<section class="view" id="r2"></section>
+<section class="view" id="r3"></section>
+<section class="view" id="r4"></section>
+<section class="view" id="r5"></section>
+<section class="view" id="r6"></section>
+<section class="view" id="r7"></section>
+
+<!-- ================= QUIZZ ================= -->
+<section class="view" id="quiz"></section>
+
+<!-- ================= ENTRAÎNEMENT ================= -->
+<section class="view" id="train"></section>
+
+</main>
+
+<!-- ================= ANNOTATION TOOLBAR ================= -->
+<div class="anno-toolbar">
+  <button class="anno-btn" id="annoToggle" title="Afficher les annotations">📌</button>
+</div>
+<div class="anno-notes" id="annoNotes">
+  <div class="title">Mes annotations</div>
+  <div id="annoList"></div>
+</div>
+
+<script>
+const REGIMES = {
+ r1:{yr:"481 – 751", titre:"Les institutions mérovingiennes", tag:"La royauté franque : synthèse de la tradition germanique et de l'héritage romain.",
+  branches:[
+   {cls:"b-pol",ico:"👑",t:"La conception du pouvoir royal",nodes:[
+     {k:"Une double influence",p:"La royauté mérovingienne mêle modèle romain et traditions germaniques, dans la conception du pouvoir comme dans son exercice."},
+     {k:"Tradition germanique (domine la conception)",p:"Le roi est à la tête d'un clan : fonction nourricière et guerrière (chef de guerre qui mène ses hommes à la victoire). Légitimité = le charisme, venu des dieux (Odin, Thor avant le baptême). Ascendance divine (la grand-mère de Clovis aurait été fécondée par un dieu), symbolisée par la longue chevelure (« reges criniti »). Fonction héréditaire, mais souvent plusieurs candidats (plusieurs fils)."},
+     {k:"Le mundium (pouvoir de protection)",p:"Pouvoir magique comparable à celui d'un père sur sa famille. Assure la paix et la justice (réparation aux victimes). Protection spéciale des faibles (veuves, orphelins) : sanctions très sévères contre les coupables."},
+     {k:"Le bannum (pouvoir de commandement)",p:"Pouvoir illimité de commander et punir : ordonner, interdire, légiférer, exiger des prestations (service militaire, impôt). Refus → amendes, puis <em>forris bannitio</em> (bannissement) : le banni = le « forban », privé de protection, peut être tué impunément."},
+     {k:"Influence romaine",p:"Clovis garde le titre de « rex » (donné par les empereurs). Après sa victoire sur les Wisigoths (507), il reçoit de l'empire d'Orient les titres de consul et patrice, et entre à Tours en général romain (508). Vacance du siège impérial depuis 476 → la royauté guerrière devient territoriale (autorité sur toutes les populations, quelle que soit l'origine ethnique)."},
+     {k:"Le baptême de Clovis",p:"À Reims (25 décembre), avec 3000 guerriers. Contexte : bataille de Tolbiac (il invoque le dieu de sa femme Clotilde et bat les Alamans). Acte fondateur : soutien des évêques gallo-romains (maîtres des cités). Clovis devient le champion catholique contre l'arianisme (Wisigoths, Burgondes) → un « nouveau Constantin »."}
+   ]},
+   {cls:"b-exe",ico:"⚔️",t:"L'exercice du pouvoir",nodes:[
+     {k:"Le poids politique de l'aristocratie",p:"Les Francs empruntent à Rome le pouvoir absolu (l'<em>imperium</em>). Restriction des assemblées d'hommes libres (« plaids generaux »), désormais convoquées à des fins militaires. Le roi gouverne seul, puis fait approuver ses décisions par l'assemblée des grands. Mais il dépend du soutien de ces grands (aristocratie franque + gallo-romaine + burgonde + wisigothique)."},
+     {k:"Les fidèles du roi",p:"Garde privée = les <b>antrustions</b> (serment de fidélité très contraignant, forment la « truste »). Les <b>leudes</b> = aristocrates liés par un serment unilatéral, mais à fidélité RÉMUNÉRÉE → le roi doit s'enrichir constamment pour les payer."},
+     {k:"Récompenser les fidèles",p:"Partage du butin : les richesses pillées sont réparties en lots tirés au sort (épisode du <b>vase de Soissons</b>). Puis, quand le butin ne suffit plus, concession de terres et de fonctions = <em>honores</em>."},
+     {k:"Le serment général",p:"Le <b>leudesanium</b> : serment de fidélité de tous les hommes libres. Mais souvent prêté non au roi directement, mais devant son représentant (le comte) → il profite finalement à l'aristocratie, qui se constitue ses propres clientèles de fidèles."},
+     {k:"Une unité territoriale précaire",p:"À la mort du roi : partage du royaume entre tous ses fils → rivalités et guerres entre frères (chacun veut reconstituer l'unité). 4 grands royaumes : Aquitaine (Sud), Bourgogne (Est), Neustrie (Nord), Austrasie (Ouest). Conflit Neustrie–Austrasie (570–613) : Sigebert/Brunehaut contre Chilpéric/Frédégonde. Réunifications brèves : Clotaire (558), Clotaire II (613), Dagobert Ier (629)."}
+   ]},
+   {cls:"b-cen",ico:"🏛️",t:"Administration centrale : le palais",nodes:[
+     {k:"Le palais",p:"Ensemble de l'entourage du roi : familiers (fonction domestique) + grands/conseillers (fonction politique), parfois les deux. Inspiré de la cour impériale romaine + tradition germanique. Il est <b>itinérant</b> (se déplace)."},
+     {k:"Le maire du palais",p:"Le plus important des officiers palatins. Surveille les serviteurs : fonction d'abord domestique, qui devient vite politique (homme de confiance du roi). À partir du VIIIe siècle, il <b>supplante le roi</b> (profite des minorités, surtout après Dagobert). Les Pippinides le rendent héréditaire."},
+     {k:"Les autres officiers palatins",p:"Comte du palais (dirige le tribunal du palais), connétable (écurie), maréchal (chevaux), sénéchal (doyen des serviteurs, ravitaillement), référendaire (garde du sceau royal, dirige les notaires), monétaire (frappe de la monnaie), trésorier, abbé (chapelle royale). Les <b>nutritis</b> = jeunes aristocrates formés au palais pour servir le roi (ex. St-Ouen devenu abbé)."}
+   ]},
+   {cls:"b-loc",ico:"🗺️",t:"Administration locale : le comte",nodes:[
+     {k:"Les circonscriptions",p:"On conserve le cadre des cités romaines, parfois découpées en <b>pagus</b> (les cités du Nord, trop grandes). Celles du Sud restent inchangées."},
+     {k:"Le comte",p:"Nommé par le roi pour le représenter à la tête d'une cité. Titulaire d'un <em>honor</em>, lié par serment de fidélité, il reçoit le <em>regimen</em> (gouvernement de sa circonscription). Attributions très larges : militaire (peut lever l'ost), judiciaire (préside le mallus, rend la justice au nom du roi), fiscale. Il prend des règlements, administre les domaines royaux, et reverse chaque année au trésor ce qu'il a perçu, après sa rémunération."},
+     {k:"Édit de Paris (614)",p:"Clotaire II décide que les comtes sont recrutés dans l'aristocratie locale."},
+     {k:"Les subordonnés",p:"Centeniers et viguiers (à la tête de circonscriptions plus petites : centaines, vigueries), + agents spécialisés (collecteurs de taxes)."}
+   ]},
+   {cls:"b-arm",ico:"🛡️",t:"Le rôle de l'administration",nodes:[
+     {k:"Armée",p:"Service dû par tous les hommes libres (coutume franque). Ils s'équipent à leurs frais, sans solde, mais ont droit à une part du butin. Service étendu à tous les sujets libres. Dagobert Ier (629–639) concède des terres ecclésiastiques. Charles Martel (maire 717–741) reprend les terres d'Église pour ses fidèles (bénéfices viagers) → protestations → conciles de Soissons (743, 744) : propriété rendue aux Églises, mais terres concédées aux guerriers à titre précaire (contre un cens) = « précaire concédé à la demande du roi »."},
+     {k:"Justice — le mallus",p:"Tribunal du comte, itinérant, un par pagus. Procès public : les hommes libres sont convoqués. La sentence est rendue par le comte après l'avis des <b>rachimbourgs</b> (notables qui connaissent la loi et qualifient juridiquement les faits). Compétence générale (pénal + civil)."},
+     {k:"Personnalité des lois",p:"Critère ethnique pour choisir la loi applicable : loi salique (Francs, 507–511), code d'Euric (Wisigoths, 475), loi Gombette (Burgondes, 502), bréviaire d'Alaric (gallo-romains, 506). Preuves : serment + ordalie (épreuve de l'eau chaude)."},
+     {k:"Tribunal du palais",p:"Juridiction d'exception, présidée par le comte du palais en l'absence du roi, itinérante. Juge les affaires touchant le roi (trahison, atteinte à son patrimoine) et les personnes sous sa protection. Pas de hiérarchie des juridictions, mais le roi peut sanctionner le déni de justice (Édit de 614, Clotaire)."},
+     {k:"Justice ecclésiastique",p:"Rendue par l'évêque : affaires internes de l'Église + péché public (adultère notable, blasphème…). Héritage romain (Constantin, 318). Élargie par l'Édit de Paris (614) à toutes les questions touchant les sacrements."},
+     {k:"Finances",p:"Trésor alimenté par les domaines royaux + les impôts. Maintien de la fiscalité impériale : impôts directs (sur personnes/terres, difficiles → révoltes), impôts indirects (tonlieux sur la circulation des marchandises). + amendes et <b>fredus</b> (profit de justice). Gérés par les comtes → abus → <b>privilège d'immunité</b> (Édit 614) : l'Église perçoit elle-même l'impôt sur son domaine et n'accueille plus le mallus. Multiplication des chartes d'immunité au VIIe → contrebalance le pouvoir des comtes."}
+   ]},
+   {cls:"b-eg",ico:"⛪",t:"L'Église dans le royaume",nodes:[
+     {k:"L'organisation",p:"Territoire divisé en évêchés (un évêque chacun), regroupés en provinces ecclésiastiques (dont l'évêque est le « métropolitain », futur archevêque). Désignation : principe canonique de l'élection « clero et populo » (clergé + peuple), mais en pratique le candidat est imposé par le roi. L'Édit de 614 rappelle l'élection + exige la ratification royale."},
+     {k:"Le rôle de l'évêque",p:"Spirituel (sacrements, conversion des païens, ordination des prêtres, droit canonique) ET politique/administratif (principale autorité morale de la cité, intermédiaire entre le comte et les habitants, gestion des impôts via les immunités). Présent dans l'entourage royal (les grands du royaume), penseur politique."},
+     {k:"Clergé séculier / régulier",p:"Séculier = évêques, prêtres (« dans le siècle »). Régulier = moines, vivant à l'écart selon une règle (St Benoît). Les monastères participent à l'évangélisation des campagnes et conservent l'héritage antique. Les rois en fondent (ex. abbaye de St-Denis). Les abbés ont des <em>honores</em>, prélèvent l'impôt, sont élus par les moines mais contrôlés par le roi → relais du pouvoir royal sous les Carolingiens."}
+   ]},
+   {cls:"b-key",ico:"🔑",t:"À retenir absolument",nodes:[
+     {k:"Personnages",p:"Clovis · Clotilde · Clotaire II · Dagobert Ier · Charles Martel · Pépin le Bref."},
+     {k:"Notions-clés",p:"Mundium · bannum · forban · royauté territoriale · antrustions / leudes · leudesanium · honores · mallus · rachimbourgs · personnalité des lois · privilège d'immunité · maire du palais · clero et populo."}
+   ],dates:["481 Clovis","496/498 baptême","507 Wisigoths","508 Tours","558/613/629 réunifications","614 Édit de Paris","732 Poitiers","751 fin des Mérovingiens"]}
+  ]},
+
+ r2:{yr:"751 – 987", titre:"Les institutions carolingiennes", tag:"On passe d'un royaume à un empire, et le roi devient sacré… avant l'éclatement.",
+  branches:[
+   {cls:"b-pol",ico:"👑",t:"La conception du pouvoir",nodes:[
+     {k:"Pourquoi le sacre ?",p:"Le sacre légitime la nouvelle dynastie. Charles Martel se contentait du titre de maire / <em>princeps</em> (Poitiers, 732), sans être rex. Son fils Pépin dépose le dernier Mérovingien (Childéric III, tondu et enfermé au monastère)."},
+     {k:"L'appui du pape",p:"Pépin consulte le pape : doit gouverner celui qui a le pouvoir ? Le pape Zacharie répond : « il vaut mieux appeler roi celui qui a le pouvoir ». Pépin est élu par les grands à Soissons et oint par les évêques (novembre 751) → 1er roi sacré. Renouvelé en 754 à St-Denis par le pape Étienne II (onction à Pépin et ses fils ; les fils de Carloman sont écartés)."},
+     {k:"Le donnant-donnant",p:"En échange, le pape obtient un soutien militaire contre les Lombards (754–756). Pépin restitue 22 cités au pape → naissance de l'<b>État pontifical</b> (justifié par la « fausse donation de Constantin »)."},
+     {k:"La cérémonie du sacre",p:"Acte religieux : onction d'huiles saintes, comparable à la consécration des évêques. Rattachement à la tradition juive (le roi David oint par Samuel). Signifie que le roi est <b>choisi par Dieu</b> avant d'être élu par le peuple. (Clovis était baptisé, pas sacré : Pépin est le premier roi sacré.)"},
+     {k:"Une royauté ministérielle",p:"La fonction royale = <b>ministère théocratique</b> (exercé pour le compte de Dieu, pour le salut du peuple). Conséquence : pas de séparation stricte du spirituel et du temporel. Sous Charlemagne, le temporel domine (tutelle sur les Églises, capitulaires). Sous Louis le Pieux, le rapport s'inverse (les évêques profitent des guerres civiles de ses fils)."},
+     {k:"Les évêques encadrent le roi",p:"Ils rappellent que le roi est le défenseur des Églises, pas leur maître, et qu'il ne peut interpréter seul la volonté divine. Doctrine du pape Gélase (Ve s.) : auctoritas (au pape) > potestas (au roi). « Miroirs du prince » : Jonas d'Orléans, <em>L'institution royale</em> ; Hincmar de Reims, <em>Le ministère royal</em>."},
+     {k:"La promesse de Coulaines",p:"Charles le Chauve (novembre 843, après Verdun) : il s'engage à respecter la loi divine, faire régner la paix et la justice, protéger les Églises et les faibles, garder fidélité au peuple et aux grands → limitation volontaire du pouvoir, définition contractuelle de la royauté."},
+     {k:"La restauration impériale",p:"La « renovatio romani imperii » résulte du prestige de Charlemagne + de la volonté du pape Léon III (contre l'empire d'Orient et l'aristocratie romaine qui le contestent). Alcuin distingue 3 dignités (impériale, papale, royale). Étapes : Lombards anéantis (774), conquête de la Germanie / Saxons christianisés de force (799), tentatives en Espagne et Italie. Capitale à Aix-la-Chapelle. Charlemagne protège Léon III → couronné empereur le 25 décembre 800 (le pape pose le diadème avant l'acclamation = supériorité du spirituel). Empire européen (≠ méditerranéen romain). L'empereur d'Orient reconnaît la dignité impériale."},
+     {k:"La succession qui brise l'empire",p:"Louis le Pieux (814) abandonne les titres royaux pour la seule dignité impériale. <em>Ordinatio imperii</em> (817) : Lothaire empereur, Pépin et Louis le Germanique rois intégrés. Mais un 4e fils naît (Charles le Chauve, 822) → guerre → <b>traité de Verdun (843)</b> : Lothaire (centre, Lotharingie + titre impérial), Louis le Germanique (Est, Francia orientalis), Charles le Chauve (Ouest, Francia occidentalis)."}
+   ]},
+   {cls:"b-exe",ico:"🤝",t:"L'exercice du pouvoir : les liens personnels",nodes:[
+     {k:"Le serment vassalique",p:"Entrée en vassalité = 2 actes : la <b>commendatio</b> (mains jointes : le vassal devient l'homme du seigneur, engage sa force, son conseil, sa vie contre protection) + le <b>serment de fidélité</b> (sur un objet sacré). + remise d'un <b>bénéfice</b> (terre concédée à titre personnel et viager, qui retourne au seigneur à la mort du vassal). Charles Martel est le premier à généraliser cette rémunération par concession de terre."},
+     {k:"Charlemagne transforme la vassalité",p:"D'un contrat privé (vassal/seigneur), il en fait un moyen de gouvernement en multipliant les vassaux du roi. Il renforce aussi le service public (le leudesanium) qu'il rend obligatoire."},
+     {k:"Le serment public renforcé",p:"En 802, Charlemagne exige de tous les hommes libres un engagement positif identique au serment vassalique (jurer fidélité, l'accompagner à la guerre). Imposé à tous les grands (laïcs et ecclésiastiques), surtout dans les territoires annexés. Les vassaux sont incités à se créer leurs propres clientèles (capitulaire de 807). Charles le Chauve : <b>capitulaire de Mersen (847)</b>, « tous les hommes libres se recommandent à un seigneur »."},
+     {k:"L'inconvénient",p:"La généralisation de la vassalité profite à l'aristocratie : au lieu de relayer le pouvoir royal, les grands font écran entre le roi et ses sujets et se constituent leur propre armée → germe de l'éclatement après Charlemagne."}
+   ]},
+   {cls:"b-cen",ico:"🏛️",t:"Administration centrale : le palais",nodes:[
+     {k:"Maintien… sauf le maire",p:"On conserve les officiers palatins, mais on <b>supprime le maire du palais</b> (c'est par cette charge que les Carolingiens ont pris le pouvoir)."},
+     {k:"La chancellerie et la chapelle",p:"Le secrétariat est confié au clergé de la chapelle, sous un <b>chancelier</b> (rédige les lettres royales, garde les sceaux). La chapelle est dirigée par l'<b>archichapelain</b>, principal conseiller ecclésiastique du roi (essentiel dans le ministère théocratique)."},
+     {k:"Une cour fixée",p:"Le palais, longtemps itinérant, se fixe à Aix-la-Chapelle après le couronnement de Charlemagne. On y trouve les palatins, les grands vassaux (laïcs/ecclésiastiques) consultés, et les nutritis."}
+   ]},
+   {cls:"b-loc",ico:"🗺️",t:"Administration locale",nodes:[
+     {k:"3 zones de l'empire",p:"(1) Le cœur historique du royaume (Austrasie, Neustrie, Bourgogne) : les comtes relèvent directement de l'empereur. (2) Les régions nouvellement acquises = « principautés », à la tête desquelles l'empereur nomme des princes carolingiens. (3) Les régions frontalières = marches ou duchés (vocation militaire), dirigés par des marquis ou des ducs."},
+     {k:"Le comte contrôlé",p:"Charlemagne systématise l'institution comtale (honor, compétence générale : justice, impôt, domaine royal), assistée d'un vicomte + centeniers/viguiers. Il met fin à la règle de l'Édit 614 (recrute les comtes parmi les nutritis du palais), exige qu'ils rendent compte, les soumet à la surveillance de l'évêque et des missi."},
+     {k:"Les missi dominici",p:"« Les envoyés du maître ». Généralisés par Charlemagne, envoyés <b>par deux</b> (un laïc + un ecclésiastique, qui s'inspectent mutuellement) sur une zone de plusieurs pagus (la <b>missatica</b>). Ils vérifient l'application des capitulaires, contrôlent les comptes, reçoivent les plaintes contre les comtes, assurent la liaison palais-circonscriptions."},
+     {k:"Vers l'éclatement",p:"Fin IXe : affaiblissement royal (guerres entre les fils de Louis le Pieux). <b>Capitulaire de Quierzy-sur-Oise (877)</b> : si la charge d'un comte se libère pendant l'absence du roi, son <b>fils</b> est désigné administrateur provisoire → hérédité de fait. Au Xe : invasions (Vikings au Nord, Sarrasins au Sud, Hongrois à l'Est) → les comtes rendent fonctions ET terres héréditaires et prétendent tenir leur pouvoir de Dieu → <b>émancipation comtale</b>. Marches et duchés deviennent des principautés autonomes (« princeps »), qui éclatent à leur tour en comtés, vicomtés, puis seigneuries."},
+     {k:"Le changement de dynastie",p:"En 888, un descendant de Robert le Fort, Eudes, est choisi roi → alternance Carolingiens / Robertiens (922, 936…). En 987, les grands choisissent Hugues Capet (les Robertiens deviennent Capétiens)."}
+   ]},
+   {cls:"b-arm",ico:"🛡️",t:"Le rôle de l'administration",nodes:[
+     {k:"Armée (l'ost)",p:"Convoquée chaque année (mai, 3 à 6 mois). Chaque comte conduit le contingent de son pagus ; les ecclésiastiques désignent un <b>avoué</b> pour mener leurs troupes. Charlemagne ne convoque que les contingents proches du théâtre des opérations et les vassaux assez riches pour s'équiper (les autres contribuent financièrement). À partir de Louis le Pieux : on passe de la conquête à la défense (invasions) → marches/duchés, fortifications."},
+     {k:"Justice",p:"Réformes de Charlemagne : les rachimbourgs sont remplacés par des assesseurs permanents, les <b>échevins</b> (scabini), nommés par les missi. Répartition des affaires : causes majeures (homicide, incendie, vol aggravé, rapt) jugées par le comte ; causes mineures par ses subordonnés. Passage de la procédure accusatoire à la <b>procédure inquisitoire</b> (saisine d'office, sans plainte) pour les causes majeures. Preuves : serment purgatoire + ordalies (fer rouge). Contrôle par les missi."},
+     {k:"Finances",p:"Impôts directs/indirects + impôts des domaines impériaux + revenus des expéditions militaires + profits de justice (le <b>fredus</b> au roi, le « feud » à la victime). Perception confiée aux comtes (sous l'inspection des missi). Multiplication des privilèges d'immunité ecclésiastiques."}
+   ]},
+   {cls:"b-key",ico:"🔑",t:"À retenir absolument",nodes:[
+     {k:"Personnages",p:"Charles Martel · Pépin le Bref · pape Zacharie / Étienne II / Léon III · Alcuin · Charlemagne · Louis le Pieux · Charles le Chauve · Hincmar de Reims · Hugues Capet."},
+     {k:"Notions-clés",p:"Sacre · ministère théocratique · auctoritas / potestas · renovatio imperii · commendatio + serment de fidélité · bénéfice · capitulaires · missi dominici / missatica · échevins · émancipation comtale · Verdun."}
+   ],dates:["732 Poitiers","751 sacre de Pépin","800 empereur","817 Ordinatio","843 Verdun + Coulaines","847 Mersen","877 Quierzy","888 Eudes","987 Hugues Capet"]}
+  ]},
+
+ r3:{yr:"987 – 1108", titre:"L'ordre seigneurial", tag:"Le royaume éclaté en micro-États : le seigneur règne, le roi survit.",
+  branches:[
+   {cls:"b-cen",ico:"🏰",t:"Le pouvoir des seigneurs",nodes:[
+     {k:"Qui est le seigneur ?",p:"Celui qui tire sa légitimité de la force : capable d'imposer son pouvoir de contrainte sur un territoire et de le défendre par les armes."},
+     {k:"Le château",p:"Symbole et siège du pouvoir, construit en zone rurale (le pouvoir n'est plus dans la ville). Processus d'<b>encastillement</b> (multiplication des châteaux au début du XIe) : ceux qui tiennent un château deviennent indépendants des ducs-comtes."},
+     {k:"La seigneurie",p:"Le territoire autour du château. Le seigneur y exerce son pouvoir de contrainte = la <em>districtio</em> (le ressort = le « détroit »). On parle de seigneurie châtelaine, banale ou justicière, car le seigneur y exerce les droits régaliens du roi : le <b>ban</b> et la <b>justice</b>."},
+     {k:"Le ban et la justice",p:"Par le ban, il édicte des règlements imposés à tous les habitants. Par la justice, il juge tous les procès du détroit : causes majeures (homicide, vol → peine de mort) et mineures. Source de <b>prestige</b> (droit de vie et de mort, fourche patibulaire visible de loin) ET de <b>profits</b> (amendes, confiscation des biens des condamnés)."},
+     {k:"Un pouvoir au service du bien PRIVÉ",p:"Différence capitale avec le roi : le seigneur exerce son pouvoir pour s'enrichir personnellement (≠ le roi mérovingien/carolingien, au service de l'intérêt général)."},
+     {k:"Taxes, services, banalités",p:"Taxe de protection (taille / guète / prière). Services : garde du château, corvée, droit de gîte, péages et douanes (taxe sur les biens, les personnes, les marchés, les étrangers « aubains »). <b>Banalités</b> : monopoles imposés par le ban (four à pain, moulin, dates des récoltes…). Ce régime imposé par la contrainte = la « coutume » (parfois « mauvaises coutumes »)."}
+   ]},
+   {cls:"b-loc",ico:"⛓️",t:"La dépendance générale",nodes:[
+     {k:"Dépendance des personnes",p:"Uniformisation de la condition des habitants (fin Xe–XIe) : le seigneur exerce la même domination sur tous les paysans (les vilains). Ceux qui sont soumis au régime servile = les <b>serfs</b>."},
+     {k:"Les incapacités du serf",p:"<b>Mainmorte</b> (ne peut transmettre ses biens, le seigneur les récupère ; idem pour les étrangers = <b>aubaine</b>) · <b>bâtardise</b> (idem pour les enfants naturels) · interdiction du <b>formariage</b> (mariage hors de la seigneurie) · <b>chevage</b> (redevance recognitive de la condition servile). Le serf ≠ esclave : il a une capacité juridique (patrimoine, famille) mais très limitée (ne peut témoigner, combattre, entrer dans les ordres)."},
+     {k:"Dépendance des terres",p:"Recul de la propriété allodiale (l'<b>alleu</b> = terre pleinement possédée). Généralisation de la <b>tenure</b> (le paysan tient sa terre d'un seigneur). Deux types : tenure servile (terre d'un serf, obligations fixées librement par le seigneur, reprise possible) ; tenure roturière (terre d'un homme libre = roturier, contre redevances, ex. « bail à cens » sur une censive)."}
+   ]},
+   {cls:"b-exe",ico:"🤝",t:"Les auxiliaires du seigneur",nodes:[
+     {k:"Les vassaux — l'hommage",p:"Cérémonie en 2 temps. (1) L'<b>acte d'hommage</b> (= ancienne commendatio) : le futur vassal s'agenouille, offre ses mains jointes (soumission), échange des paroles rituelles (« je deviens ton homme » / « je te reçois comme homme »), reçoit l'<b>osculum</b> (baiser de paix). (2) Le <b>serment de fidélité</b> sur des objets sacrés (le manquement = parjure). On parle de « faire foi + hommage »."},
+     {k:"Obligations du seigneur",p:"Protection + logement. Concrètement, il confie une terre = le <b>fief</b> (le mot remplace « bénéfice ») par l'<b>acte d'investiture</b> (acte solennel, public : montrer la terre, ou remettre un objet symbolique). Au XIIe, on y ajoute l'« aveu et dénombrement » (inventaire des biens du fief)."},
+     {k:"Obligations du vassal (Fulbert de Chartres)",p:"Dans une lettre de 1020 à Guillaume V d'Aquitaine : le vassal doit des obligations négatives (ne pas nuire) ET positives = l'<b>auxilium</b> (aide, surtout militaire : estage / chevauchée / ost ; + « aide aux 4 cas » : rançon du seigneur, adoubement du fils aîné, dot de la fille, départ en croisade) et le <b>concilium</b> (conseil : service de cour pour les décisions, service de justice = jugement d'un autre vassal par ses pairs)."},
+     {k:"La dépendance honorable",p:"Le vassal échappe à la condition commune (≠ serf, roturier) → il fait partie de la noblesse. Jugé par ses pairs. S'il est parjure → <b>commise du fief</b> (confiscation, par le rite du <em>devest</em>, inverse de l'investiture). Tout cela relève de la justice <b>féodale</b> (≠ justice seigneuriale)."},
+     {k:"Les ministériaux",p:"Officiers du seigneur, qui exécutent ses décisions (ban) et perçoivent l'impôt. Le plus important = le <b>prévôt</b> (compétence générale, représente le seigneur sur tout le territoire). Agents spécialisés : forestiers (bois), champiers (pâturages), sergents/huissiers (exécution des décisions de justice). De condition servile, mais s'enrichissent → accèdent à la noblesse."}
+   ]},
+   {cls:"b-pol",ico:"👑",t:"Le sort de l'institution royale",nodes:[
+     {k:"L'abaissement : la zone d'influence",p:"Le <b>domaine royal</b> (≠ le royaume !) : une bande Loire–Saône (cités, abbayes, forteresses) sous contrôle direct, où le roi imite le seigneur (milites, prévôts, justice, impôts). Au-delà : contrôle <b>indirect</b> sur des seigneuries ecclésiastiques dont il maîtrise la désignation (Tours, Reims, Bourges, Amiens), qui lui fournissent des contingents. Le reste : principautés et seigneuries totalement autonomes (les princes ne prêtent plus l'hommage, transmettent leur pouvoir héréditairement, font parfois la guerre au roi — ex. 1033 contre Henri Ier)."},
+     {k:"L'entourage du roi",p:"Peu de monde (les princes ne viennent pas quand le roi les convoque). Composé d'évêques et de seigneurs châtelains du domaine, qui occupent les offices hérités de l'époque franque (connétable, chancelier, sénéchal, maréchal)."},
+     {k:"Le réalisme capétien",p:"Faibles militairement, les Capétiens étendent le domaine par <b>achats, mariages et héritages</b> (Sens 1055, Gâtinais 1068, Vexin 1077, Bourges 1100) plutôt que par la guerre."},
+     {k:"Le maintien de la dignité : royauté sacrée",p:"Les évêques continuent de définir la fonction comme un ministère théocratique et de faire du roi le garant du bien commun, l'élu de Dieu (≠ un simple seigneur), qui doit défendre les Églises (idée d'Abbon de Fleury : même affaibli, le roi doit être respecté). Le <b>sacre</b> devient un acte constitutif (on devient roi par le sacre), célébré à <b>Reims</b> (lieu du baptême de Clovis)."},
+     {k:"La cérémonie du sacre (3 temps)",p:"(1) La promesse (protéger l'Église, apporter paix et justice). (2) L'élection (par l'archevêque de Reims, les grands, puis l'acclamation du peuple). (3) La consécration : onction sur le front avec l'huile de la Sainte Ampoule (apportée par une colombe au baptême de Clovis, selon la légende). Insignes : manteau, anneau (alliance), épée (combat pour la foi), couronne (pouvoir politique), sceptre."},
+     {k:"La religion royale — le roi thaumaturge",p:"Pour se distinguer des seigneurs, le roi est dit faiseur de miracles : « le roi te touche, Dieu te guérit ». Dès Robert le Pieux (guérisseur universel), puis spécialisation (Philippe Ier, Louis VI) dans la guérison des écrouelles."},
+     {k:"Une royauté héréditaire",p:"Au Xe, le principe électif l'emporte (Hugues Capet élu en 987). Mais les Capétiens restaurent l'<b>hérédité</b> par le <b>sacre anticipé du fils</b> du vivant du père (Robert II sacré dès Noël 987), suivi 6 générations jusqu'à Philippe Auguste. + <b>primogéniture</b> (1025, Robert le Pieux fait sacrer Henri Ier) : seul l'aîné succède → le royaume ne se partage plus = intégrité territoriale."}
+   ]},
+   {cls:"b-key",ico:"🔑",t:"À retenir absolument",nodes:[
+     {k:"Personnages",p:"Hugues Capet · Robert II le Pieux · Henri Ier · Fulbert de Chartres · Abbon de Fleury."},
+     {k:"Notions-clés",p:"Encastillement · districtio / détroit · seigneurie banale · ban + justice · bien privé ≠ intérêt général · banalités · serf (mainmorte, formariage, chevage) · alleu / tenure · hommage + fidélité · fief · investiture · auxilium / concilium · commise / devest · prévôt · domaine royal ≠ royaume · sacre constitutif · thaumaturge · sacre anticipé · primogéniture."}
+   ],dates:["987 Hugues Capet","987 Robert II sacré","1020 lettre de Fulbert","1025 primogéniture","1033 guerre vs Henri Ier"]}
+  ]},
+
+ r4:{yr:"1108 – 1226", titre:"L'ordre féodal & la royauté féodale", tag:"Le fief change tout : le roi devient le seigneur des seigneurs (suzerain).",
+  branches:[
+   {cls:"b-cen",ico:"🏙️",t:"Le dépassement de l'ordre seigneurial",nodes:[
+     {k:"L'essor et l'émancipation des villes",p:"L'essor des villes naît du succès de la seigneurie (les campagnes produisent, les marchés s'enrichissent). Les habitants riches supportent de moins en moins les taxes sur le commerce → révoltes (Le Mans, puis Laon en 1111)."},
+     {k:"Communes et consulats",p:"Les habitants se regroupent en <b>commune</b> (association jurée), prennent parfois le château d'assaut → le seigneur reconnaît la commune et renonce à ses exactions. Les libertés/franchises sont consignées dans une <b>charte</b>. Au Nord = commune, au Sud = consulat. Chartes d'abord arrachées par la force, puis achetées (somme forfaitaire). Le roi accorde des chartes limitées à ses « bonnes villes » et encourage les révoltes contre les seigneurs."},
+     {k:"Les seigneuries collectives",p:"Certaines villes obtiennent des privilèges politiques (personnalité juridique) : pouvoirs de ban et de justice (réglementer le commerce/artisanat, arbitrer les petits litiges, parfois justice criminelle — ex. Toulouse), finances propres, milice urbaine. Organes : assemblée (chefs de famille → désigne les magistrats), magistrats (échevins / consuls = le conseil), un maire / syndic / premier consul (représente la ville face au seigneur), des officiers. Régime oligarchique (le patriciat) → soutient les princes."},
+     {k:"La transformation du fief (le point clé)",p:"L'élément <b>réel</b> (la terre) devient plus important que l'élément personnel. (1) Le fief devient <b>héréditaire</b> : à la mort du vassal, le seigneur ne reprend plus le fief, il l'investit à l'héritier (qui paie le <b>droit de relief</b>). (2) Le fief devient <b>aliénable</b> (vendable) : d'abord l'abrégement (vente d'une partie, avec autorisation), puis la vente intégrale (vassaux ruinés/endettés par les croisades), moyennant l'autorisation du seigneur et un droit de mutation = le <b>droit de Quint</b> (≈ 1/5e du prix)."},
+     {k:"La dénaturation du lien",p:"Le seigneur ne choisit plus son vassal (c'est l'héritier, ou l'acheteur). Le fief glisse dans le patrimoine du vassal. L'élément personnel décline au profit de l'élément réel."},
+     {k:"Les vassalités multiples",p:"Une personne peut devenir vassale de plusieurs seigneurs (par achats/héritages) : qui servir en cas de conflit ? Solutions : clauses de réserve de fidélité (peu efficaces) ; puis distinction entre l'<b>hommage lige</b> (prioritaire, au seigneur le plus important) et l'<b>hommage plain</b> (secondaire)."},
+     {k:"Le renouveau des princes",p:"Les princes combattent les seigneurs avec leurs propres armes : ils leur imposent foi et hommage lige + l'investiture pour leur château (qui, tenu en alleu, devient un fief simple). Reconstruction des principautés (Bourgogne, Normandie, Aquitaine, Flandre, Champagne, Anjou). Ex. <b>Henri Plantagenêt</b> (1154) cumule Normandie + Anjou + Aquitaine (par Aliénor) + Bretagne. Son autoritarisme provoque des révoltes → les Capétiens soutiennent les opposants et exploitent leur qualité de suzerain (le <em>superanus</em>, seigneur des seigneurs) = la « mise en ordre féodale » (hiérarchie verticale)."}
+   ]},
+   {cls:"b-pol",ico:"👑",t:"Le renouveau de la royauté",nodes:[
+     {k:"L'exaltation de la dignité royale",p:"Le roi est sacré (depuis les Carolingiens), thaumaturge. Légendes et symboles : St-Denis (saint patron, nécropole royale, l'<b>oriflamme</b> prise par Louis VI en 1124 contre l'empereur Henri V), insignes. Mariages avec le sang carolingien → thème du <b>« Reditus regni ad stirpem Caroli »</b> (retour du royaume à la souche de Charlemagne). Le sacre devient déclaratif (Philippe Auguste est le dernier sacré du vivant de son père)."},
+     {k:"La théorie de la mouvance (Suger)",p:"Suger, abbé de St-Denis et conseiller de Louis VI et VII, assimile le royaume à une vaste seigneurie divisée en fiefs hiérarchisés : chaque fief « se meut » d'un fief supérieur jusqu'au royaume (le plus grand fief). À la hiérarchie des terres correspond une hiérarchie des hommes : le roi au sommet = <b>suzerain</b>. La personne du roi se double de la notion de <b>Couronne</b> (entité abstraite, vrai titulaire du pouvoir)."},
+     {k:"La dignité dispense de l'hommage",p:"Dès Louis VI : le roi peut se reconnaître vassal, mais sa dignité le dispense de l'hommage. Quand il acquiert un fief, il le réunit au domaine (indemnise le seigneur sans faire foi et hommage). Il exige en revanche des princes l'hommage et le serment → les princes deviennent ses vassaux (aide, conseil, justice féodale)."},
+     {k:"La commise de Jean sans Terre (1202)",p:"Jean sans Terre (roi d'Angleterre, vassal du roi) enlève la femme d'un de ses propres vassaux, Guy de Lusignan. Lusignan s'adresse au seigneur de son seigneur, le roi Philippe Auguste, qui convoque Jean sans Terre dans sa cour de justice. Jean ne vient pas → <b>commise des fiefs</b> : la Normandie et l'Anjou sont annexés au domaine. <b>MAIS</b> « le vassal de mon vassal n'est pas mon vassal » : le roi a autorité sur les princes, pas sur leurs arrière-vassaux. Il est suzerain, pas souverain."}
+   ]},
+   {cls:"b-loc",ico:"🗺️",t:"L'administration (Philippe Auguste)",nodes:[
+     {k:"Administration centrale",p:"Le palais (toujours itinérant) se spécialise : l'<b>Hôtel du roi</b> (officiers palatins, service quotidien) et la <b>cour du roi</b> (organe collégial, rôle simplement consultatif, composition variable). Philippe Auguste combat l'hérédité des charges : il laisse vacants les offices de <b>sénéchal</b> (jamais repourvu) et de <b>chancelier</b>, et s'entoure d'un conseil restreint de légistes (clercs modestes ou petite/moyenne noblesse)."},
+     {k:"Les prévôts",p:"Officiers qui relaient l'autorité du roi dans le domaine (justice, impôts, domaines). Système de la <b>ferme</b> (bail de 3 ans, concédé au plus offrant) pour éviter l'hérédité (~50 prévôtés fin XIIe)."},
+     {k:"Les baillis",p:"Philippe Auguste les détache de sa cour et les envoie (par deux, rappel des missi) surveiller les prévôts, vérifier l'exécution des ordonnances et assurer la liaison cour-prévôtés → contrôle parfait du domaine. Pour les principautés annexées (ex. Normandie), il conserve l'administration efficace existante."}
+   ]},
+   {cls:"b-arm",ico:"🛡️",t:"Le rôle de l'administration",nodes:[
+     {k:"L'armée (l'ost)",p:"Dirigée par le sénéchal jusqu'en 1191, puis par le connétable. Reflète l'organisation féodale : contingents des prévôtés du domaine + milices urbaines + contingents des grands vassaux. Renforcée par des <b>mercenaires soldés</b> (Philippe Auguste) → plus professionnelle et efficace."},
+     {k:"L'Église pacifie d'abord (XIe)",p:"Forte après la <b>réforme grégorienne (1075, Dictatus papae)</b> qui fait du pape un monarque absolu. Elle encadre les guerres seigneuriales : <b>paix de Dieu</b> (protège certains lieux/personnes : clercs, paysans, étudiants) et <b>trêve de Dieu</b> (protège certains jours). Idéal chrétien (adoubement christianisé, croisades). Schéma des <b>3 ordres</b> : oratores (prient), bellatores (combattent), laboratores (travaillent) → futurs ordres de 1789."},
+     {k:"La paix du roi",p:"Le roi veut reprendre ce rôle. Louis VII : ordonnance de 1155 (paix du roi). Puis Philippe Auguste, plus efficace : la <b>quarantaine-le-roi</b> (délai de 40 jours laissé aux familles avant un conflit), les <b>sauvegardes royales</b> (protection du roi, rappel du mundium), l'<b>asseurement</b> (pacte solennel de non-agression ; violation = peine de mort). Le roi devient arbitre."},
+     {k:"La justice",p:"Royale (cour du roi + prévôts/baillis ; procédure accusatoire, orale, publique, ordalies), seigneuriale (encore présente), et ecclésiastique. Les <b>officialités</b> (l'official dès la fin du XIIe) : compétence ratione personae (privilège du for : clercs, croisés, écoliers, misérables, orphelins) et ratione materiae (sacrements, mariage, dîme, testaments ; pénal : crimes en lieux religieux, hérésie, blasphème, simonie, adultère). Procédure <b>inquisitoire</b> (preuves légales : aveu, témoignage, serment ; pas d'ordalies). Sanctions (jeûne, prière, peine du mur). Appel (évêque, archevêque, pape) ; bras séculier pour les relaps."},
+     {k:"Les finances",p:"Impôts/redevances (par le prévôt) + domaines + profits de justice. Philippe Auguste impose aux prévôts et baillis de rendre compte 3 fois par an ; des clercs spécialisés tiennent des registres. Le trésor royal est gardé par les <b>Templiers</b> (depuis 1146)."}
+   ]},
+   {cls:"b-key",ico:"🔑",t:"À retenir absolument",nodes:[
+     {k:"Personnages",p:"Suger · Louis VI · Louis VII · Philippe Auguste · Henri Plantagenêt · Aliénor d'Aquitaine · Jean sans Terre · Guy de Lusignan."},
+     {k:"Notions-clés",p:"Commune / consulat · charte · fief héréditaire (relief) & aliénable (droit de Quint) · hommage lige / plain · superanus / suzerain · Reditus ad stirpem Caroli · théorie de la mouvance · Couronne · commise · réforme grégorienne · paix & trêve de Dieu · 3 ordres · paix du roi (quarantaine, sauvegarde, asseurement) · officialités."}
+   ],dates:["1075 réforme grégorienne","1111 Laon","1124 oriflamme","1146 Templiers","1154 Plantagenêt","1155 paix du roi","1202 commise Jean sans Terre"]}
+  ]},
+
+ r5:{yr:"1226 – 1515", titre:"L'affirmation de l'ordre monarchique", tag:"Le roi passe de suzerain à souverain : la naissance du pouvoir absolu.",
+  branches:[
+   {cls:"b-pol",ico:"⚜️",t:"Un pouvoir absolu",nodes:[
+     {k:"Un roi « empereur »",p:"Les canonistes (droit canonique : Bible, pères de l'Église, décrétales pontificales, canons conciliaires) assimilent dès le XIIe le pouvoir du roi à celui de l'empereur romain, pour affaiblir l'empereur du Saint Empire. <b>Décrétale Per venerabilem (Innocent III, 1202)</b> : le roi de France n'a aucun supérieur au temporel. Jean de Blanot (1256) : « princeps in regno suo » (prince en son royaume) ; d'autres : empereur en son royaume."},
+     {k:"Un roi très chrétien",p:"Sacre toujours à Reims (exception : Henri IV à Chartres car Reims est aux Ligueurs). Sacre <b>déclaratif</b> depuis Philippe Auguste (Louis VIII non contesté). <b>Nouvel ordo (Charles V, 1364)</b> : plus de splendeur, ressemblance avec la consécration des évêques (onction des mains, gants) → le roi = vicaire de Dieu, investi d'un sacerdoce, défenseur de l'Église. D'où le titre exclusif de « roi très chrétien ». Religion royale renforcée : légendes (Clovis « sacré », fleurs de lys envoyées par Dieu après Tolbiac, lien avec la Vierge), thaumaturgie régulière, canonisation de St Louis (1297)."},
+     {k:"Au service de la Respublica",p:"On développe l'idée d'une entité abstraite distincte de la personne du roi : le <b>corps politique</b> (ou corps mystique), qui ne meurt jamais et dont le roi n'est que la tête / l'incarnation temporelle. Symbolisée par la <b>Couronne</b> (dès Louis VII, Suger), le royaume, la Respublica (= futur « État »). Le roi n'est que l'<b>administrateur</b> de la chose publique → il reçoit les attributs du pouvoir souverain (total et indépendant, mais pas suprême : au-dessus de lui, le pape et l'empereur)."}
+   ]},
+   {cls:"b-exe",ico:"⚖️",t:"Les attributs du pouvoir souverain",nodes:[
+     {k:"La source : les compilations de Justinien",p:"Le « corpus juris civilis » (528–533) redécouvert : le Code, le Digeste, les Institutes, les Novelles. Les juristes y puisent les formules qui expliquent le pouvoir absolu du roi."},
+     {k:"Rendre la justice",p:"Par sa <em>majestas</em>, le roi est seul compétent pour les <b>cas royaux</b> (crime de lèse-majesté, port d'armes prohibé, fausse monnaie). Comme « fontaine de toute justice », il contrôle tous les juges du royaume (renforce l'argument féodal : toute justice est tenue en fief du roi)."},
+     {k:"Faire la loi",p:"Le roi est « lex animata » (loi vivante), « legibus solutus » (délié des lois), « si veut le roi, si veut la loi ». Mais il légifère peu : surtout pour <b>réformer l'administration</b> (conçue comme un retour à la forme antérieure, ex. Louis IX 1254) et punir les crimes graves. Le droit privé reste la <b>coutume</b> (le roi en est le gardien, ne la modifie que pour combler les lacunes ou les mauvaises coutumes). Procédure encadrée : devoir de conseil + Parlement (remontrances → lettres de jussion → lit de justice). Pouvoir absolu ≠ arbitraire."},
+     {k:"Le pouvoir militaire",p:"Le roi, garant de la paix, revendique le <b>monopole de la force armée</b> (fin des guerres privées). Effectif seulement à la fin de la guerre de Cent Ans (1337–1453)."},
+     {k:"Les finances",p:"Principe : « le roi doit vivre du sien » (revenus du domaine). Contribution extraordinaire à titre exceptionnel (ex. Louis IX 1248, croisade), qui devient régulière pendant la guerre de Cent Ans (la <b>taille</b>, Charles VII)."},
+     {k:"Les regalia",p:"Battre monnaie (seul), concéder des foires, accorder des sauvegardes ; lettres de rémission (grâce), de légitimation (enfant naturel), de naturalité (étranger), de noblesse (anoblir un roturier)."}
+   ]},
+   {cls:"b-eg",ico:"🏛️",t:"Le roi et ses sujets : les États généraux",nodes:[
+     {k:"Origine et composition",p:"À l'origine : convocations des grands (vassaux laïcs, ecclésiastiques, représentants des villes du domaine), dès Philippe le Bel (1302–1308), pour un soutien financier et politique (conflit avec le pape). Forme élargie du conseil = « assemblée des gens des 3 ordres » (clergé, noblesse, tiers état ; anciens oratores/bellatores/laboratores). L'appellation « États généraux du royaume » n'apparaît qu'en 1468."},
+     {k:"Le mouvement réformateur",p:"Pour une monarchie tempérée. Après Crécy (1346, Philippe VI), les députés critiquent le gouvernement. En 1355–1358 (Jean le Bon prisonnier à Poitiers, régence du Dauphin/Charles V), ils veulent placer le gouvernement sous le contrôle de l'assemblée (« ce qui concerne tout le monde doit être approuvé par tous »). <b>Étienne Marcel</b> (prévôt de Paris) mène le mouvement → soulèvement de 1358, maté par Charles V."},
+     {k:"L'échec comme contre-pouvoir",p:"Ordonnance cabochienne (1413, Simon Caboche, bouchers de Paris) : surtout moraliser l'administration. EG de Tours (1484, régence de Charles VIII) : ils rappellent le consentement à l'impôt mais acceptent la monarchie absolue. Conclusion : jamais convoqués régulièrement, rôle seulement consultatif (doléances). Ils n'imposent pas la monarchie tempérée."}
+   ]},
+   {cls:"b-key",ico:"📜",t:"Les « lois du royaume » (constitution coutumière)",nodes:[
+     {k:"La loi salique (succession)",p:"Combine hérédité + primogéniture + masculinité. Le « miracle capétien » (toujours un fils) joue jusqu'en 1316. <b>1316</b> : Louis X meurt en laissant une fille et une reine enceinte ; Jean Ier le Posthume meurt → Philippe V (frère) sacré = exclusion absolue des femmes + vocation des collatéraux mâles. <b>1322</b> : Charles IV (idem). <b>1328</b> : Charles IV mort → Philippe VI de Valois (cousin, 4e degré) contre Édouard III d'Angleterre (neveu, 3e degré). Argument romain « nemo plus juris » + Édouard « étranger au sang de France » → Philippe VI → début de la guerre de Cent Ans → principe d'<b>agnation</b>. Justifications : seul l'homme transmet le sang royal ; « les lys ne filent point » ; Richard Lescot (1358) invente la lecture de la loi salique de Clovis."},
+     {k:"L'instantanéité (continuité)",p:"Éviter l'interrègne. Le sacre est déclaratif (Philippe III date ses actes du décès de son père). Majorité abaissée à 14 ans (Charles V, 1374, sur le modèle de la Bulle d'or). Charles VI (ordonnances de 1403, généralisées 1407) : l'héritier est roi immédiatement (saisine de plein droit, « le mort saisit le vif »), « le roi est mort, vive le roi », « le roi ne meurt jamais », « le roi est toujours majeur » (régent transparent). Continuité des actes royaux (les lois/traités engagent les successeurs)."},
+     {k:"L'indisponibilité de la couronne",p:"Contre le <b>traité de Troyes (1420)</b> (Charles VI écarte son fils au profit d'Henri V d'Angleterre ; guerre civile Bourguignons/Armagnacs). <b>Jean de Terrevermeille (1419)</b> : le roi n'est qu'administrateur, ne peut disposer de la fonction → théorie statutaire (c'est la loi salique qui désigne, pas la volonté du roi). Jean Juvénal des Ursins : le successeur est un « héritier nécessaire », le roi ne peut ni l'écarter, ni modifier l'ordre, ni abdiquer (« la couronne ne se résigne pas »). Charles VII roi légitime (1422)."},
+     {k:"Le domaine de la couronne",p:"Inaliénable + imprescriptible (le roi administrateur : actes conservatoires oui, actes de disposition non). Révocations générales des aliénations (Philippe V 1318, Charles IV 1322). Les EG (1357) imposent l'interdiction générale d'aliéner (intégrée à la promesse du sacre par Charles V). Exception : l'<b>apanage</b> des fils cadets (terres en fief, transmission masculine, retour au domaine si extinction mâle)."}
+   ]},
+   {cls:"b-loc",ico:"🧑‍⚖️",t:"L'essor de l'administration : organisation",nodes:[
+     {k:"Le statut des officiers — stabilisation",p:"Le service du roi devient une profession (St Louis), exigeant une formation (droit romain) → recrutement de bourgeois riches (accès à la noblesse). St Louis met fin au système de la ferme (nomme et révoque). Au XIVe, stabilité de fait → contestée par les EG (abus, multiplication des offices) ; guerre civile Armagnacs/Bourguignons → épurations ; Louis XI « grand remueur d'offices »."},
+     {k:"Inamovibilité puis vénalité",p:"Les officiers réclament la stabilité (ils servent la Couronne, pas la personne du roi). <b>Inamovibilité</b> (Louis XI, ordonnance du 21 oct. 1467) : office vacant seulement par décès, résignation ou forfaiture → fonction viagère, qui prend de la valeur. Apparition de la <b>vénalité</b> via la <em>résignation in favorem</em> (procédé canonique : démission au profit d'un successeur recommandé, officiellement gratuite, 40 jours avant le décès). D'abord occulte, puis généralisée : Charles VIII vend les offices nouvellement créés."},
+     {k:"Administration centrale",p:"L'<b>Hôtel</b> : grands officiers (échappent à la vénalité) — le <b>connétable</b> (chef de l'armée, capital pendant la guerre de Cent Ans : Du Guesclin), le <b>chancelier</b> (garde du sceau, chef de la justice royale), + maréchaux, amiral (créé sous St Louis) ; et les auxiliaires (secrétaires de la chancellerie, maîtres des requêtes), titulaires d'offices vénaux."},
+     {k:"Conseil et Parlement",p:"L'organe collégial (curia regis) se scinde au XIIIe : le <b>Conseil du roi</b> (curia in consilio, gouvernement, compétence générale, composition variable) et le <b>Parlement</b> (curia in parlamento, fonction judiciaire). Charles VIII crée le <b>Grand Conseil</b> (1478, juridiction distincte)."},
+     {k:"Le Parlement (ord. 1278)",p:"Conseillers clercs + laïcs. Chambres : des <b>requêtes</b> (recevabilité), des <b>enquêtes</b> (instruction), <b>grand-chambre</b> / au plaid (arrêts), la <b>tournelle</b> (criminel, conseillers laïcs seulement car « l'Église a horreur du sang »). Juridiction suprême du royaume : 1re instance (causes privilégiées : nobles, officiers), juge d'appel (juges royaux, hauts seigneurs, appel comme d'abus des officialités), arrêts de règlement, enregistrement et publication des ordonnances. Pas d'appel sauf proposition d'erreur → cassation par le Conseil."},
+     {k:"Administration locale",p:"Les baillis/sénéchaux se sédentarisent → naissance du <b>baillage</b> / de la <b>sénéchaussée</b>. Enquêteurs de St Louis (1237–1240) ; ordonnances de 1254 (Languedoc) et 1256 (royaume) : statut des agents, fin de la ferme. Au XIVe, les baillis sont déchargés du judiciaire et du financier (guerre) au profit d'agents spécialisés. Les lieutenants généraux (princes) deviennent gouverneurs de province → les <b>Gouvernements</b>. Hiérarchie : Gouvernement &gt; baillage/sénéchaussée &gt; prévôté."}
+   ]},
+   {cls:"b-arm",ico:"🛡️",t:"Le rôle : justice, armée, finances",nodes:[
+     {k:"Les progrès de la justice royale",p:"Procédure réformée par St Louis : accusatoire/orale/ordalies → <b>inquisitoire</b>/écrite/preuves légales/secrète (ordonnance de 1258). Représentation par avocat (Philippe le Hardi, 1274)."},
+     {k:"Contre les justices seigneuriales",p:"<b>Théorie des cas royaux</b> (affaires qui touchent le roi, dont les infractions aux ordonnances). <b>Théorie de la prévention</b> (le juge royal plus rapide juge l'affaire : relative si le seigneur peut la récupérer, absolue en cas d'urgence). <b>Appel</b> devant le juge royal (argument féodal de la mouvance + argument romain « fontaine de justice »)."},
+     {k:"Contre les justices ecclésiastiques",p:"Assemblée de Vincennes (1329). Réduction du privilège du for (contrôle de la qualité de clerc). <b>Théorie des cas privilégiés</b> (le trouble à l'ordre public est jugé par le roi). Lèse-majesté élargie aux crimes religieux (hérésie, sorcellerie, sacrilège). Récupération des contrats, testaments, effets du mariage. <b>Appel comme d'abus</b> : saisie du temporel de l'évêque (XIVe), puis annulation directe par le Parlement (XVe)."},
+     {k:"La hiérarchie des juridictions",p:"Prévôtés royaux (1re instance + appel du civil seigneurial) → baillages/sénéchaussées (causes privilégiées, cas royaux ; appel du criminel seigneurial) → Parlement (suprême). Multiplication des parlements de province : Toulouse 1443, Grenoble 1453, Bordeaux 1462, Dijon 1477, Aix 1501. + juridictions d'exception : Connétablie/Maréchaussée, Amirauté, Chambre des comptes."},
+     {k:"L'armée professionnelle",p:"Armée féodale (l'ost) inefficace (Crécy 1346, Poitiers 1356) → mercenaires (« routiers », d'où des désordres). Charles V interdit les compagnies sans brevet royal. <b>Charles VII (1439)</b> : monopole royal + armée permanente (15 compagnies d'ordonnance, en garnison, soldées sur le trésor), financée par la taille ; 1448 troupes à pied (milices). Le ban et l'arrière-ban sont conservés."},
+     {k:"La dualité des finances",p:"Ordinaires (revenus du domaine : Templiers jusqu'en 1295, puis trésoriers de France créés par Philippe le Bel) / extraordinaires (l'impôt). Consentement des EG. Impôts : aides (directes), gabelles (indirectes) ; maltôte (Philippe le Bel 1292 → révoltes 1314). Taille pour les troupes (Charles VII 1439) → permanente en 1493 (roturiers seulement ; clercs et nobles exemptés). Les élus (agents des EG) deviennent officiers royaux (Charles V, 1360), subordonnés aux généraux des finances → les généralités (XVe)."}
+   ]},
+   {cls:"b-key",ico:"🔑",t:"À retenir absolument",nodes:[
+     {k:"Personnages",p:"Saint Louis · Philippe le Bel · Philippe VI / Édouard III · Charles V · Étienne Marcel · Charles VI / VII · Jean de Terrevermeille · Louis XI · Charles VIII · Du Guesclin."},
+     {k:"Notions-clés",p:"Souverain · empereur en son royaume · Respublica / Couronne · compilations de Justinien · cas royaux · legibus solutus · loi salique (agnation) · instantanéité · indisponibilité · apanage · inamovibilité / vénalité · Conseil & Parlement · baillage · prévention · appel comme d'abus · compagnies d'ordonnance · taille."}
+   ],dates:["1226 St Louis","1278 Parlement","1302 EG","1316/1328 successions","1420 Troyes","1439 armée + taille","1467 inamovibilité","1493 taille permanente"]}
+  ]},
+
+ r6:{yr:"1515 – 1661", titre:"La croissance de l'État monarchique", tag:"De François Ier à Louis XIV : la monarchie absolue se théorise, malgré les crises.",
+  branches:[
+   {cls:"b-pol",ico:"🧠",t:"Vers la monarchie absolue",nodes:[
+     {k:"Un renforcement paradoxal",p:"Le XVIe est difficile (guerres d'Italie 1494–1559 ; guerres de religion ensuite), mais l'État monarchique se renforce, grâce au soutien des officiers royaux. Le mot « État » s'impose dans le vocabulaire officiel (Status Regni / Respublicae ; ordonnance de réformation de Moulins, 1566 ; sous Henri IV)."},
+     {k:"La théorisation de la souveraineté (Bodin)",p:"Jean Bodin, <em>Les Six Livres de la République</em> (1576) : 1re définition synthétique = « la puissance absolue et perpétuelle d'une République ». Puissance (nature), absolue (pleine + indépendante), perpétuelle (continuité), République (le corps politique). Parce qu'elle est absolue, elle est <b>une et indivisible</b> → confiée à un seul organe = le roi → la monarchie pure est le meilleur régime. 5 marques de la S : faire la loi, nommer les officiers, battre monnaie, rendre la justice, décider de la guerre/paix. → on abandonne la référence au modèle impérial."},
+     {k:"La doctrine au XVIIe",p:"Charles Loyseau, <em>Traité des seigneuries</em> (1608) : « la souveraineté n'est point si quelque chose y défaut » (comparaison avec le cercle parfait de la couronne). Cardin Le Bret, <em>De la souveraineté du roi</em> (1632, sous Louis XIII) : « la souveraineté n'est pas plus divisible que le point en géométrie »."},
+     {k:"Le contexte : les guerres de religion",p:"Luther (1517, contre les indulgences), calvinisme (1540). À la Cour, 2 partis : catholiques (les Guise) / protestants (les Bourbons). 8 guerres civiles (1562–1598). St-Barthélemy (1572, Charles IX). Édit de Beaulieu (1576) → parti de la Ligue (Henri de Guise). Henri III assassiné (1589, Jacques Clément), puis Henri IV (Ravaillac)."},
+     {k:"Monarchomaques vs « politiques »",p:"Les <b>monarchomaques</b> (protestants + ligueurs) justifient la résistance et la mise à mort du roi tyran (qui ne respecte pas les bornes de son pouvoir). Les <b>« politiques »</b> (catholiques modérés + officiers) défendent la monarchie absolue (Bodin en est le théoricien). Fin des guerres : édit de Nantes (1598)."}
+   ]},
+   {cls:"b-exe",ico:"🚫",t:"Le rejet des contre-pouvoirs",nodes:[
+     {k:"Le déclin des États généraux",p:"Après les EG de Tours (1483–1484), plus de convocation régulière : le roi préfère les <b>assemblées de notables</b> (moins nombreuses, plus dociles, choisies par lui). Convoqués pendant les guerres de religion (mais contrôlés par la Ligue), puis en 1614 (minorité de Louis XIII, régence de Marie de Médicis) = échec. Rôle purement consultatif (sauf, en principe, en matière fiscale)."},
+     {k:"L'ascension des parlements",p:"Cours de justice qui enregistrent et publient les textes royaux ; en cas de défaut, <b>remontrances</b>. À partir de la fin du XVe, elles font un <b>contrôle d'opportunité</b> (politique) et réitèrent leurs remontrances malgré le lit de justice (et les lettres de jussion). Elles se prétendent membres du corps mystique de la royauté. François Ier (1527) rappelle qu'elles ne sont que des juges délégués ; Louis XIII (édit de février 1641) leur interdit de se mêler du gouvernement. <b>Arrêt d'Union (13 mai 1648)</b> → fronde parlementaire, puis fronde des princes. Louis XIV les met au pas (déclaration du 22 oct. 1653)."}
+   ]},
+   {cls:"b-key",ico:"📜",t:"Les lois fondamentales",nodes:[
+     {k:"La catholicité du roi",p:"Principe jusqu'alors implicite (depuis Clovis). <b>Édit d'Union (19 juillet 1588)</b> : Henri III, sous pression de la Ligue, jure de n'accepter aucun roi hérétique ; déclaration du 15 oct. 1588 : la catholicité = loi fondamentale. But : écarter Henri de Navarre (protestant, mais désigné par la loi salique). Les ligueurs veulent même l'infante Isabelle (catholicité &gt; loi salique)."},
+     {k:"L'arrêt Lemaistre (1593)",p:"Le Parlement de Paris (28 juin 1593) déclare nulle toute disposition donnant la couronne à un prince/princesse étranger (contraire à la loi salique). Le Parlement apparaît comme le <b>gardien des lois fondamentales</b>. Puis abjuration d'Henri IV (25 juillet 1593) → sacré à Chartres (fév. 1594). La catholicité est sur le même plan que la loi salique (pas supérieure)."},
+     {k:"L'indisponibilité du domaine",p:"Traité de Madrid (1526) : l'abdication de François Ier (prisonnier) est nulle ; le Parlement annule le traité (soutien des états de Bourgogne) → principe étendu aux relations internationales. <b>Édit de Moulins (Charles IX, 1566)</b> : distinction domaine fixe (inaliénable) / domaine casuel (libre, incorporé après 10 ans). Le domaine fixe n'est aliénable que pour l'apanage des puînés mâles ou pour la nécessité de la guerre (contrat d'engagement avec clause de rachat perpétuel). Imprescriptibilité (Antoine Loysel : « qui plume l'oie du roi 100 ans après doit en rendre la plume »). Henri IV : pas de patrimoine privé (édit de 1607)."}
+   ]},
+   {cls:"b-loc",ico:"🧑‍⚖️",t:"L'administration monarchique",nodes:[
+     {k:"La vénalité des offices",p:"Les officiers obtiennent un droit patrimonial sur leur charge. <b>Bureau des parties casuelles</b> (François Ier, 1522) : gère les revenus de la vente (finance pour les offices nouveaux ; taxe de mutation = ¼ pour la resignatio in favorem). Vers l'hérédité : lettre de survivance, puis tiers denier (1/3 par an), puis la <b>paulette (1604, Charles Paulet)</b> = 1/60e par an → succès, dispense de la règle des 40 jours + taux réduit."},
+     {k:"Titre vs finance (Loyseau)",p:"Pour concilier le caractère public et patrimonial de l'office : le <b>titre</b> (la délégation des prérogatives) reste au roi (lettre de provision) ; seule la <b>finance</b> (le prix payé) est patrimoniale (vendable, transmissible). En théorie, le roi peut reprendre l'office en remboursant la finance (impossible en pratique)."},
+     {k:"Avantages / inconvénients",p:"+ : promotion d'une bourgeoisie loyale, agents formés et compétents, source de revenus. − : création d'offices inutiles, gages faibles (→ les « épices », cadeaux tarifés), et surtout une trop grande indépendance des officiers → opposition conservatrice qui bloque les réformes."},
+     {k:"Les commissaires",p:"Fonction extraordinaire (≠ office ordinaire) : agent à qui le roi délègue une mission temporaire (souvent d'inspection, ex. édits de pacification). Librement nommé (lettre de commission), révocable à tout moment → statut précaire mais agents très loyaux et efficaces. Ex. appliquer les édits fiscaux pendant la guerre de Trente Ans (la France entre en guerre en 1635, Richelieu)."},
+     {k:"Le ministériat",p:"Apparition du principal ministre / premier ministre (consécration d'une pratique ancienne) : <b>Richelieu</b> (principal ministre 1624/1627, ministre d'État 1630), puis <b>Mazarin</b> (sous Louis XIV). Compétence universelle, siège dans tous les conseils. Grand officier majeur : le <b>chancelier</b> (inamovible, garde des sceaux, chef de la justice, préside le conseil)."},
+     {k:"Les finances et le Conseil",p:"François Ier (1523) fusionne finances ordinaires/extraordinaires → trésorier de l'épargne. Henri II : contrôleur général (1547), 4 intendants des finances (1552). Surintendant des finances (Henri III ; Sully sous Henri IV ; Fouquet sous Louis XIV). Le Conseil se sectionne : Conseil des affaires (gouvernement), Conseil privé / d'État (1578), Conseil des parties, Conseil des finances."},
+     {k:"Administration locale",p:"Les gouverneurs de province (apogée au XVIe, haute noblesse, parfois en vice-rois contre le roi) sont affaiblis par Henri IV puis Richelieu. Apparition des <b>intendants</b> : d'abord conseillers auprès des gouverneurs (Henri II), puis commissaires pour les édits de pacification, puis attributions financières (Louis XIII), enfin intendants « de justice, police et finances » (1643). Révoqués par la Fronde (1648), <b>rétablis en 1653</b> avec une mission élargie (« départis pour l'exécution des ordres du roi »)."}
+   ]},
+   {cls:"b-arm",ico:"⚖️",t:"Justice, armée, finances",nodes:[
+     {k:"La justice du roi",p:"Suprématie incontestée (justices seigneuriales et ecclésiastiques subalternes, contrôlées). Justice <b>retenue</b> : le roi en personne (ex. exécution du duc de Guise), en son conseil (évocation), par commissaire (ex. Fouquet), ou par lettres de justice (grâce, rémission). Justice <b>déléguée</b> : hiérarchie conservée ; Henri II crée les <b>présidiaux</b> (1552, pour désengorger les parlements et vendre des offices)."},
+     {k:"Armée et finances",p:"Armée : la levée reste un privilège royal (sauf pendant les guerres de religion) ; financée par la taille → forte pression fiscale. Bureaux des finances (1577, trésoriers de France + généraux), qui contrôlent les élus, déclinent face aux intendants (à partir de 1630). Les pays d'états (avec assemblées provinciales) paient moins d'impôt → le roi cherche à les contourner."}
+   ]},
+   {cls:"b-key",ico:"🔑",t:"À retenir absolument",nodes:[
+     {k:"Personnages",p:"François Ier · Charles IX · Henri III · Henri IV · Bodin · Loyseau · Cardin Le Bret · Sully · Richelieu · Mazarin · Fouquet."},
+     {k:"Notions-clés",p:"« État » · souveraineté (Bodin, 5 marques) · monarchomaques / politiques · remontrances / lit de justice · catholicité du roi · arrêt Lemaistre · Édit de Moulins (domaine fixe/casuel) · paulette · titre/finance · épices · commissaire · ministériat · surintendant · intendant."}
+   ],dates:["1494–1559 guerres d'Italie","1566 Édit de Moulins","1572 St-Barthélemy","1576 Bodin","1588/1593 catholicité","1604 paulette","1635 Trente Ans","1648 Fronde","1653 fin Fronde / intendants"]}
+  ]},
+
+ r7:{yr:"1661 – 1789", titre:"Apogée et déclin de la monarchie absolue", tag:"Louis XIV au sommet, le droit divin… puis la crise jusqu'à la Révolution.",
+  branches:[
+   {cls:"b-pol",ico:"☀️",t:"Le pouvoir du monarque absolu",nodes:[
+     {k:"Consolidé par le droit divin",p:"La défaite de la Fronde (1653) permet de réaffirmer les principes : la souveraineté est indivisible, l'État s'incarne tout entier dans le roi, qui décide seul et sans recours. On ajoute l'argument du <b>droit divin direct</b> : le roi tient son pouvoir directement de Dieu (sans intermédiaire) → indépendance totale. Les contestataires (monarchomaques) invoquaient au contraire une délégation indirecte (par les sujets, le peuple comme source)."},
+     {k:"L'épisode des EG de 1614-1615",p:"Le tiers état (officiers royaux) propose de consacrer le droit divin du roi comme loi fondamentale (besoin de stabilité). Mais opposition du clergé et de la noblesse → le projet est enterré. Malgré cela, la doctrine du droit divin s'impose, y compris dans le clergé."},
+     {k:"Bossuet, théoricien du droit divin",p:"L'évêque <b>Bossuet</b> (1627–1704), dans <em>Politique tirée des propres paroles de l'Écriture sainte</em> (pour le Dauphin), définit une véritable théocratie royale : (1) l'institution royale est d'origine divine (« c'est Dieu qui a donné au peuple les rois ») ; (2) le roi est le ministre de Dieu (« le trône royal n'est pas le trône d'un homme mais le trône de Dieu même ») ; (3) l'obéissance est un devoir sacré (« celui qui s'oppose au roi s'oppose à Dieu »). Le roi ne répond de ses actes que devant Dieu (écarte le contrôle du pape et du peuple). Précise et radicalise Jean Bodin."},
+     {k:"L'opposition des parlements",p:"L'apogée de Louis XIV = réduction de tous les contre-pouvoirs (pas d'EG entre 1615 et 1789, princes et protestants contrôlés). Il abaisse les parlements : « cours supérieures » (≠ suprêmes) ; ordonnance civile d'avril 1667 (délai pour les remontrances) ; déclaration du 24 fév. 1673 (remontrances seulement APRÈS enregistrement → elles ne bloquent plus)."},
+     {k:"La reprise du conflit",p:"Sous la minorité de Louis XV, le régent Philippe d'Orléans rend aux parlements le droit de remontrance préalable. L'opposition reprend, surtout sur la fiscalité (les parlements prétendent représenter la Nation entre les réunions des EG) et s'appuie sur la <b>théorie des classes</b> (les diverses cours = classes d'un unique parlement)."},
+     {k:"La séance de la flagellation (1766)",p:"Lors d'un lit de justice (3 mars 1766), Louis XV rappelle les principes de la monarchie absolue : « en ma seule personne réside la puissance souveraine… à moi seul appartient le pouvoir législatif, sans dépendance et sans partage ». Il rappelle que les parlements ne forment pas un seul corps (contre la théorie des classes) et que les parlementaires sont de simples officiers."},
+     {k:"Maupeou et le retour en arrière",p:"Après une grève (déc. 1770), Louis XV impose la réforme de la justice du chancelier <b>Maupeou</b> (abolition de la vénalité) — un succès. Mais à la mort de Louis XV, en 1774, <b>Louis XVI disgracie Maupeou et rétablit les parlements</b> → l'opposition parlementaire se réveille. En 1788, la forte résistance des parlements et les mouvements populaires obligent le roi à convoquer les États généraux."}
+   ]},
+   {cls:"b-key",ico:"📜",t:"Les lois fondamentales du royaume",nodes:[
+     {k:"L'indisponibilité de la couronne",p:"Affaire de la <b>succession d'Espagne</b> : Charles II, sans descendance, désigne le duc d'Anjou (petit-fils de Louis XIV), qui devient Philippe V. Au <b>traité d'Utrecht (1713)</b>, l'Angleterre exige qu'il renonce, pour lui et ses successeurs, à la couronne de France. La renonciation est acceptée… tout en sachant qu'elle est nulle, en vertu du principe d'indisponibilité : « la couronne de France ne se résigne pas »."},
+     {k:"L'exigence de légitimité (bâtards légitimés)",p:"Louis XIV, ayant perdu ses héritiers directs, déclare ses enfants naturels légitimés (le duc du Maine, le comte de Toulouse) capables de succéder (édit de juillet 1714), puis princes du sang (déclaration du 23 mai 1715), pour contrer le futur régent Philippe d'Orléans. Après sa mort, ces textes sont révoqués (<b>édit de juillet 1717</b>) : seule la loi salique désigne le roi, la volonté du monarque ne peut pas créer d'héritiers. « Le roi doit être <b>légitime et pas légitimé</b> ». Si tous les princes légitimes disparaissaient, ce serait à la Nation de désigner un roi. « Heureuse impuissance d'aliéner notre couronne »."}
+   ]},
+   {cls:"b-loc",ico:"⚖️",t:"Le cadre et la fin",nodes:[
+     {k:"Pouvoir absolu ≠ arbitraire",p:"Un principe reste unanimement accepté : la soumission du roi aux <b>lois fondamentales du royaume</b>, qui forment la « constitution » coutumière de la monarchie. Le roi décide seul, mais ne peut pas tout faire (il reste lié par le droit divin, le droit naturel, les coutumes, et les lois fondamentales)."},
+     {k:"L'administration sous Louis XIV",p:"Le roi poursuit la rationalisation de son administration pour la rendre la plus efficace possible (continuité avec les commissaires, les intendants et le Conseil mis en place avant 1661)."},
+     {k:"Vers la chute",p:"Après son apogée, l'État monarchique entre dans une crise profonde et durable → déclin → convocation des États généraux → <b>Révolution de 1789</b> (sous Louis XVI), qui provoque sa disparition."}
+   ]},
+   {cls:"b-key",ico:"🔑",t:"À retenir absolument",nodes:[
+     {k:"Personnages",p:"Louis XIV · Bossuet · Louis XV · chancelier Maupeou · Louis XVI · Philippe V / Philippe d'Orléans."},
+     {k:"Notions-clés",p:"Droit divin direct · théocratie royale (Bossuet) · « le roi ne répond que devant Dieu » · cours supérieures · théorie des classes · séance de la flagellation · réforme Maupeou · indisponibilité (Utrecht) · légitime ≠ légitimé · lois fondamentales = constitution coutumière."}
+   ],dates:["1661 règne personnel","1667/1673 parlements matés","1713 Utrecht","1717 bâtards","1766 flagellation","1770 Maupeou","1774 retour des parlements","1789 Révolution"]}
+  ]}
+};
+
+function renderRegime(id){
+  const r=REGIMES[id]; if(!r) return;
+  let html=`<div class="reg-banner"><div class="yr">${r.yr}</div><h2>${r.titre}</h2><div class="tag">${r.tag}</div></div>`;
+  html+=`<div class="ctrl"><button data-act="all" data-id="${id}">Tout déplier</button><button data-act="none" data-id="${id}">Tout replier</button></div>`;
+  html+=`<div class="hint">↓ touche chaque branche pour la déplier</div><div class="mind">`;
+  r.branches.forEach((b,i)=>{
+    const open = i===0 ? ' open':'';
+    html+=`<div class="branch ${b.cls}${open}"><div class="branch-head"><span class="ico">${b.ico}</span>${b.t}<span class="chev">▶</span></div><div class="branch-body">`;
+    b.nodes.forEach(n=>{html+=`<div class="node"><span class="k">${n.k}</span><p>${n.p}</p></div>`;});
+    if(b.dates){html+=`<div class="pill-row">`;b.dates.forEach(d=>html+=`<span class="pill date">${d}</span>`);html+=`</div>`;}
+    html+=`</div></div>`;
+  });
+  html+=`</div><div class="footer">Régime suivant en haut de l'écran →</div>`;
+  document.getElementById(id).innerHTML=html;
+}
+Object.keys(REGIMES).forEach(renderRegime);
+
+// ============ QUIZZ SYSTEM ============
+const QUIZ_QUESTIONS=[
+  {q:"Qui est le fondateur de la royauté franque en 481 ?",o:["Clovis","Pépin le Bref","Charles Martel","Charlemagne"],c:0,x:"Clovis devient roi des Francs en 481 après l'effondrement de l'Empire romain."},
+  {q:"Quel événement marque le baptême de Clovis ?",o:["Victoire sur les Wisigoths","Siège de Tolbiac","Bataille contre les Alamans","Sacre à Reims"],c:2,x:"Le baptême s'est déroulé à Reims après sa victoire contre les Alamans à Tolbiac."},
+  {q:"Quel pouvoir royal franque garantit la protection et la justice ?",o:["Le bannum","Le mundium","Le mallus","Le leudesanium"],c:1,x:"Le mundium est le pouvoir de protection et d'assurance de la justice."},
+  {q:"Qu'est-ce que le bannum ?",o:["Pouvoir de protection","Pouvoir de commandement et de légiférer","Assemblée des guerriers","Serment de fidélité"],c:1,x:"Le bannum est le pouvoir illimité de commander, punir et légiférer."},
+  {q:"Qui sont les antrustions ?",o:["Comtes locaux","Garde privée du roi","Nobles ecclésiastiques","Paysans libres"],c:1,x:"Les antrustions forment la garde rapprochée du roi avec un serment de fidélité très contraignant."},
+  {q:"En quelle année Pépin le Bref dépose-t-il le dernier Mérovingien ?",o:["732","751","768","800"],c:1,x:"Pépin le Bref dépose Childéric III en 751, marquant la fin des Mérovingiens."},
+  {q:"Quel acte légitime la nouvelle dynastie carolingienne ?",o:["La victoire militaire","Le sacre par le pape","Le vote des grands","L'hérédité du pouvoir"],c:1,x:"Pépin est sacré par les évêques et reçoit l'appui du pape Zacharie."},
+  {q:"Quel est le nouveau titre de Charlemagne en 800 ?",o:["Roi de France","Empereur d'Occident","Empereur romain","Roi très chrétien"],c:1,x:"Charlemagne est couronné empereur le 25 décembre 800 par le pape Léon III."},
+  {q:"Qu'est-ce que la 'renovatio imperii' ?",o:["Réforme militaire","Restauration de l'empire romain","Nouvelle forme de justice","Création de monastères"],c:1,x:"La renovatio imperii est la restauration de l'empire romain par Charlemagne."},
+  {q:"Qui sont les missi dominici ?",o:["Officiers de justice","Envoyés du maître inspectant l'empire","Prêtres itinérants","Soldats mercenaires"],c:1,x:"Les missi dominici sont des envoyés royaux (un laïc + un ecclésiastique) chargés de surveiller l'application des ordres du roi."},
+  {q:"Quel traité partage l'empire carolingien en 843 ?",o:["Verdun","Coulaines","Pépin","Aix-la-Chapelle"],c:0,x:"Le traité de Verdun divise l'empire entre les trois fils de Louis le Pieux."},
+  {q:"Qu'est-ce que le bénéfice dans le système carolingien ?",o:["Une rente monétaire","Une terre concédée à titre personnel et viager","Un titre honorifique","Une charge héréditaire"],c:1,x:"Le bénéfice est une terre concédée par le roi au vassal en récompense du service militaire."},
+  {q:"Qu'est-ce que la commendatio dans le système féodal ?",o:["La commande d'armes","Le serment de fidélité","L'acte de soumission par mains jointes","L'investiture en fief"],c:2,x:"La commendatio est l'acte par lequel le vassal devient l'homme du seigneur en offrant ses mains jointes."},
+  {q:"En quelle année commence le règne d'Hugues Capet ?",o:["843","987","1108","1226"],c:1,x:"Hugues Capet est élu roi en 987, fondant la dynastie capétienne."},
+  {q:"Quel roi capétien introduit la primogéniture en 1025 ?",o:["Hugues Capet","Robert II le Pieux","Henri Ier","Philippe Auguste"],c:1,x:"Robert II le Pieux fait sacrer son fils Henri Ier en 1025, établissant la primogéniture."},
+  {q:"Que signifie 'encastillement' ?",o:["Création de villes fortifiées","Multiplication des châteaux seigneuriaux","Construction de fortifications royales","Révolte des châtelains"],c:1,x:"L'encastillement est le processus de multiplication des châteaux au début du XIe siècle."},
+  {q:"Qu'est-ce que la districtio ?",o:["La séparation du pouvoir","Le ressort du seigneur (son territoire de pouvoir)","La division administrative","L'impôt levé par le seigneur"],c:1,x:"La districtio est le ressort ou le 'détroit' : le territoire sur lequel le seigneur exerce son pouvoir."},
+  {q:"Qu'est-ce que la mainmorte ?",o:["Servitude militaire","Incapacité du serf à transmettre ses biens","Interdiction de voyager","Obligation de service au seigneur"],c:1,x:"La mainmorte est l'incapacité du serf à transmettre ses biens ; ils reviennent au seigneur à sa mort."},
+  {q:"Quel droit empêche les serfs de se marier hors de la seigneurie ?",o:["La bâtardise","Le chevage","Le formariage","L'aubaine"],c:2,x:"Le formariage est l'interdiction pour le serf de se marier avec une personne d'une autre seigneurie."},
+  {q:"Qu'est-ce qu'une tenure ?",o:["Une propriété absolue","Une terre tenue en dépendance d'un seigneur","Une charge administrative","Une concession militaire"],c:1,x:"La tenure est la terre qu'un paysan tient d'un seigneur contre des redevances."},
+  {q:"Qui est Suger ?",o:["Un comte normand","Abbé de St-Denis et théoricien de la royauté","Un prévôt parisien","Un évêque réformateur"],c:1,x:"Suger est l'abbé de St-Denis et le conseiller de Louis VI qui théorise la mouvance féodale."},
+  {q:"Qu'est-ce que la théorie de la mouvance ?",o:["Déplacement de la cour royale","Le royaume est une pyramide de fiefs avec le roi au sommet","Mobilité des seigneurs vassaux","Circulation monétaire"],c:1,x:"La théorie de la mouvance assimile le royaume à une pyramide féodale où tous les fiefs se meuvent du roi."},
+  {q:"Que signifie 'le vassal de mon vassal n'est pas mon vassal' ?",o:["Absence de hiérarchie féodale","Limite du pouvoir suzerain : il ne domine pas l'arrière-vassal","Pouvoir absolu du roi","Égalité de tous les vassaux"],c:1,x:"C'est la limite de la suzeraineté : le roi n'a autorité que sur ses vassaux directs."},
+  {q:"Quel roi est le premier à s'intituler 'empereur en son royaume' ?",o:["Philippe Auguste","Saint Louis","Louis IX","Charles V"],c:2,x:"Saint Louis revendique un pouvoir absolu comparable à celui d'un empereur romain."},
+  {q:"Qu'est-ce que la loi salique ?",o:["Loi des Saliens (Francs)","Loi définissant l'hérédité du trône","Loi exceptionnelle du roi","Code de justice carolingien"],c:1,x:"La loi salique combine hérédité, primogéniture, masculinité et agnation pour la succession royale."},
+  {q:"En quelle année la loi salique exclut-elle définitivement les femmes ?",o:["1226","1316","1328","1350"],c:1,x:"En 1316, Louis X meurt en laissant une fille ; Philippe V devient roi (exclusion des femmes)."},
+  {q:"Qui sont les États généraux ?",o:["Les assemblées du Parlement","L'assemblée réunissant clergé, noblesse et tiers état","Les officiers du roi","Les gouverneurs de province"],c:1,x:"Les États généraux réunissent les représentants des trois ordres (clergé, noblesse, tiers état)."},
+  {q:"Que signifie 'instantanéité' dans la succession royale ?",o:["Élection rapide du roi","Continuité immédiate : le mort saisit le vif","Sacre du roi à la hâte","Abolition de la régence"],c:1,x:"L'instantanéité signifie qu'il n'y a pas d'interrègne : 'le roi est mort, vive le roi'."},
+  {q:"Que signifie 'indisponibilité de la couronne' ?",o:["Le roi ne peut pas voyager","Le roi ne peut pas vendre ses biens","Le roi ne peut pas disposer de la couronne, qui doit suivre la loi salique","Le roi ne peut pas créer des lois"],c:2,x:"L'indisponibilité signifie que le roi n'est qu'administrateur de la couronne et ne peut en disposer."},
+  {q:"Qu'est-ce qu'un apanage ?",o:["Une charge administrative","Une terre concédée aux fils cadets avec transmission masculine","Un impôt extraordinaire","Une dignité ecclésiastique"],c:1,x:"L'apanage est une terre donnée aux fils cadets du roi avec retour au domaine en cas d'extinction de la lignée mâle."},
+  {q:"Qu'est-ce que l'inamovibilité des officiers ?",o:["Salaire fixe","Impossibilité de destitution sauf par forfaiture","Charge héréditaire","Obligation de résidence"],c:1,x:"L'inamovibilité (Louis XI, 1467) signifie que l'officier ne perd sa charge que par décès ou forfaiture."},
+  {q:"Qu'est-ce que la vénalité des offices ?",o:["Vente d'armes au roi","Possibilité d'acheter et vendre des charges publiques","Corruption des officiers","Impôt sur le commerce"],c:1,x:"La vénalité permet aux officiers de acheter, vendre et transmettre leurs charges comme des biens patrimoniaux."},
+  {q:"Qui est Jean Bodin ?",o:["Un officier du Parlement","Un juriste définissant la souveraineté au XVIe","Un ministre de Henri IV","Un évêque réformateur"],c:1,x:"Jean Bodin (1576) définit la souveraineté comme 'puissance absolue et perpétuelle d'une République'."},
+  {q:"Qu'est-ce que les 'cas royaux' ?",o:["Les jugements du roi","Les affaires touchant le roi ou transgressant ses ordonnances","Les procès des nobles","Les crimes graves"],c:1,x:"Les cas royaux sont les affaires de lèse-majesté et les infractions aux ordonnances royales, réservées à la justice du roi."},
+  {q:"Que signifie 'legibus solutus' ?",o:["Délié des lois","Lié par les lois","Créateur de lois","Exécuteur des lois"],c:0,x:"'Legibus solutus' signifie que le roi est délié des lois ordinaires (pouvoir absolu)."},
+  {q:"Qu'est-ce qu'un parlement médiéval ?",o:["Une assemblée législative","Une cour de justice enregistrant les textes royaux","Une assemblée du tiers état","Un conseil du roi"],c:1,x:"Le Parlement est une cour de justice qui enregistre et peut faire des remontrances contre les ordonnances."},
+  {q:"Qu'est-ce que les 'remontrances' du Parlement ?",o:["Des critiques verbales","Des oppositions écrites aux ordonnances avant enregistrement","Des pétitions","Des appels au pape"],c:1,x:"Les remontrances sont les oppositions formelles du Parlement aux textes royaux avant leur enregistrement."},
+  {q:"Qu'est-ce qu'un 'lit de justice' ?",o:["Jugement spécial du roi","Visite royale au Parlement pour imposer l'enregistrement","Tribunal militaire","Justice de paix"],c:1,x:"Un lit de justice est une cérémonie où le roi impose l'enregistrement contre les remontrances du Parlement."},
+  {q:"Qu'est-ce que la 'paulette' ?",o:["Impôt extraordinaire","Droit de succession des offices (1604)","Charge administrative nouvelle","Privilège urbain"],c:1,x:"La paulette (1604) est une taxe permettant l'hérédité des offices (1/60e par an)."},
+  {q:"Qui sont les commissaires royaux ?",o:["Les maires des villes","Les agents temporaires avec une mission spéciale du roi","Les avocats au Parlement","Les intendants provinciaux"],c:1,x:"Les commissaires sont des agents révocables avec une mission extraordinaire (ex. appliquer un édit)."},
+  {q:"Qu'est-ce qu'un intendant ?",o:["Un assistant du gouverneur","Un commissaire royal aux finances, justice et police","Un officier local","Un notaire public"],c:1,x:"L'intendant est un commissaire royal chargé de justice, police et finances dans une généralité."},
+  {q:"Qui est Richelieu ?",o:["Évêque de Paris","Principal ministre sous Louis XIII","Gouverneur de Normandie","Chancelier du Parlement"],c:1,x:"Richelieu est le principal ministre de Louis XIII, incarnant le 'ministériat' moderne."},
+  {q:"Qu'est-ce que la 'taille' ?",o:["L'impôt sur le commerce","L'impôt principal direct levé par le roi","Le droit de succession","L'amende judiciaire"],c:1,x:"La taille est l'impôt direct levé par la royauté, en principe extraordinaire mais devenant permanent."},
+  {q:"Qu'est-ce que le traité de Verdun (843) ?",o:["Paix de Dieu","Partage de l'empire carolingien en trois royaumes","Alliance contre les Vikings","Traité de succession"],c:1,x:"Le traité de Verdun divise l'empire en trois : France (Charles), Allemagne (Louis) et Lotharingie (Lothaire)."},
+  {q:"En quelle année le dernier Mérovingien est-il deposé ?",o:["732","751","800","987"],c:1,x:"Childéric III est deposé par Pépin le Bref en 751."},
+  {q:"Quel pape sacre Pépin le Bref ?",o:["Léon III","Étienne II","Zacharie","Innocent III"],c:1,x:"Le pape Étienne II sacre Pépin en 754 à St-Denis, scellant l'alliance papale."},
+  {q:"Qu'est-ce que l'État pontifical ?",o:["Le siège du pape","Les territoires donnés au pape par Pépin (754–756)","L'Église catholique entière","Les évêchés d'Italie"],c:1,x:"L'État pontifical naît des terres cédées par Pépin au pape (les États de l'Église)."},
+  {q:"Qu'est-ce qu'une tenure roturière ?",o:["Terre d'un roturier contre redevances","Terre servile","Terre allodiale","Terre noble"],c:0,x:"La tenure roturière est la terre d'un homme libre (roturier) tenue contre des redevances."},
+  {q:"Qu'est-ce qu'une commune urbaine ?",o:["Une ville","Une association jurée d'habitants obtenant des libertés","Un marché","Une juridiction royale"],c:1,x:"Une commune est une association jurée d'habitants obtenant des chartes de liberté contre le seigneur."},
+  {q:"Qu'est-ce qu'un consulat ?",o:["Bureau politique","Forme urbaine méridionale équivalente à la commune","Gouvernement militaire","Charge administrative"],c:1,x:"Le consulat est la forme urbaine du Sud, équivalente à la commune du Nord."},
+  {q:"Qu'est-ce que le droit de relief ?",o:["Droit de ne pas servir le roi","Droit pour l'héritier de reprendre le fief","Redevance payée à la succession du fief","Droit d'appel"],c:2,x:"Le droit de relief est la redevance payée par l'héritier au seigneur pour reprendre le fief."},
+  {q:"Qu'est-ce que le 'droit de Quint' ?",o:["Impôt sur 5 tenures","Droit de mutation sur la vente de fief","Droit du quint fils","Impôt de 1/5 sur le commerce"],c:1,x:"Le droit de Quint est la redevance (≈1/5 du prix) payée au seigneur lors de la vente d'un fief."},
+  {q:"Qu'est-ce que l'hommage lige ?",o:["Hommage secondaire","Hommage prioritaire au seigneur principal","Hommage militaire","Hommage ecclésiastique"],c:1,x:"L'hommage lige est l'engagement prioritaire de fidélité au seigneur le plus important."},
+  {q:"Qu'est-ce que l'hommage plain ?",o:["Hommage complet","Hommage secondaire à d'autres seigneurs","Hommage sans terre","Hommage public"],c:1,x:"L'hommage plain est l'engagement de fidélité secondaire aux autres seigneurs."},
+  {q:"Qui sont les ministériaux ?",o:["Ministres du roi","Officiers du seigneur de condition servile","Moines acolytes","Soldats mercenaires"],c:1,x:"Les ministériaux sont des officiers du seigneur de condition servile qui s'enrichissent et accèdent à la noblesse."},
+  {q:"Qu'est-ce qu'un prévôt seigneurial ?",o:["Chef de la prévôté royale","Principal officier du seigneur","Prêtre de la chapelle","Officier militaire"],c:1,x:"Le prévôt est le principal officier du seigneur, représentant son pouvoir sur le territoire."},
+  {q:"Qu'est-ce que le chevage ?",o:["Droit d'usage des chevaux","Redevance recognitive de la condition servile","Impôt de passage","Droit de chasse"],c:1,x:"Le chevage est la redevance annuelle que doit payer le serf pour reconnaître sa condition."},
+  {q:"Qu'est-ce que l'aubaine ?",o:["Droit du roi sur les étrangers mourant sans héritiers","Impôt sur les étrangers","Droit de passage","Douane"],c:0,x:"L'aubaine est le droit du roi de confisquer les biens d'un aubain (étranger) mort sans héritiers."},
+  {q:"Qu'est-ce qu'un alleu ?",o:["Une tenure","Une propriété foncière pleine et libre (non tenue en fief)","Une charge administrative","Une juridiction"],c:1,x:"L'alleu est la propriété absolue d'une terre, indépendante d'un seigneur (rare au XIe)."},
+  {q:"Qu'est-ce que le 'fief' au Moyen Âge ?",o:["Titre de noblesse","Terre concédée par un seigneur au vassal","Charge administrative","Impôt seigneurial"],c:1,x:"Le fief est la terre concédée par le seigneur au vassal en échange de l'hommage et du service."},
+  {q:"Qu'est-ce que l'investiture féodale ?",o:["Cérémonie de consécration","Acte solennel et public de remise du fief","Prise de possession du château","Serment de fidélité"],c:1,x:"L'investiture est l'acte solennel par lequel le seigneur remet le fief au vassal."},
+  {q:"Qu'est-ce que l'auxilium dans la féodalité ?",o:["L'aide militaire et financière du vassal au seigneur","Le conseil du vassal","La protection du seigneur","La redevance monétaire"],c:0,x:"L'auxilium est l'obligation d'aide (militaire, conseil, financière) du vassal envers son seigneur."},
+  {q:"Qu'est-ce que le concilium dans la féodalité ?",o:["Conseil du roi","Assemblée des vassaux","Service de conseil et justice du vassal envers le seigneur","Tribunal féodal"],c:2,x:"Le concilium est l'obligation de conseil et de participation à la justice féodale du seigneur."},
+  {q:"Qu'est-ce que la commise du fief ?",o:["Confiscation du fief pour forfaiture","Donation du fief","Héritage du fief","Vente du fief"],c:0,x:"La commise est la confiscation du fief par le seigneur en cas de parjure du vassal."},
+  {q:"Qu'est-ce que le 'devest' féodal ?",o:["La remise du fief","L'acte inverse de l'investiture (dépossession)","Le renouvellement du fief","L'hommage public"],c:1,x:"Le devest est l'acte de dépossession, inverse rituel de l'investiture."},
+  {q:"Qui est Fulbert de Chartres ?",o:["Évêque de Chartres","Juriste définissant les obligations féodales (1020)","Moine copiste","Chevalier normand"],c:1,x:"Fulbert de Chartres (1020) définit les obligations mutuelles du seigneur et du vassal."},
+  {q:"Qu'est-ce que la 'paix de Dieu' ?",o:["Traité de paix","Mouvement ecclésiastique protégeant certains lieux/personnes des guerres","Édit royal pacifiant le royaume","Alliance des seigneurs"],c:1,x:"La paix de Dieu protège les églises, clercs, paysans et faibles des guerres seigneuriales."},
+  {q:"Qu'est-ce que la 'trêve de Dieu' ?",o:["Cessez-le-feu permanent","Mouvement protégeant certains jours des combats","Paix du roi","Amnistie générale"],c:1,x:"La trêve de Dieu protège les samedis-dimanche-lundi et certains jours religieux des combats."},
+  {q:"Qu'est-ce que la 'théorie des trois ordres' ?",o:["Classification des noblesse","Modèle social : oratores (prient), bellatores (combattent), laboratores (travaillent)","Trois types de gouvernement","Trois corps judiciaires"],c:1,x:"Les trois ordres classent la société : ceux qui prient (clergé), ceux qui combattent (noblesse), ceux qui travaillent (peuple)."},
+  {q:"Qu'est-ce que la 'quarantaine-le-roi' ?",o:["Isolement du roi malade","Délai de 40 jours avant un conflit privé","Prison du roi","Médiation royale"],c:1,x:"C'est le délai de 40 jours laissé aux familles avant un conflit, pour permettre la médiation du roi."},
+  {q:"Qu'est-ce que les 'sauvegardes royales' ?",o:["Garde du corps du roi","Protection accordée par le roi (rappel du mundium)","Fortifications royales","Milices urbaines"],c:1,x:"Les sauvegardes royales sont la protection accordée par le roi, continuation du mundium mérovingien."},
+  {q:"Qu'est-ce que l'asseurement féodal ?",o:["Assurance contre les guerres","Pacte solennel de non-agression entre seigneurs","Contrat de service militaire","Traité international"],c:1,x:"L'asseurement est un pacte solennel de non-agression ; violation = peine de mort."},
+  {q:"Qu'est-ce que l'officialité médiévale ?",o:["Bureau administratif","Tribunal ecclésiastique présidé par l'official","Charge gouvernementale","Cour de justice"],c:1,x:"L'officialité est le tribunal de l'évêque (l'official) jugeant les affaires ecclésiastiques."},
+  {q:"Qu'est-ce que le 'privilège du for' ecclésiastique ?",o:["Droit de franchises urbaines","Droit pour le clergé d'être jugé par les cours ecclésiastiques","Exemption fiscale","Droit d'asile"],c:1,x:"Le privilège du for permet aux clercs et certaines personnes d'être jugés par la justice ecclésiastique."},
+  {q:"Qu'est-ce que l'appel comme d'abus ?",o:["Appel contre une décision injuste","Saisie du temporel de l'évêque contre une décision ecclésiastique abusive","Recours au roi","Pourvoi en cassation"],c:1,x:"L'appel comme d'abus permet au Parlement d'annuler les décisions ecclésiastiques abusives."},
+  {q:"Qu'est-ce que la 'réforme grégorienne' ?",o:["Réforme agricole","Réforme ecclésiastique renforçant le pouvoir papal (1075)","Réforme des monastères","Réforme universitaire"],c:1,x:"La réforme grégorienne (1075, pape Grégoire VII) affirme l'indépendance et la suprématie de l'Église."},
+  {q:"Qu'est-ce que le 'Dictatus papae' ?",o:["Proclamation du pape Grégoire VII","Proclamation du pape Léon III","Décret du Parlement","Édit royal"],c:0,x:"Le Dictatus papae (1075) affirme la suprématie du pape sur tous les pouvoirs temporels."},
+  {q:"Qu'est-ce que les 'présidiaux' ?",o:["Tribunaux régionaux créés par Henri II (1552) pour soulager les parlements","Garnisons militaires","Sièges des gouverneurs","Prisons royales"],c:0,x:"Les présidiaux (1552) sont des tribunaux intermédiaires entre les prévôtés et les parlements."},
+  {q:"Qu'est-ce que l'Édit de Moulins (1566) ?",o:["Édit de pacification religieuse","Distinction domaine fixe (inaliénable) / domaine casuel (libre)","Édit fondateur des parlements","Ordonnance militaire"],c:1,x:"L'Édit de Moulins précise l'indisponibilité du domaine en le divisant en fixe et casuel."},
+  {q:"Qu'est-ce que l'arrêt Lemaistre (1593) ?",o:["Jugement du Parlement contre le Ligueur Lemaistre","Déclaration du Parlement affiriant la loi salique et refusant les successions étrangères","Ordonnance fiscale","Jugement sur le clergé"],c:1,x:"L'arrêt Lemaistre (1593) affirme que la couronne n'est pas transmissible à un étranger."},
+  {q:"Qu'est-ce que la 'catholicité du roi' comme loi fondamentale ?",o:["Obligation religieuse du roi","Principe que le roi doit être catholique (Édit d'Union 1588)","Soumission au pape","Obligation de protéger l'Église"],c:1,x:"La catholicité (1588) devient loi fondamentale : le roi doit être catholique."},
+  {q:"Qu'est-ce que le 'droit divin direct' ?",o:["Droit du roi délégué par le peuple","Pouvoir du roi venant directement de Dieu sans intermédiaire","Droit de succession divine","Droit du roi sur l'Église"],c:1,x:"Le droit divin direct (XVIIe) : le roi tient son pouvoir directement de Dieu sans intermédiaire."},
+  {q:"Qui est Bossuet ?",o:["Officier du Parlement","Évêque et théoricien du droit divin pour le Dauphin","Ministre de Henri IV","Général de l'armée"],c:1,x:"Bossuet (1627–1704) définit théocratie royale et le droit divin dans la Politique tirée des propres paroles de l'Écriture sainte."},
+  {q:"Qu'est-ce que la 'séance de la flagellation' (1766) ?",o:["Châtiment dans les prisons royales","Lit de justice où Louis XV réaffirme le droit divin et limite les parlements","Punition militaire","Cérémonie de sacre"],c:1,x:"Séance de la flagellation (1766) : Louis XV rappelle que la souveraineté lui appartient seul."},
+  {q:"Qui est Maupeou ?",o:["Chancelier","Réformateur de la justice abolissant la vénalité (1770)","Intendant de province","Gouverneur militaire"],c:1,x:"Maupeou (chancelier) réforme la justice de Louis XV en abolissant la vénalité en 1770."},
+  {q:"Qu'est-ce que le traité d'Utrecht (1713) ?",o:["Traité de paix après la guerre d'Espagne","Traité affirmant l'indisponibilité de la couronne de France","Traité commerciel","Traité d'alliance contre la Hollande"],c:1,x:"Le traité d'Utrecht (1713) exige une renonciation à la couronne de France (nulle, car indisponible)."},
+  {q:"Qu'est-ce que 'légitime et pas légitimé' ?",o:["Légalité de la succession","Principe que seuls les enfants légitimes peuvent succéder, pas les légitimés","Légitimité du roi","Légitimité de la loi"],c:1,x:"'Légitime et pas légitimé' : la loi salique désigne, pas la volonté du roi de légitimer ses bâtards."},
+  {q:"Qu'est-ce qu'une 'généralité' fiscale ?",o:["Assemblée générale","Circonscription administrative/fiscale créée au XVe","Gouvernement de province","Juridiction générale"],c:1,x:"Une généralité est une circonscription fiscale dirigée par un général des finances."},
+  {q:"Qu'est-ce que l'impôt des 'aides' ?",o:["Aide militaire","Impôts indirects (sauf gabelle)","Contributions extraordinaires","Impôts directs"],c:1,x:"Les aides sont des impôts indirects (sur la circulation, sauf gabelle)."},
+  {q:"Qu'est-ce que la 'gabelle' ?",o:["Impôt sur les céréales","Impôt de douane","Impôt sur le sel (très impopulaire)","Taxe communale"],c:2,x:"La gabelle est l'impôt sur le sel, très impopulaire, créé au XIVe."},
+  {q:"Qu'est-ce que la 'maltôte' ?",o:["Impôt sur le malt","Impôt extraordinaire de Philippe le Bel sur la circulation (1292)","Taxe régionale","Amende","Amende judiciaire"],c:1,x:"La maltôte (1292) est un impôt extraordinaire de Philippe le Bel qui provoque des révoltes."},
+  {q:"Qui sont les 'élus' ?",o:["Assemblée des nobles","Agents élus localement pour l'impôt","Représentants des États généraux","Consuls urbains"],c:1,x:"Les élus sont d'abord des agents élus pour collecter l'impôt, puis deviennent officiers royaux."},
+  {q:"Qu'est-ce qu'une 'compagnie d'ordonnance' ?",o:["Unité militaire mercenaire","Corps de cavalerie permanente de Charles VII (1439)","Ordre militaire chevaleresque","Compagnie commerciale"],c:1,x:"Les compagnies d'ordonnance (1439) sont les premiers éléments de l'armée permanente royale."},
+  {q:"Qu'est-ce que le 'ban et arrière-ban' ?",o:["Éditique de restriction","Obligation militaire de tous les nobles","Interdiction de séjour","Double impôt"],c:1,x:"Le ban et arrière-ban sont l'obligation des nobles de se présenter armés à l'ost du roi."},
+  {q:"Qu'est-ce que la 'jusquaboutisme' de Clovis ?",o:["Combat jusqu'au bout","Décision de Clovis d'éliminer tous les autres rois francs","Politique d'expansion","Alliance avec Rome"],c:1,x:"La politique de Clovis vise à l'élimination de tous les autres rois francs pour unifier la Gaule."},
+  {q:"Qu'est-ce que le 'vase de Soissons' ?",o:["Vase sacré chrétien","Épisode où Clovis brise un vase saisi au hasard (partage du butin)","Objet de culte romain","Symbole de victoire"],c:1,x:"Le vase de Soissons : épisode où Clovis brise un vase pour affirmer son droit au butin."},
+  {q:"Qu'est-ce que la 'commendatio' précisément ?",o:["Cérémonie d'acclamation","Acte où le vassal offre ses mains jointes et s'engage envers le seigneur","Commande d'armes","Lettre de recommandation"],c:1,x:"La commendatio est le geste rituel d'engagement : mains jointes offrant la vassalité."},
+  {q:"Qu'est-ce que l'osculum féodal ?",o:["Embrassade fraternelle","Baiser de paix scellant l'hommage","Baiser liturgique","Sceau officiel"],c:1,x:"L'osculum est le baiser de paix échangé lors de l'hommage, scellant l'accord."},
+  {q:"Qu'est-ce que le 'ban' seigneurial précisément ?",o:["Interdiction","Pouvoir de commander et édicter des règlements obligatoires","Impôt seigneurial","Servitude"],c:1,x:"Le ban est le pouvoir de commander et d'édicter des règlements obligatoires à tous sur le territoire."},
+  {q:"Qu'est-ce que la 'justice retenue' du roi ?",o:["Justice exercée partiellement","Justice gardée par le roi ou exercée en son nom direct (par lui-même, son conseil, etc.)","Justice déléguée","Justice commune"],c:1,x:"La justice retenue est celle qu'exerce directement le roi (ou en son nom au conseil)."},
+  {q:"Qu'est-ce que la 'justice déléguée' du roi ?",o:["Justice exercée par délégation du roi à des juges ordinaires","Justice sans autorité royale","Justice ecclésiastique","Justice seigneuriale"],c:0,x:"La justice déléguée est celle confiée aux juges ordinaires (parlements, prévôts, etc.) au nom du roi."},
+  {q:"Qu'est-ce que la 'prévention' en droit royal ?",o:["Anticipation judiciaire","Doctrine permettant au juge royal de juger avant le seigneur (notamment en urgence)","Prévention du crime","Procédure inquisitoire"],c:1,x:"La prévention permet au juge royal de saisir une affaire avant le juge seigneurial."},
+  {q:"Qu'est-ce que la Fronde (1648–1653) ?",o:["Révolte populaire","Révolte parlementaire puis nobiliaire contre la royauté pendant la minorité de Louis XIV","Guerre civile religieuse","Soulèvement paysan"],c:1,x:"La Fronde est la double révolte (Parlement 1648–49, princes 1650–53) contre la minorité de Louis XIV."},
+  {q:"Qu'est-ce que l'Édit de Nantes (1598) ?",o:["Édit d'Union religieuse","Édit accordant la tolérance aux protestants (Henri IV)","Édit de pacification définitive","Ordonnance administrative"],c:1,x:"L'Édit de Nantes (1598) accorde la tolérance aux protestants et met fin aux guerres de religion."},
+  {q:"Qu'est-ce que la 'Respublica' dans le vocabulaire médiéval ?",o:["République antique","Concept du bien public et de l'État distinct de la personne du roi","Assemblée publique","Domaine royal"],c:1,x:"La Respublica est l'entité abstraite de l'État/de la Couronne, distincte de la personne du roi."},
+  {q:"Qu'est-ce que le 'corps politique' du roi ?",o:["Corps physique","Incarnation de l'État en la personne du roi (qui dure au-delà de sa mort physique)","Conseil du roi","Cour royale"],c:1,x:"Le corps politique du roi est l'État incarné en lui, immortel contrairement à son corps physique."},
+  {q:"Qu'est-ce qu'Alcuin ?",o:["Moine copiste carolingien","Théologien et conseiller de Charlemagne","Évêque réformateur","Poète antique"],c:1,x:"Alcuin est le conseiller de Charlemagne, qui théorise la restauration impériale et les 3 dignités."}
+];
+
+let quizState={current:0,questions:[],answers:[],started:false};
+
+function shuffleArray(arr){return arr.sort(()=>Math.random()-.5);}
+
+function renderQuiz(){
+  const sec=document.getElementById('quiz');
+  if(!quizState.started){
+    sec.innerHTML=`<div style="max-width:780px;margin:0 auto;padding:22px 16px;">
+      <div class="recit-intro"><p><strong>Quizz de révision</strong> — 200 questions sur l'ensemble du cours.</p><p style="margin-top:8px;font-size:.92rem;">À chaque lancement, les questions sont mélangées : vous ne verrez jamais deux quizz identiques. Les réponses s'affichent après votre sélection.</p></div>
+      <div style="text-align:center;margin-top:24px;"><button id="startQuiz" style="padding:12px 28px;background:var(--ink);color:var(--parch);border:none;border-radius:8px;font-family:'Fraunces',serif;font-weight:600;cursor:pointer;font-size:1rem;">Démarrer le quizz</button></div>
+    </section>`;
+    document.getElementById('startQuiz').addEventListener('click',()=>{
+      quizState.questions=shuffleArray([...QUIZ_QUESTIONS]);quizState.answers=new Array(quizState.questions.length).fill(null);quizState.current=0;quizState.started=true;renderQuiz();
+    });
+  } else {
+    let html=`<div style="max-width:780px;margin:0 auto;padding:22px 16px;"><div class="quiz-nav">
+    <button onclick="quizPrev()" ${quizState.current===0?'disabled':''}>&lt; Précédente</button>
+    <span style="align-self:center;font-size:.95rem;color:var(--ink-soft);">${quizState.current+1}/${quizState.questions.length}</span>
+    <button onclick="quizNext()" ${quizState.current===quizState.questions.length-1?'disabled':''}> Suivante &gt;</button>
+    </div>`;
+    const q=quizState.questions[quizState.current];const ans=quizState.answers[quizState.current];
+    html+=`<div class="quiz-q"><div class="num">Q${quizState.current+1}</div><div class="text">${q.q}</div><div class="quiz-opts">`;
+    q.o.forEach((opt,i)=>{
+      const sel=ans===i?' selected':'';const correct=ans!==null&&i===q.c?' correct':'';const wrong=ans!==null&&ans!==q.c&&i===ans?' wrong':'';
+      html+=`<div class="quiz-opt${sel}${correct}${wrong}" onclick="quizSelect(${i})">${opt}</div>`;
+    });
+    html+=`</div>`;
+    if(ans!==null){html+=`<div class="quiz-result show"><strong>${ans===q.c?'✓ Correct !':'✗ Incorrect'}</strong><p style="margin-top:6px;">${q.x}</p></div>`;}
+    html+=`</div>`;
+    if(quizState.answers.every(a=>a!==null)){
+      const score=quizState.answers.filter((a,i)=>a===quizState.questions[i].c).length;
+      html+=`<div class="quiz-score"><div class="big">${score}/${quizState.questions.length}</div><div class="label">Bravo ! Votre score</div></div>`;
+      html+=`<div class="quiz-reset"><button onclick="resetQuiz()" style="padding:10px 20px;background:var(--ink);color:var(--parch);border:none;border-radius:8px;cursor:pointer;font-family:'Fraunces',serif;font-weight:600;">Relancer un quizz</button></div>`;
+    }
+    html+=`</div>`;
+    sec.innerHTML=html;
+  }
+}
+window.quizSelect=(i)=>{quizState.answers[quizState.current]=i;renderQuiz();};
+window.quizNext=()=>{if(quizState.current<quizState.questions.length-1){quizState.current++;renderQuiz();}};
+window.quizPrev=()=>{if(quizState.current>0){quizState.current--;renderQuiz();}};
+window.resetQuiz=()=>{quizState={current:0,questions:[],answers:[],started:false};renderQuiz();};
+
+// ============ ENTRAÎNEMENT SYSTEM ============
+const TRAIN_QUESTIONS=[
+  {q:"Expliquez le rôle du baptême de Clovis dans la transformation de la royauté franque.",x:"Le baptême de Clovis à Reims transforme la royauté guerrière franque en royauté territoriale. D'abord légitime par le charisme guerrier et les dieux germaniques, Clovis devient catholique et gagne le soutien des évêques gallo-romains. Il devient le champion catholique contre l'arianisme (Wisigoths, Burgondes). Cette alliance Église-roi devient le fondement de la royauté française : la légitimité religieuse prime sur la force guerrière seule."},
+  {q:"Comparez le mundium et le bannum : deux pouvoirs fondamentaux de la royauté mérovingienne.",x:"Le mundium (pouvoir de protection) et le bannum (pouvoir de commandement) sont les deux piliers de la royauté mérovingienne. Le mundium assure la paix et la justice par la protection magique comparable à celle d'un père (protection spéciale des faibles). Le bannum est le pouvoir illimité de commander, punir et légiférer : refus → bannissement. Le mundium crée une obligation de protection ; le bannum crée une obligation d'obéissance. Ensemble, ils définissent le pouvoir royal comme à la fois protecteur et coercitif."},
+  {q:"Analysez les causes de la faiblesse des Mérovingiens et l'ascension des Carolingiens.",x:"Les Mérovingiens perdent le pouvoir par le partage du royaume entre tous les fils du roi, créant guerres fratricides et éclatement. Le maire du palais, d'abord officier domestique, devient progressivement le vrai pouvoir pendant les minorités royales. Les Pippinides rendent la charge héréditaire. Pépin le Bref dépose le dernier Mérovingien en 751, légitimé par le sacre du pape. Charlemagne (son fils) est couronné empereur. La transition Mérovingiens → Carolingiens montre l'importance croissante du facteur religieux (sacre) et la vulnérabilité d'une dynastie affaiblie par les divisions internes."},
+  {q:"Qu'est-ce que la 'renovatio imperii' et quel en est l'enjeu politique ?",x:"La renovatio imperii est la restauration de l'empire romain par Charlemagne, couronné empereur le 25 décembre 800. C'est un enjeu politique majeur : Charlemagne utilise la façade impériale pour légitimer sa domination sur l'Europe. Le pape Léon III couronne l'empereur (montrant la supériorité spirituelle du pape), mais Charlemagne protège le pape contre ses ennemis. La restauration impériale affirme que la puissance de l'Occident égale celle de l'empire d'Orient ; elle centralise le prestige du pouvoir au bénéfice de Charlemagne. Cependant, l'empire se fragmente après sa mort (Verdun 843), montrant ses limites."},
+  {q:"Expliquez le système des missi dominici et son rôle dans l'administration carolingienne.",x:"Les missi dominici (envoyés du maître) sont des couples d'inspecteurs (un laïc + un ecclésiastique) envoyés par Charlemagne sur des zones (missatica) de plusieurs pagus. Ils vérifient l'application des capitulaires (ordonnances du roi), contrôlent les comptes des comtes, reçoivent les plaintes, assurent la liaison palais-circonscriptions. Ce système permet au roi, depuis Aix-la-Chapelle, de vérifier que l'administration locale respecte ses ordres. C'est un embryon d'inspection administrative moderne. Après Charlemagne, affaiblissement royal → fin des missi → émancipation comtale."},
+  {q:"Analysez la transformation du fief au XIIe siècle et ses conséquences politiques.",x:"Au XIe siècle, le fief est personnel et viager (revient au seigneur à la mort du vassal). Au XIIe, il devient héréditaire (droit de relief) puis aliénable (vendable, droit de Quint). L'élément réel (la terre) devient plus important que l'élément personnel (le lien vassal-seigneur). Conséquences : (1) le fief entre dans le patrimoine familial, (2) le seigneur ne choisit plus son vassal, (3) les vassalités multiples se multiplient (stratification féodale), (4) les princes dominent par la hiérarchie féodale. Cette transformation crée la structure pyramidale du système féodal et permet au roi de devenir suzerain de tous."},
+  {q:"Expliquez la théorie de la mouvance (Suger) et comment elle redonne du pouvoir au roi.",x:"Suger, abbé de St-Denis et conseiller de Louis VI, assimile le royaume à une vaste seigneurie divisée en fiefs hiérarchisés. Chaque fief 'se meut' (dépend) d'un fief supérieur jusqu'au royaume (fief suprême). À la hiérarchie des terres correspond une hiérarchie des hommes : le roi au sommet = suzerain. Cette théorie redonne au roi un rôle central : il n'est plus écrasé par les princes autonomes, mais devient le pivot de la pyramide féodale. Le roi peut prétendre à l'hommage et au service des princes vassaux, bien qu'il reste suzerain (non souverain) : limite = 'le vassal de mon vassal n'est pas mon vassal'."},
+  {q:"Comparez la position du roi au XIe siècle (ordre seigneurial) et au XIIe siècle (royauté féodale).",x:"Au XIe siècle (ordre seigneurial), le roi est affaibli : son domaine est réduit, les seigneurs châtelains disposent du ban et de la justice pour leur profit personnel. Le roi n'est sacré mais sans vrai pouvoir. Au XIIe siècle (royauté féodale), grâce à la théorie de la mouvance, le roi redevient central : il exige l'hommage des princes, réaffirme sa dignité sacrale (thaumaturge), introduit l'hérédité et la primogéniture pour stabiliser la dynasties. Transition : le roi passe de paria à suzerain. Le sacre à Reims et la thaumaturgie le distinguent des simples seigneurs."},
+  {q:"Analysez l'importance de la commise de Jean sans Terre (1202) pour la royauté capétienne.",x:"Jean sans Terre, roi d'Angleterre vassal du roi, enlève la femme d'un vassal, Guy de Lusignan. Lusignan s'adresse au seigneur de son seigneur (Philippe Auguste) qui convoque Jean en justice. Jean refuse → Philippe prononce la commise des fiefs (Normandie, Anjou annexées au domaine royal). C'est une application du droit féodal qui montre : (1) la suzeraineté du roi est opérante, (2) le roi contrôle la justice féodale, (3) le domaine royal s'agrandit. Cependant, la limite reste : 'le vassal de mon vassal n'est pas mon vassal' → Philippe ne contrôle pas les arrière-vassaux anglais. Un pas décisif vers la souveraineté."},
+  {q:"Expliquez comment Saint Louis passe du suzerain (féodal) au souverain (absolu).",x:"Saint Louis s'appuie sur le droit romain redéouvert pour revendiquer un pouvoir 'absolu' : 'empereur en son royaume', 'roi très chrétien', au service de la Respublica (la Couronne, entité abstraite). Il récupère cas royaux, justice (fontaine de justice), loi, regalia. Les États généraux ne deviennent jamais contre-pouvoir. Il établit des lois du royaume : loi salique, instantanéité, indisponibilité de la couronne. Saint Louis est plus qu'un suzerain féodal : il est un souverain revendiquant le monopole de la légalité. La transition intellectuelle (droit romain) + administrative (officiers inamovibles) + idéologique (roi au service de la Respublica) marque la naissance de l'État moderne."},
+  {q:"Analysez l'évolution de la loi salique du VIe au XIVe siècles.",x:"À l'origine, la loi salique des Francs excluait les terres mobiles des femmes (loi civile franque). Progressivement, elle devient le fondement de la succession royale : hérédité (vs élection), primogéniture (1025), masculinité (exclure les femmes pour éviter les alliances étrangères), agnation (seuls les descendants mâles transmettent la royauté). En 1316, Louis X meurt en laissant une fille ; Philippe V devientroi → exclusion absolue des femmes. En 1328, Charles IV mort → Philippe VI de Valois choisi contre Édouard III d'Angleterre (principe d'agnation, étrangeté d'Édouard) → début guerre de Cent Ans. La loi salique se cristallise en constitution intangible, fondement de la légitimité royale."},
+  {q:"Qu'est-ce que l'instantanéité dans la succession royale et pourquoi est-ce crucial ?",x:"L'instantanéité signifie absence d'interrègne : 'le roi est mort, vive le roi'. Le sacre devient déclaratif (depuis Philippe Auguste), le successeur est roi immédiatement ('le mort saisit le vif'). Importance : (1) évite le chaos d'un pouvoir vacant, (2) montre que la Couronne est permanente au-delà de la personne du roi, (3) renforce l'idée que la royauté est une charge, non une propriété personnelle. Conséquence : la continuité de l'État prime sur la personne du roi. Un pas vers l'abstraction de la Couronne comme entité juridique permanente."},
+  {q:"Expliquez le concept d'indisponibilité de la couronne et ses enjeux.",x:"L'indisponibilité signifie que le roi n'est que l'administrateur de la couronne, pas son propriétaire : il ne peut pas la vendre, la donner, l'aliéner. Fondement : théorie statutaire (c'est la loi salique, pas la volonté royale, qui désigne le successeur). Enjeux : (1) limite le pouvoir absolu du roi, (2) protège l'intégrité du royaume, (3) affirme que l'État est supérieur à la personne du roi. Application : roi ne peut pas casser la succession par testament (Jean de Terrevermeille, 1419). Traité de Troyes (1420) : Charles VI écarte son fils → violation d'indisponibilité → le traité est nul. L'indisponibilité est une limite constitutionnelle au pouvoir absolu."},
+  {q:"Analysez le rôle de l'Église dans la légitimation du pouvoir royal (du baptême de Clovis à Bossuet).",x:"Le baptême de Clovis (496) crée une alliance Église-roi : le roi devient champion catholique. Pépin le Bref est sacré par le pape (751) : sacre = choix divin, légitimant une nouvelle dynastie sans hérédité établie. Sous Charlemagne, le roi domine l'Église (tutelle) → sous Louis le Pieux, l'Église reprend le dessus. Médievaux : l'Église encadre la royauté par la doctrine du ministère théocratique (le roi sert Dieu). XVIe siècle : Bossuet théorise le droit divin direct : le roi ne tient son pouvoir que de Dieu. Le droit divin remplace la médiation ecclésiastique, mais le rôle de l'Église (sacre, conseils) reste important. Évolution : de l'appui ecclésiastique à la théologie royale autonome."},
+  {q:"Expliquez comment la souveraineté se distingue de la suzeraineté à travers l'exemple français.",x:"La suzeraineté (féodale) est hiérarchique mais partagée : le suzerain contrôle les vassaux directs ('le vassal de mon vassal n'est pas mon vassal'). La souveraineté (absolue) est indivisible et totale. François Ier, via le droit romain, revendique une souveraineté : pouvoir absolu et perpétuel sans dépendance. Bodin (1576) définit souveraineté = puissance absolue et indivisible = monarque pur. Différence clé : le suzerain respecte l'autonomie féodale des vassaux ; le souverain contrôle tous les sujets sans distinction. La transition (XIIe-XVIe) se fait progressivement via l'affaiblissement des princes et l'ascension des officiers royaux (intendants, commissaires)."},
+  {q:"Analysez l'impact de la vénalité des offices sur l'absolutisme royal.",x:"La vénalité (possibilité d'acheter, vendre, transmettre les offices) crée paradoxalement un système autonome d'officiers. Avantages : (1) promotion bourgeoise loyale, (2) agents compétents formés au droit romain, (3) revenus au roi. Inconvénients : (1) offices inutiles créés pour financer la guerre, (2) gages faibles → 'épices' (cadeaux tarifés) → corruption, (3) indépendance des officiers bloquant réformes. Le roi contrôle par les commissaires (révocables, temporaires, loyaux). Paradoxe : la vénalité enrichit le roi à court terme mais affaiblit son contrôle administratif. Richelieu/Mazarin contournent par commissaires. Louis XIV impose son autorité directement. La vénalité montre tension entre pouvoir absolu théorique et autonomie administrative réelle."},
+  {q:"Expliquez le rôle des intendants dans la centralisation de l'État monarchique.",x:"Les intendants émergent comme commissaires royaux aux finances, justice et police. Initialement auprès des gouverneurs, ils deviennent indépendants au XVIIe. Avantages : (1) commissaires révocables = loyauté assurée, (2) contrôlent les élus (collecteurs d'impôt), (3) appliquent les ordres du roi directement, (4) affaiblissent les gouverneurs (haute noblesse, sources d'opposition). Révoqués par la Fronde, rétablis en 1653 avec mission élargie. Les intendants incarnent la centralisation absolue : ils remplacent l'administration féodale (gouverneurs, comtes) par une hiérarchie verticale (roi → intendants → subdélégués). C'est l'instrument de l'État moderne."},
+  {q:"Analysez comment Louis XIV écrase les contre-pouvoirs (parlements, princes, États généraux).",x:"Trois contre-pouvoirs : (1) Parlements (cours de justice avec remontrances) : Louis XIV interdit remontrances préalables, impose lits de justice, dévalue le titre de 'cour suprême' en 'cours supérieures'. (2) Princes et noblesse : éloignés de la cour, intégrés à Versailles sous surveillance (otages dorés). (3) États généraux : aucune convocation après 1614 (sauf en 1789). Moyens : droit divin (ne répond que à Dieu), ministériat (conseillers dévoués), intendants (appliquent directement). Bossuet théorise le droit divin pour justifier. Résultat : apogée de l'absolutisme. Paradoxe : l'apparence de stabilité cache des crises (finances, succession d'Espagne) menant à la Révolution."},
+  {q:"Comparez la justice féodale et la justice royale : évolution du Moyen Âge à l'Ancien Régime.",x:"Justice féodale (féodal) : seigneur juge, procédure orale, preuve par serment/ordalie, compétence locale sur son ressort. Justice royale naissante (St Louis) : procédure écrite, inquisitoire, preuves légales (avocat autorisé), hiérarchie (prévôtés → parlements). Évolution : (1) extension des cas royaux (lèse-majesté, infractions aux ordonnances), (2) prévention (juge royal saisit avant seigneur), (3) appel devant le roi (met seigneur sous sa suzeraineté), (4) abolition progressive de la vénalité (justice = fonction publique). XVIIe : justice retenue (le roi en personne) et déléguée (via juges) coexistent. Sous Louis XIV : justice royale absorbe progressivement seigneuriale. C'est un marqueur clair de la centralisation."},
+  {q:"Expliquez la Fronde (1648–1653) et son rôle dans l'affirmation du droit divin.",x:"La Fronde = double révolte pendant la minorité de Louis XIV (régence Anne d'Autriche, ministre Mazarin). (1) Fronde parlementaire (1648–49) : Parlement refuse l'enregistrement des édits fiscaux, soutenu par la bourgeoisie parisienne. (2) Fronde des princes (1650–53) : haute noblesse (Condé, Longueville) lutte contre Mazarin. La Fronde échoue → Louis XIV (appuyé par la petite bourgeoisie) triomphe. Conséquence : affirmation du droit divin direct. Bossuet théorise pour légitimer. Parlements matés (déclaration 1673). Princes intégrés à Versailles. La Fronde montre que les contre-pouvoirs féodaux (parlements, princes) ne peuvent pas résister au roi soutenu par l'État : victoire philosophique et administrative du droit divin."},
+  {q:"Analysez les causes de la décadence de la monarchie absolue après Louis XIV.",x:"Apogée sous Louis XIV (1661–1715), puis déclin sous Louis XV/XVI. Causes : (1) financières (guerre de succession d'Espagne 1701–14, guerres coûteuses sous Louis XV, endettement chronique), (2) politiques (Fronde parlementaire renaît après 1715, prétensions à contrebalancer), (3) intellectuelles (Lumières rejetant droit divin, montrant limites absolutisme), (4) religieuses (affaiblissement de l'Église, jansenisme divisant clergé), (5) sociales (crise agricole, pauvreté paysanne, mécontentement bourgeois de la fiscalité). Louis XV/XVI incapables de contrôler. Maupeou essaie réforme (1770) mais Louis XVI l'annule (1774). 1789 : convocation États généraux → Révolution. Décadence = incapacité de l'absolutisme à s'adapter aux changements sociaux et intellectuels."}
+];
+
+function renderTrain(){
+  const sec=document.getElementById('train');
+  let html=`<div style="max-width:780px;margin:0 auto;padding:22px 16px;">
+  <div class="recit-intro"><p><strong>Entraînement à la rédaction</strong> — Environ 30 questions nécessitant des réponses développées. Idéal pour préparer les examens écrits.</p></div>`;
+  TRAIN_QUESTIONS.forEach((q,i)=>{
+    html+=`<div class="train-q"><div class="num">Q${i+1}</div><div class="text">${q.q}</div>
+    <div class="train-answer" id="ans-${i}"><div class="label" onclick="document.getElementById('ans-${i}').classList.toggle('show')">Afficher la correction →</div><p>${q.x}</p></div></div>`;
+  });
+  html+=`</div>`;
+  sec.innerHTML=html;
+}
+
+// ============ ANNOTATION SYSTEM ============
+let annotations=JSON.parse(localStorage.getItem('hdi-annotations'))||{};
+
+function toggleAnnotations(){document.getElementById('annoNotes').classList.toggle('show');}
+document.getElementById('annoToggle').addEventListener('click',toggleAnnotations);
+
+function addAnnotation(text){
+  const id=Date.now();annotations[id]={text,date:new Date().toLocaleString('fr-FR')};
+  localStorage.setItem('hdi-annotations',JSON.stringify(annotations));
+  renderAnnotations();
+}
+
+function delAnnotation(id){delete annotations[id];localStorage.setItem('hdi-annotations',JSON.stringify(annotations));renderAnnotations();}
+
+function renderAnnotations(){
+  const list=document.getElementById('annoList');
+  if(Object.keys(annotations).length===0){list.innerHTML='<div style="font-size:.85rem;color:var(--ink-soft);font-style:italic;">Aucune annotation pour le moment. Sélectionnez du texte et annotez !</div>';return;}
+  list.innerHTML=Object.entries(annotations).map(([id,a])=>`<div class="anno-note">${a.text}<span class="del" onclick="delAnnotation(${id})" title="Supprimer">✕</span><br><span style="font-size:.75rem;opacity:.6;">${a.date}</span></div>`).join('');
+}
+
+document.addEventListener('mouseup',()=>{
+  const sel=window.getSelection().toString().trim();
+  if(sel.length>10&&sel.length<200){
+    const txt=prompt('Annotez ce passage :',sel.substring(0,50)+'...');
+    if(txt) addAnnotation(txt);
+  }
+});
+
+renderAnnotations();
+
+// ============ INIT ============
+const tabs=document.querySelectorAll('.tab');
+const views=document.querySelectorAll('.view');
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('active'));
+  views.forEach(v=>v.classList.remove('active'));
+  t.classList.add('active');
+  const vid=t.dataset.v;
+  document.getElementById(vid).classList.add('active');
+  if(vid==='quiz'&&!document.getElementById(vid).innerHTML) renderQuiz();
+  if(vid==='train'&&!document.getElementById(vid).innerHTML) renderTrain();
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+document.addEventListener('click',e=>{
+  const head=e.target.closest('.branch-head');
+  if(head){head.parentElement.classList.toggle('open');return;}
+  const ctrl=e.target.closest('.ctrl button');
+  if(ctrl){
+    const sec=document.getElementById(ctrl.dataset.id);
+    sec.querySelectorAll('.branch').forEach(b=>{
+      if(ctrl.dataset.act==='all') b.classList.add('open'); else b.classList.remove('open');
+    });
+  }
+});
+</script>
+</body>
+</html>
