@@ -180,6 +180,9 @@
   <button class="tab" data-v="e9">International : développement<span class="yr">Chap. 3</span></button>
   <button class="tab" data-v="eA">Auteurs et courants<span class="yr">spécial</span></button>
   <button class="tab" data-v="eB">Tableau des courants<span class="yr">récap</span></button>
+  <button class="tab" data-v="eC">Mécanismes-clés<span class="yr">boîte à outils</span></button>
+  <button class="tab" data-v="eD">Le grand débat<span class="yr">synthèse</span></button>
+  <button class="tab" data-v="eE">Le fordisme<span class="yr">contexte</span></button>
 </nav>
 
 <main>
@@ -281,6 +284,9 @@
 <section class="view" id="e9"></section>
 <section class="view" id="eA"></section>
 <section class="view" id="eB"></section>
+<section class="view" id="eC"></section>
+<section class="view" id="eD"></section>
+<section class="view" id="eE"></section>
 
 </main>
 
@@ -626,248 +632,375 @@ Object.keys(REGIMES).forEach(id=>renderRegime(id,REGIMES));
 
 // ============ GPE DATA ============
 const GPE={
-e1:{yr:"Introduction",titre:"Au depart : les questions economiques",tag:"L'eco est une science sociale. Deux grandes questions structurent toute la reflexion des economistes.",branches:[
- {cls:"b-pol",ico:"🧭",t:"Les 3 branches de la science economique",nodes:[
-  {k:"L'economie descriptive",p:"Analyse du systeme eco tel qu'il est, sans jugement. Mesure des phenomenes par des indicateurs (ex : le taux de chomage). En apparence neutre, mais debat sur la <b>definition des indicateurs</b>."},
-  {k:"L'economie politique",p:"Interpretation des phenomenes eco : comprendre et determiner leur origine et leurs causes. Les outils sont les <b>theories economiques</b>, qui sont des grilles de lecture des phenomenes."},
-  {k:"La politique economique",p:"L'action publique dans le domaine eco. Pas seulement l'Etat, mais aussi les acteurs infranationaux et supranationaux. Les economistes jouent le role de conseillers du prince."},
-  {k:"Macro / micro",p:"Le niveau <b>macro</b> = analyse du systeme eco dans son ensemble. Le niveau <b>micro</b> = analyse au niveau de l'acteur. On se place en micro ou en macro suivant l'acteur considere (entreprise, menage, administration)."}
+e1:{yr:"Introduction",titre:"Au départ : les questions économiques",tag:"L'éco est une science sociale. Deux grandes questions structurent toute la réflexion.",branches:[
+ {cls:"b-pol",ico:"🧭",t:"Les 3 branches de la science économique",nodes:[
+  {k:"L'économie descriptive",p:"Analyse du système éco tel qu'il est, sans jugement. Mesure des phénomènes par des indicateurs (ex : taux de chômage). En apparence neutre, MAIS : <b>le débat sur la définition des indicateurs est lui-même politique</b>. Exemple : pour définir le taux de chômage, il faut d'abord définir ce qu'est un chômeur. Selon la définition retenue (BIT, définition nationale…), le chiffre change — ce qui n'est pas neutre politiquement."},
+  {k:"L'économie politique",p:"Interprétation des phénomènes éco : comprendre et déterminer leur origine et leurs causes. Les outils sont les <b>théories économiques</b>, qui sont des grilles de lecture des phénomènes."},
+  {k:"La politique économique",p:"L'action publique dans le domaine éco. Pas seulement l'État, mais aussi les acteurs infranationaux et supranationaux. Les économistes jouent le rôle de conseillers du prince."},
+  {k:"Macro / micro",p:"Le niveau <b>macro</b> = analyse du système éco dans son ensemble. Le niveau <b>micro</b> = analyse au niveau de l'acteur. On se place en micro ou en macro suivant l'acteur considéré (entreprise, ménage, administration)."}
  ]},
- {cls:"b-exe",ico:"🎯",t:"Q1 - Les objectifs economiques d'une societe moderne",nodes:[
-  {k:"Une societe moderne",p:"Societe ou chacun produit plus que ce qui est necessaire a sa propre consommation : il y a un <b>surplus</b>, qui conduit a la specialisation et au developpement des echanges."},
-  {k:"L'objectif central",p:"L'objectif eco d'une societe moderne est la <b>satisfaction des besoins de la population</b>. Toutes les questions eco prennent en compte cette problematique."},
-  {k:"Qu'est-ce qu'un besoin ?",p:"La definition d'un besoin est une <b>convention</b> : un debat dans une societe donnee qui doit deboucher sur un consensus."},
-  {k:"Exemple : la Securite sociale",p:"Vision minimaliste : la SS donne un filet de securite minimal. Autre ecole : la SS doit permettre a celui qui a un accident social de garder le meme niveau de revenu qu'avant."}
+ {cls:"b-exe",ico:"🎯",t:"Q1 — Les objectifs économiques d'une société moderne",nodes:[
+  {k:"Une société moderne",p:"Société où chacun produit plus que ce qui est nécessaire à sa propre consommation : il y a un <b>surplus</b>, qui conduit à la spécialisation et au développement des échanges."},
+  {k:"L'objectif central",p:"L'objectif éco d'une société moderne est la <b>satisfaction des besoins de la population</b>. Toutes les questions éco prennent en compte cette problématique."},
+  {k:"Qu'est-ce qu'un besoin ?",p:"La définition d'un besoin est une <b>convention</b> : un débat dans une société donnée qui doit déboucher sur un consensus."},
+  {k:"Exemple : la Sécurité sociale",p:"Vision minimaliste : la SS donne un filet de sécurité minimal. Autre école : la SS doit permettre à celui qui a un accident social de garder le même niveau de revenu qu'avant."}
  ]},
  {cls:"b-cen",ico:"🪜",t:"La pyramide des besoins (Maslow)",nodes:[
-  {k:"5 niveaux, par ordre d'urgence",p:"(1) <b>besoins physiologiques</b> ; (2) <b>besoins de securite</b> ; (3) <b>besoins d'appartenance</b> ; (4) <b>besoins d'estime</b> ; (5) <b>besoins de realisation</b>."},
-  {k:"Usages de la grille",p:"Analyses historiques, comparatives, et analyse des actes economiques. Ex : le <b>travail</b> satisfait un besoin d'appartenance."}
+  {k:"5 niveaux, par ordre d'urgence",p:"(1) <b>besoins physiologiques</b> ; (2) <b>besoins de sécurité</b> ; (3) <b>besoins d'appartenance</b> ; (4) <b>besoins d'estime</b> ; (5) <b>besoins de réalisation</b>."},
+  {k:"Analyses historiques",p:"On prend une société et on regarde comment sa pyramide évolue dans le temps. Ex : une société qui s'enrichit voit ses besoins migrer vers les niveaux supérieurs."},
+  {k:"Analyses comparatives",p:"On compare plusieurs pays ou groupes sociaux selon où ils se situent dans la pyramide."},
+  {k:"Analyses des inégalités",p:"Certains individus ou groupes sont <b>bloqués aux premiers niveaux</b> (besoins primaires non satisfaits) alors que d'autres accèdent aux niveaux supérieurs."},
+  {k:"Analyses des actes économiques",p:"Quel besoin un acte satisfait-il ? Les études récentes montrent que le travail satisfait un besoin d'<b>appartenance</b> (niveau 3) — l'exclusion sociale est donc un effet du chômage, au-delà du problème financier."}
  ]},
  {cls:"b-loc",ico:"⚙️",t:"Comment satisfaire les besoins",nodes:[
-  {k:"Produire et faire circuler",p:"Il faut <b>produire</b> des biens et services, mais aussi <b>echanger</b>. Questions : motivations, profit, debouches, ressources disponibles ?"},
+  {k:"Produire et faire circuler",p:"Il faut <b>produire</b> des biens et services, mais aussi <b>échanger</b>. Questions : motivations, profit, débouchés, ressources disponibles ?"},
   {k:"Les facteurs de production",p:"(1) Le <b>travail</b> ; (2) le <b>capital</b> (argent + facteurs techniques) ; (3) les <b>ressources naturelles</b> (terre, eau, sous-sol, air)."},
-  {k:"La circulation et la repartition",p:"Concerne le commerce, la monnaie, et les revenus necessaires pour acceder aux biens. Pose le probleme de la <b>repartition des revenus</b>."}
+  {k:"La circulation et la répartition",p:"Concerne le commerce, la monnaie, et les revenus nécessaires pour accéder aux biens. Pose le problème de la <b>répartition des revenus</b>."}
  ]},
- {cls:"b-key",ico:"⚖️",t:"Q2 - Interet personnel vs interet de la societe (les 3 courants)",nodes:[
-  {k:"Le presuppose",p:"Ce qui motive l'individu, c'est son <b>interet personnel</b>. La reponse a cette question fonde les principaux courants."},
-  {k:"Reponse liberale (positive)",p:"<b>Adam Smith</b> : en agissant selon son interet personnel, l'individu satisfait l'interet general → le <b>laisser-faire</b>. Le marche coordonne les actions ; l'interet general = l'<b>equilibre</b>."},
-  {k:"Reponse marxiste (negative)",p:"<b>Marx</b> : les individus ne naissent pas egaux. Si on laisse faire, les plus favorises exploitent les moins favorises. → <b>lutte des classes</b>, remettre en cause la propriete privee des moyens de production."},
-  {k:"Reponse keynesienne",p:"<b>Keynes</b> reprend la critique de Marx MAIS le <b>profit est legitime</b>. Il faut <b>reguler</b> le capitalisme. Qui regule ? L'<b>Etat</b>."}
+ {cls:"b-key",ico:"⚖️",t:"Q2 — La question fondatrice : intérêt perso vs intérêt général",nodes:[
+  {k:"La question centrale du cours",p:"C'est <b>la question fondatrice</b> de tout le cours : elle génère les 3 courants et structure l'ensemble du chapitre 1. Faut-il laisser faire l'intérêt personnel ou l'encadrer ?"},
+  {k:"Le présupposé commun",p:"La science éco postule que <b>tous les acteurs sont motivés par leur intérêt personnel</b>. C'est le point de départ commun aux 3 courants. Ce sur quoi ils divergent, c'est la <b>réponse</b> à apporter."},
+  {k:"Réponse libérale (positive)",p:"<b>Adam Smith</b> : en agissant selon son intérêt personnel, l'individu satisfait l'intérêt général → le <b>laisser-faire</b>. Le marché coordonne les actions ; l'intérêt général = l'<b>équilibre</b>."},
+  {k:"Réponse marxiste (négative)",p:"<b>Marx</b> : les individus ne naissent pas égaux. Si on laisse faire, les plus favorisés exploitent les moins favorisés. → <b>lutte des classes</b>, remettre en cause la propriété privée des moyens de production."},
+  {k:"Réponse keynésienne",p:"<b>Keynes</b> reprend la critique de Marx MAIS le <b>profit est légitime</b>. Il faut <b>réguler</b> le capitalisme. Qui régule ? L'<b>État</b>."}
  ]}
 ]},
-e2:{yr:"Chap. 1",titre:"Le courant liberal",tag:"Deux ecoles (classique et neoclassique) unies par une confiance totale dans les marches.",branches:[
- {cls:"b-pol",ico:"🏫",t:"Les deux ecoles liberales",nodes:[
-  {k:"L'ecole classique",p:"Fin 17e s. a moitie 19e s. : <b>Adam Smith</b> (main invisible), <b>David Ricardo</b>, <b>Jean-Baptiste Say</b> (francais), <b>John Stuart Mill</b>."},
-  {k:"L'ecole neoclassique",p:"2nde moitie 19e s. jusqu'a aujourd'hui. Fondateurs : <b>Leon Walras</b>, <b>Alfred Marshall</b>. Au 20e s. : <b>Hayek</b> et l'ecole de Chicago avec <b>Friedman</b>."},
-  {k:"Point commun",p:"<b>Confiance totale dans les marches</b>. Desaccords sur la valeur et les prix."}
+e2:{yr:"Chap. 1",titre:"Le courant libéral",tag:"Deux écoles (classique et néoclassique) unies par une confiance totale dans les marchés.",branches:[
+ {cls:"b-pol",ico:"🏫",t:"Les deux écoles libérales",nodes:[
+  {k:"L'école classique",p:"Fin 17e s. à moitié 19e s. : <b>Adam Smith</b> (main invisible), <b>David Ricardo</b>, <b>Jean-Baptiste Say</b> (français), <b>John Stuart Mill</b>."},
+  {k:"L'école néoclassique",p:"2nde moitié 19e s. jusqu'à aujourd'hui. Fondateurs : <b>Léon Walras</b>, <b>Alfred Marshall</b>. Au 20e s. : <b>Hayek</b> et l'école de Chicago avec <b>Friedman</b>."},
+  {k:"Point commun",p:"<b>Confiance totale dans les marchés</b>. Désaccords sur la valeur et les prix."}
  ]},
  {cls:"b-exe",ico:"💰",t:"La valeur et les prix",nodes:[
-  {k:"Classiques (valeur-travail)",p:"La <b>valeur d'echange</b> depend de la quantite de travail necessaire a la fabrication. Le prix se forme a partir de la valeur, module par l'offre et la demande."},
-  {k:"Neoclassiques (utilite + rarete)",p:"La valeur depend de l'<b>utilite</b> et de la <b>rarete</b>. Pour eux, le <b>prix se confond avec la valeur</b>."},
-  {k:"Loi de Gossen",p:"Un individu dans le desert confere une utilite enormeau 1er verre d'eau, puis cette utilite diminue → <b>utilite marginale decroissante</b>."}
+  {k:"Classiques (valeur-travail)",p:"La <b>valeur d'échange</b> dépend de la quantité de travail nécessaire à la fabrication. Le prix se forme à partir de la valeur, modulé par l'offre et la demande."},
+  {k:"Néoclassiques (utilité + rareté)",p:"La valeur dépend de l'<b>utilité</b> et de la <b>rareté</b> — deux facteurs <b>complémentaires</b> qui déterminent ensemble la valeur. Pour eux, le <b>prix se confond avec la valeur</b>."},
+  {k:"Loi de Gossen — utilité marginale décroissante",p:"Un individu perdu dans un désert confère une utilité énorme au 1er verre d'eau, mais cette utilité diminue avec les verres suivants → c'est le principe d'<b>utilité marginale décroissante</b>. Nommé la <b>loi de Gossen</b>."},
+  {k:"La rareté perçue",p:"La rareté peut être <b>perçue</b> et pas seulement réelle : les gens peuvent s'imaginer qu'un bien devient rare → spéculation, effet de mode. La rareté perçue a les mêmes effets que la rareté réelle sur les prix."}
  ]},
- {cls:"b-cen",ico:"📉",t:"Le chomage",nodes:[
-  {k:"Le marche du travail",p:"Rencontre entre l'offre (travailleurs) et la demande (entreprises) → <b>equilibre</b> au <b>salaire d'equilibre</b>. Tous ceux qui veulent travailler a ce salaire trouvent un emploi."},
-  {k:"Chomage volontaire",p:"Personnes qui n'acceptent pas le salaire d'equilibre. Les neoclassiques veulent <b>supprimer les salaires sociaux</b> (lutte contre l'assistanat)."},
-  {k:"Chomage de masse",p:"Cause : les <b>rigidites</b> (ex : salaire minimum). Solution : <b>restaurer le marche</b> sans contraintes → salaires baissent → plus de chomage de masse."}
+ {cls:"b-cen",ico:"📉",t:"Le chômage — 3 types, 3 solutions",nodes:[
+  {k:"Chômage volontaire",p:"Personnes qui n'acceptent pas le salaire d'équilibre. Solution libérale : supprimer les minima sociaux qui incitent à ne pas travailler → les personnes acceptent le salaire d'équilibre."},
+  {k:"Chômage de frottement",p:"Dû aux transitions (changement d'emploi, délocalisation). Solution : encourager la <b>mobilité géographique</b> ET les <b>formations</b>."},
+  {k:"Chômage de masse (involontaire)",p:"Causé par les <b>rigidités</b> (ex : salaire minimum). Solution : <b>restaurer le marché</b> sans contraintes → les salaires baissent → les entreprises embauchent plus → le chômage de masse disparaît."}
  ]},
- {cls:"b-loc",ico:"🌍",t:"L'echange international",nodes:[
-  {k:"Smith - avantage absolu",p:"Si A est plus efficace pour le bien 1 et B pour le bien 2 : specialisation mutuelle gagnante. Si un pays est moins efficace dans les deux : selon Smith, autarcie."},
-  {k:"Ricardo - avantage comparatif",p:"Meme dans le cas de l'autarcie, les deux pays ont interet a echanger. Condition : se specialiser dans le bien ou l'on a le <b>plus fort avantage comparatif</b> (ou le moindre desavantage)."},
-  {k:"Theoreme HOS",p:"Si les pays respectent l'avantage comparatif → <b>egalisation des prix des facteurs de production</b> partout dans le monde."}
+ {cls:"b-loc",ico:"🌍",t:"L'échange international",nodes:[
+  {k:"Smith — avantage absolu : cas 1",p:"Pays A est plus efficace pour le bien 1, pays B pour le bien 2 → spécialisation évidente, les deux gagnent. Chacun se concentre là où il est le meilleur."},
+  {k:"Smith — avantage absolu : cas 2",p:"Un pays est moins efficace dans les DEUX productions → selon Smith : aucune raison d'échanger → <b>autarcie</b>. C'est le cas problématique."},
+  {k:"Ricardo — avantage comparatif",p:"Ricardo prend le <b>cas 2 de Smith</b> et démontre que même là, les deux pays ont intérêt à échanger. Condition : se spécialiser dans le bien où on a le plus fort avantage comparatif OU le moindre désavantage."},
+  {k:"Théorème HOS",p:"(néoclassiques) Si les pays respectent l'avantage comparatif → <b>égalisation des prix des facteurs de production</b> dans le monde entier (capital, travail, ressources naturelles coûteront la même chose partout). Démontré <b>mathématiquement</b>."}
  ]},
- {cls:"b-arm",ico:"🏦",t:"Epargne, investissement et monnaie",nodes:[
-  {k:"L'epargne cree l'investissement (S → I)",p:"Pour les liberaux, c'est l'<b>epargne qui cree l'investissement</b>. Tout investissement doit avoir au prealable une epargne."},
-  {k:"La monnaie - un voile neutre",p:"La monnaie est un <b>voile neutre</b> : un simple outil. Creer de la monnaie artificiellement creerait de l'<b>inflation</b> sans relancer l'economie."}
+ {cls:"b-arm",ico:"🏦",t:"Épargne, investissement et monnaie",nodes:[
+  {k:"S → I : l'épargne crée l'investissement",p:"Pour les libéraux, c'est l'<b>épargne qui précède et crée l'investissement</b>. Il faut d'abord qu'il y ait une épargne disponible pour qu'un investissement puisse être financé. Donc : encourager l'épargne = encourager l'investissement."},
+  {k:"La monnaie — un voile neutre",p:"La monnaie est un <b>voile neutre</b> : un simple outil. Création artificielle de monnaie → <b>inflation</b> sans richesse supplémentaire. Pourquoi ? <b>Théorie quantitative de la monnaie</b> : si la quantité de monnaie augmente plus vite que la richesse produite, les prix montent. La monnaie supplémentaire dilue la valeur de la monnaie existante."}
  ]},
- {cls:"b-key",ico:"🏛️",t:"Le role de l'Etat",nodes:[
-  {k:"Contre l'intervention",p:"La <b>main invisible</b> permet l'equilibre ; une intervention de l'Etat est une main visible, nuisible a l'eco."},
-  {k:"Les exceptions",p:"Certains liberaux acceptent des cas d'intervention, mais partent toujours de l'idee que l'Etat <b>n'intervient pas</b> par defaut."}
+ {cls:"b-key",ico:"🏛️",t:"Le rôle de l'État",nodes:[
+  {k:"Contre l'intervention",p:"La <b>main invisible</b> permet l'équilibre ; une intervention de l'État est une main visible, nuisible à l'éco."},
+  {k:"Les exceptions",p:"Certains libéraux acceptent des cas d'intervention, mais partent toujours de l'idée que l'État <b>n'intervient pas</b> par défaut."}
  ]}
 ]},
-e3:{yr:"Chap. 1",titre:"Le courant marxiste",tag:"Reference : Le Capital de Marx. Un courant d'analyse et de critique, peu de mise en pratique.",branches:[
- {cls:"b-pol",ico:"📕",t:"Presentation",nodes:[
-  {k:"Un courant critique",p:"La grande reference est <b>Le Capital</b> de Marx. Ce courant est reste un courant d'analyse et de critique. Aujourd'hui, peu d'economistes marxistes."},
-  {k:"La valeur et le prix",p:"Marx <b>adhere a la theorie de Ricardo</b> : la valeur varie selon les couts de production (valeur-travail)."}
+e3:{yr:"Chap. 1",titre:"Le courant marxiste",tag:"Référence : Le Capital de Marx. Une analyse historique du capitalisme et de ses contradictions.",branches:[
+ {cls:"b-pol",ico:"📕",t:"Présentation et point de départ",nodes:[
+  {k:"Un courant d'analyse critique",p:"La grande référence est <b>Le Capital</b> de Marx. Ce courant est resté un courant d'analyse et de critique. Aujourd'hui, peu d'économistes marxistes."},
+  {k:"Une analyse historique",p:"Marx fait une <b>analyse historique</b> : d'où vient le capitalisme ? Pourquoi s'est-il imposé comme mode de production dominant ? Ce n'est pas une critique morale au départ, c'est une question scientifique."},
+  {k:"La valeur et le prix",p:"Marx <b>adhère à la théorie de Ricardo</b> : la valeur varie selon les coûts de production (valeur-travail)."}
  ]},
- {cls:"b-exe",ico:"⛓️",t:"Le capitalisme et la plus-value",nodes:[
-  {k:"Le mecanisme de la plus-value",p:"Le salaire est fixe selon les <b>besoins de subsistance</b> du travailleur. Quand le salarie produit une valeur superieure au salaire verse, cet excedent appartient au capitaliste : c'est la <b>plus-value</b>."},
-  {k:"Reinvestissement",p:"Ce profit est reinvesti pour refaire du profit → le capitalisme se perpetue."}
+ {cls:"b-exe",ico:"⛓️",t:"Le mécanisme de la plus-value",nodes:[
+  {k:"Étape 1 — Le salaire n'est pas la valeur créée",p:"Le salaire n'est pas fixé en fonction de la <b>valeur que le travailleur a créée</b>. Il est fixé en fonction de ses <b>besoins de subsistance</b> (de quoi faire vivre sa famille) + <b>reproduction de sa force de travail</b> (pouvoir revenir travailler demain)."},
+  {k:"Étape 2 — Le panier de subsistance",p:"Ces besoins correspondent à un panier de biens et services qui a un prix → le salaire suit ce prix. C'est un salaire de survie, pas un salaire correspondant à la richesse créée."},
+  {k:"Étape 3 — La plus-value",p:"Mais le travailleur produit <b>plus</b> que ce qu'on lui paie → l'excédent (valeur créée − salaire payé) va au capitaliste = la <b>plus-value</b>. C'est l'exploitation salariale."},
+  {k:"Étape 4 — La reproduction du capitalisme",p:"Cette plus-value est réinvestie → crée plus de profit → crée plus de plus-value → le capitalisme se reproduit et s'étend. C'est un cercle auto-entretenu."}
  ]},
  {cls:"b-cen",ico:"💥",t:"Baisse tendancielle du taux de profit et autodestruction",nodes:[
-  {k:"Le renforcement de la concurrence",p:"Le profit attire plus de producteurs → concurrence. Pour lutter : (1) <b>faire baisser les salaires</b> ; (2) <b>mecaniser</b> (substitution du capital au travail)."},
-  {k:"Les deux problemes",p:"(1) <b>Sous-consommation</b> : baisse des salaires → baisse de la demande. (2) Le travail a de moins en moins d'importance, <b>or c'est le travail qui est source de la plus-value</b>."},
-  {k:"L'autodestruction",p:"Crises de <b>sous-consommation et de surproduction</b> de plus en plus graves → l'<b>autodestruction du capitalisme</b>."}
+  {k:"Étape 1 — La concurrence s'intensifie",p:"Le profit attire de nouveaux producteurs → la concurrence s'intensifie."},
+  {k:"Étape 2 — Les deux stratégies",p:"Pour survivre à la concurrence : (a) <b>baisser les salaires</b> pour baisser les coûts ; (b) <b>mécaniser</b> (remplacer le travail par des machines)."},
+  {k:"Problème A — Sous-consommation",p:"Les salaires baissent → le pouvoir d'achat baisse → la demande baisse → <b>crise de sous-consommation</b>."},
+  {k:"Problème B — Baisse tendancielle du taux de profit",p:"La mécanisation rend le travail moins important dans la production. OR c'est le <b>travail qui est source de la plus-value</b> → le taux de profit baisse tendanciellement. Le capital (machines) ne génère pas de plus-value."},
+  {k:"Étape 4 — L'autodestruction",p:"Crises de <b>sous-consommation et de surproduction</b> de plus en plus graves → <b>autodestruction du capitalisme</b>. Ce n'est pas un choix politique : c'est la logique interne du système."}
  ]},
- {cls:"b-loc",ico:"👷",t:"Le chomage",nodes:[
-  {k:"L'armee industrielle de reserve",p:"La mecanisation cree du chomage. Marx appelle cela l'<b>armee industrielle de reserve</b> : rappelee hors des crises, elle retourne au chomage en periode de crise. Cette armee grossit → chomage durable croissant."}
+ {cls:"b-loc",ico:"👷",t:"Le chômage",nodes:[
+  {k:"L'armée industrielle de réserve",p:"La mécanisation crée du chômage structurel. Marx nomme cela l'<b>armée industrielle de réserve</b> : elle est rappelée et utilisée en période de croissance (pour peser sur les salaires et maintenir les revenus bas) → elle retourne au chômage en période de crise. Cette armée grossit au fil du temps → chômage durable croissant."}
  ]},
- {cls:"b-arm",ico:"🌐",t:"L'echange international",nodes:[
-  {k:"Lenine",p:"Le capitalisme sort de son pays pour trouver des approvisionnements <b>moins chers</b> dans les pays precapitalistes → rapport <b>imperialiste</b> (fixation des prix, des quantites) → imperialisme, colonisation, guerre."},
-  {k:"Rosa Luxemburg",p:"Le capitalisme cherche des <b>debouches</b> a l'etranger. Il doit y creer le salariat pour rendre la population solvable → rapport de <b>domination imperialiste</b>."}
+ {cls:"b-arm",ico:"🌐",t:"L'échange international et l'impérialisme",nodes:[
+  {k:"Lénine — l'approvisionnement à bas prix",p:"Le capitalisme sort de son pays pour trouver des approvisionnements <b>moins chers</b> dans les pays précapitalistes → rapport <b>impérialiste</b> (fixation des prix, des quantités) → colonisation, guerres."},
+  {k:"Rosa Luxemburg — les débouchés",p:"Le capitalisme cherche des <b>débouchés</b> à l'étranger. Il doit y créer le salariat pour rendre la population solvable. Pour que cette population achète les produits du pays capitaliste (et pas ceux des concurrents) → il faut un <b>rapport de domination impérialiste</b> qui exclut les autres. D'où la colonisation et les guerres commerciales."}
  ]},
- {cls:"b-key",ico:"🏛️",t:"Le role de l'Etat",nodes:[
-  {k:"Une institution bourgeoise",p:"Marx est tres reticent envers l'Etat : c'est une institution du capitalisme, au service de la <b>classe bourgeoise</b>. La societe ideale = societe de <b>petits producteurs independants</b>."}
+ {cls:"b-key",ico:"🏛️",t:"Le rôle de l'État",nodes:[
+  {k:"Une institution bourgeoise",p:"Marx est très réticent envers l'État : c'est une institution du capitalisme, au service de la <b>classe bourgeoise</b>. La société idéale = société de <b>petits producteurs indépendants</b>."}
  ]}
 ]},
-e4:{yr:"Chap. 1",titre:"Le courant keynesien",tag:"Keynes : La Theorie generale. A inspire le New Deal et les 30 Glorieuses.",branches:[
- {cls:"b-pol",ico:"📘",t:"Presentation",nodes:[
-  {k:"L'auteur et l'influence",p:"<b>Keynes</b>, auteur de <em>La Theorie generale de l'emploi, de l'interet et de la monnaie</em>. Le <b>New Deal</b> est inspire par ses etudes. Les idees keynesiennes ont inspire les <b>30 Glorieuses</b>. A la base de la <b>comptabilite nationale</b> (PIB, etc.)."}
+e4:{yr:"Chap. 1",titre:"Le courant keynésien",tag:"Keynes : La Théorie générale. A inspiré le New Deal, les 30 Glorieuses et la comptabilité nationale.",branches:[
+ {cls:"b-pol",ico:"📘",t:"Présentation",nodes:[
+  {k:"L'auteur et l'influence",p:"<b>Keynes</b>, auteur de <em>La Théorie générale de l'emploi, de l'intérêt et de la monnaie</em>. Le <b>New Deal</b> est inspiré par ses études. Les idées keynésiennes ont inspiré les <b>30 Glorieuses</b>. À la base de la <b>comptabilité nationale</b> (PIB, FBCF, consommation des ménages...) — tous les indicateurs qu'on utilise sont des conventions basées sur ses concepts."}
  ]},
- {cls:"b-exe",ico:"📉",t:"Le chomage",nodes:[
-  {k:"Pas de vrai marche du travail",p:"Keynes observe qu'aux Etats-Unis, malgre la baisse des salaires depuis la crise, le chomage augmente. L'offre et la demande de travail ne se confrontent pas directement."},
-  {k:"Les entreprises decident",p:"Ce sont les <b>demandeurs de la force de travail</b> qui decident de la quantite de travail et du salaire. Les offreurs n'ont pas de pouvoir → pas d'equilibre possible."},
-  {k:"Le chomage involontaire",p:"Cause : les entreprises utilisent <b>peu de travail</b> parce qu'elles font des <b>anticipations pessimistes</b> sur leurs debouches → elles produisent peu."},
-  {k:"La solution - soutenir la demande",p:"Distribuer des revenus, baisser les impots sur le revenu, <b>politique des grands travaux</b> ; cote entreprises, <b>baisser les taux d'interet</b>."}
+ {cls:"b-exe",ico:"📉",t:"Le chômage — insight central",nodes:[
+  {k:"Pas de vrai marché du travail",p:"Keynes observe qu'aux États-Unis, malgré la baisse des salaires depuis la crise, le chômage augmente. L'offre et la demande de travail ne se confrontent pas directement."},
+  {k:"Les entreprises décident unilatéralement",p:"Ce sont les <b>demandeurs de la force de travail</b> (les entreprises) qui décident unilatéralement de la quantité de travail échangée ET du salaire pratiqué. Les travailleurs n'ont pas de pouvoir sur ces décisions → il ne peut pas y avoir d'équilibre au sens libéral du terme."},
+  {k:"Le chômage involontaire",p:"Cause : les entreprises font des <b>anticipations pessimistes</b> sur leurs débouchés → elles produisent peu → elles utilisent peu de travail. Ce n'est pas une question de rigidités du marché du travail."},
+  {k:"Politiques de soutien à la demande",p:"Côté ménages : distribuer des revenus, <b>baisser les impôts</b> sur le revenu. Côté État : politique des <b>grands travaux</b> (routes, écoles, infrastructure). Côté entreprises : baisser les <b>taux d'intérêt</b> pour réduire les coûts financiers de l'investissement."}
  ]},
- {cls:"b-cen",ico:"🔄",t:"Epargne et investissement - le multiplicateur",nodes:[
-  {k:"L'investissement amene l'epargne (I → S)",p:"Pour Keynes, c'est l'<b>investissement qui amene l'epargne</b> (inverse des liberaux)."},
-  {k:"Le multiplicateur d'investissement",p:"Tout supplement d'investissement entraine un supplement d'activite → supplement de <b>revenu</b> → se partage entre consommation et epargne → la consommation suscite de nouveaux investissements, etc."},
-  {k:"Le bouclage",p:"Tout le supplement d'epargne cumule est egal a l'investissement de depart. L'Etat peut se substituer si le secteur prive n'investit pas."}
+ {cls:"b-cen",ico:"🔄",t:"Le multiplicateur d'investissement (I → S)",nodes:[
+  {k:"Étape par étape",p:"(1) État investit <b>100</b> → (2) activité créée → revenus distribués : 100 → (3) partagés : <b>80 conso + 20 épargne</b> → (4) la conso (80) déclenche nouveaux investissements → revenus 80 → (5) partagés : 64 conso + 16 épargne → (6) etc. → (7) processus s'arrête quand la somme est négligeable."},
+  {k:"Le bouclage",p:"La somme de toute l'épargne cumulée (20+16+...) = l'investissement de départ (100). Conclusion : <b>I → S</b> (c'est l'investissement qui crée l'épargne, l'inverse des libéraux)."},
+  {k:"Rôle du système bancaire",p:"Il prête de l'argent pour la consommation, puis récupère via l'épargne. Si le système bancaire ne joue pas le jeu → l'État doit se substituer (investissement public direct)."}
  ]},
- {cls:"b-loc",ico:"💵",t:"La monnaie",nodes:[
-  {k:"La monnaie n'est pas neutre",p:"Keynes s'oppose aux liberaux. En crise, il existe une <b>preference pour la liquidite</b> : les menages mettent de l'argent de cote par peur de l'avenir."},
-  {k:"La monnaie sterile",p:"Cette monnaie n'est pas disponible pour l'activite eco. En grave crise → manque de monnaie. Il faut creer un <b>climat de confiance</b> et defavoriser l'epargne sterile."}
+ {cls:"b-loc",ico:"💵",t:"La monnaie et la préférence pour la liquidité",nodes:[
+  {k:"La monnaie n'est pas neutre",p:"Keynes s'oppose aux libéraux. La monnaie n'est pas un simple voile."},
+  {k:"La préférence pour la liquidité",p:"C'est la capacité d'une épargne à être utilisée facilement et rapidement. En période d'incertitude, les ménages préfèrent garder leur argent sous forme <b>liquide</b> plutôt que de l'investir ou de le prêter."},
+  {k:"La monnaie stérile",p:"Cette monnaie n'alimente pas le circuit économique. Si tout le monde préfère la liquidité → manque de financement dans l'éco → aggravation de la crise. En grave crise → manque de monnaie."},
+  {k:"La solution",p:"Créer un <b>climat de confiance</b> pour que les acteurs acceptent de remettre leur argent en circulation + défavoriser l'épargne stérile."}
  ]},
- {cls:"b-key",ico:"🏛️",t:"Le role de l'Etat",nodes:[
-  {k:"Trois missions en periode de crise",p:"(1) <b>Redistribution</b> des revenus (verticale et horizontale) ; (2) <b>production et investissement</b> public (grands travaux) ; (3) <b>encadrement des marches</b> et incitation."},
-  {k:"Le Policy mix",p:"Combinaison de deux leviers : la <b>politique budgetaire</b> (prelevements, budget) et la <b>politique monetaire</b> (monnaie, taux d'interet)."}
+ {cls:"b-key",ico:"🏛️",t:"Le rôle de l'État",nodes:[
+  {k:"Redistribution verticale",p:"Prendre aux plus riches (<b>impôts progressifs</b>) et donner aux plus pauvres (aides sociales, discrimination positive). Réduit les inégalités et soutient la demande des ménages modestes (qui consomment plus)."},
+  {k:"Redistribution horizontale",p:"Redistribution entre catégories : des actifs vers les retraités, des hommes vers les femmes, des bien-portants vers les malades (Sécurité sociale). Ce n'est pas une redistribution des riches vers les pauvres, mais une mutualisation des risques."},
+  {k:"Production et investissement public",p:"Politique des <b>grands travaux</b> : l'État investit directement pour créer de l'activité. Se substitue au secteur privé quand celui-ci n'investit pas."},
+  {k:"Le Policy mix",p:"Combinaison de la <b>politique budgétaire</b> (prélèvements, budget) et de la <b>politique monétaire</b> (monnaie, taux d'intérêt). Ce ne sont pas deux outils indépendants — c'est leur <b>combinaison et interaction</b> qui importe. Ex : baisser les taux peut stimuler l'investissement mais aussi l'inflation, ce qui interagit avec la politique budgétaire."}
  ]}
 ]},
-e5:{yr:"Chap. 2 §1",titre:"Panorama : les indicateurs de la crise",tag:"Economie descriptive de la France depuis les 70's. Quatre indicateurs : inflation, chomage, echanges exterieurs, finances publiques.",branches:[
+e5:{yr:"Chap. 2 §1",titre:"Panorama : les indicateurs de la crise",tag:"Économie descriptive de la France depuis les 70's. Quatre indicateurs : inflation, chômage, échanges extérieurs, finances publiques.",branches:[
  {cls:"b-pol",ico:"📈",t:"L'inflation",nodes:[
-  {k:"Definition et categories",p:"L'inflation = la <b>hausse des prix a la consommation</b>. Categories : 1 chiffre = <b>rampante</b> ; 2 chiffres = <b>galopante</b> ; plus de 2 chiffres = <b>hyperinflation</b>."},
-  {k:"1re periode (milieu 60's → 1983) - forte inflation",p:"Inflation galopante. Cinq facteurs : <b>inflation par la demande</b>, <b>inflation importee</b> (chocs petroliers 1973-74 et 1979), <b>inflation par les couts</b> (indexation des salaires sur les prix → spirale), <b>inflation par anticipation</b>, <b>politique monetaire keynesienne</b> inefficace."},
-  {k:"2e periode (apres 1983) - desinflation",p:"<b>Desinflation</b> rapide puis maintien d'une inflation tres faible. Facteurs : contre-choc petrolier, concurrence internationale, <b>politique de desinflation competitive</b> (suppression de l'indexation des salaires, politique de rigueur)."}
- ],dates:["Chocs petroliers : 1973 et 1979","Desinflation : apres 1983","Deflation auj. ~1,1%"]},
- {cls:"b-exe",ico:"📉",t:"Le chomage",nodes:[
-  {k:"L'evolution",p:"Avant 1974 : faible. 1974-86 : hausse de 3,8% a 9%. 1990-97 : progression rapide a 10,9%. Depuis 2007 : reprise de la progression (~11%)."},
-  {k:"Les caracteristiques francaises",p:"Touches : jeunes, femmes, seniors, non-qualifies. Depuis les 90's : <b>chomage des cadres</b>. France se distingue par le <b>chomage de longue duree</b> (40% des chomeurs depuis plus d'1 an)."}
- ],dates:["Avant 1974 faible","1974-86 : 3,8% → 9%","1990-97 : → 10,9%","Auj. ~11%","40% de longue duree"]},
- {cls:"b-cen",ico:"🚢",t:"Les echanges exterieurs",nodes:[
-  {k:"1974-1991 - deficit",p:"Produits francais pas assez competitifs (<b>prix</b> et <b>hors-prix</b>). Les relances keynesiennes profitent aux importations."},
-  {k:"1991-2004 - excedents",p:"Competitivite francaise s'ameliore. Stagnation eco 1991-97, demande interieure peu dynamique."},
-  {k:"Apres 2004 - retour du deficit",p:"Consommation favorable aux importations ; <b>euro s'appecie face au dollar</b> ; concurrence-prix de la Chine ; politique allemande limite ses importations."}
- ],dates:["1974-1991 deficit","1991-2004 excedents","Apres 2004 deficit","Fin 2012 : -45 Mrd euros"]},
+  {k:"Définition et catégories",p:"L'inflation = la <b>hausse des prix à la consommation</b>. 1 chiffre = <b>rampante</b> ; 2 chiffres = <b>galopante</b> ; plus de 2 chiffres = <b>hyperinflation</b>."},
+  {k:"1re période (1960's→1983) — Facteur 1 : inflation par la demande",p:"La demande intérieure est supérieure à l'offre → les prix montent (loi de l'offre et de la demande)."},
+  {k:"Facteur 2 : inflation importée",p:"Hausse des prix des matières premières, notamment le pétrole. <b>1er choc pétrolier : 1973-74</b>. <b>2ème choc : 1979</b> (lié à la révolution iranienne)."},
+  {k:"Facteur 3 : inflation par les coûts",p:"L'<b>indexation des salaires sur les prix</b> crée une <b>spirale inflationniste</b> : prix ↑ → salaires ↑ (pour maintenir le pouvoir d'achat) → coûts de production ↑ → prix ↑ → salaires ↑... L'objectif était de maintenir le pouvoir d'achat mais cela augmentait le coût du travail."},
+  {k:"Facteur 4 : inflation par l'anticipation",p:"Quand l'inflation dure, les entrepreneurs anticipent que les prix vont encore monter → ils achètent <b>maintenant</b> → la demande gonfle → nourrit le facteur 1. Exemple : si je sais que le prix d'une voiture va augmenter, j'achète maintenant → tout le monde fait pareil → la demande explose."},
+  {k:"Facteur 5 : politique monétaire keynésienne inefficace",p:"Injection de monnaie dans le système éco sans reprise réelle → inflation. La <b>théorie quantitative de la monnaie</b> explique pourquoi : les prix montent quand la quantité de monnaie augmente plus vite que la richesse produite."},
+  {k:"2e période (après 1983) — Désinflation",p:"<b>Distinction clé</b> : <b>désinflation</b> (le taux d'inflation diminue, reste positif) ≠ <b>déflation</b> (les prix baissent, taux négatif). La France a connu la désinflation, pas la déflation — mais risque d'y tomber."},
+  {k:"Facteur de désinflation 1 : contre-choc pétrolier",p:"Après 1985 : baisse du prix du pétrole + baisse du taux de change du dollar (on paie le pétrole en dollars — si le dollar baisse, la facture pétrolière baisse aussi)."},
+  {k:"Facteur 2 : concurrence internationale",p:"Les pays à bas salaires permettent d'importer des produits moins chers → pression à la baisse sur les prix."},
+  {k:"Facteur 3 : politique de désinflation compétitive (dès 1983)",p:"(a) Suppression de l'indexation des salaires sur les prix pour casser la spirale. (b) Politique de rigueur monétaire avec hausse des taux d'intérêt. (c) Discours clair : 'tant que l'inflation ne sera pas maîtrisée, les taux resteront élevés' → casser les anticipations inflationnistes."}
+ ],dates:["Chocs pétroliers : 1973 et 1979","Désinflation : après 1983","Aujourd'hui : ~1,1%"]},
+ {cls:"b-exe",ico:"📉",t:"Le chômage",nodes:[
+  {k:"L'évolution",p:"Avant 1974 : faible. 1974-86 : hausse de <b>3,8% à 9%</b>. 1990-97 : progression rapide à <b>10,9%</b>. Depuis 2007 : reprise de la progression (~11%)."},
+  {k:"Les caractéristiques françaises",p:"Touchés : jeunes, femmes, seniors, non-qualifiés. Depuis les 90's : <b>chômage des cadres</b>. France se distingue par le <b>chômage de longue durée</b> (40% des chômeurs depuis plus d'1 an)."}
+ ],dates:["Avant 1974 faible","1974-86 : 3,8% → 9%","1990-97 : → 10,9%","Auj. ~11%","40% de longue durée"]},
+ {cls:"b-cen",ico:"🚢",t:"Les échanges extérieurs",nodes:[
+  {k:"Compétitivité-prix vs hors-prix",p:"<b>Compétitivité-prix</b> : les produits français sont-ils moins chers que les équivalents étrangers ? <b>Compétitivité hors-prix (qualité)</b> : même à prix égal, les acheteurs étrangers préfèrent-ils nos produits ?"},
+  {k:"1974-1991 — déficit",p:"Produits français pas assez compétitifs (<b>prix ET hors-prix</b>). Les relances keynésiennes profitent aux importations."},
+  {k:"1991-2004 — excédents",p:"Compétitivité française s'améliore. Stagnation éco 1991-97, demande intérieure peu dynamique."},
+  {k:"Après 2004 — retour du déficit",p:"Consommation favorable aux importations ; <b>euro s'apprécie face au dollar</b> ; concurrence-prix de la Chine ; politique allemande limite ses importations."},
+  {k:"La victoire à la Pyrrhus allemande",p:"L'Allemagne est le 1er partenaire de la France. Sa politique de limitation des salaires freine sa demande intérieure → elle importe moins de produits français. L'Allemagne gagne à l'export mais c'est une victoire avec un coût pour ses partenaires."},
+  {k:"Chiffres précis — fin 2012",p:"Déficit commercial de <b>45 Mrd€</b> dont déficit sur les biens de <b>61 Mrd€</b> compensé par un excédent sur les services de <b>18 Mrd€</b>. Structure : <b>2/3 des importations</b> viennent de l'UE, <b>3/4 des exportations</b> vont vers l'UE. <b>75%</b> des échanges portent sur des produits manufacturés. Excédents fréquents : agriculture, tourisme."}
+ ],dates:["1974-1991 déficit","1991-2004 excédents","Après 2004 déficit","Fin 2012 : −45 Mrd€"]},
  {cls:"b-loc",ico:"🏦",t:"Les finances publiques",nodes:[
-  {k:"Definitions",p:"Trois acteurs : <b>Etat</b>, <b>collectivites territoriales</b>, <b>administrations de securite sociale</b>. Solde negatif = <b>deficit public</b>."},
-  {k:"Le debat keynesiens / liberaux",p:"<b>Keynesiens</b> : deficit = <b>stabilisateur automatique</b> (normal en crise). <b>Liberaux</b> : tout deficit est dangereux."},
-  {k:"Maastricht (1992)",p:"Impose : deficit inferieur ou egal a <b>3% du PIB</b> et dette publique inferieure ou egal a <b>60% du PIB</b>."}
- ],dates:["Exced. jusqu'en 1974","Jamais excedent depuis 1975","Maastricht : 3% / 60%","Dette 2010 : 82%"]}
+  {k:"Définitions",p:"Trois acteurs : <b>État</b>, <b>collectivités territoriales</b>, <b>administrations de sécurité sociale</b>. Solde négatif = <b>déficit public</b>."},
+  {k:"Le débat keynésiens / libéraux",p:"<b>Keynésiens</b> : déficit = <b>stabilisateur automatique</b> (normal en crise). <b>Libéraux</b> : tout déficit est dangereux."},
+  {k:"Le stabilisateur automatique",p:"Mécanisme qui joue <b>automatiquement, sans décision politique</b> : en période de crise, les dépenses (chômage, aides) augmentent automatiquement et les recettes (impôts) baissent automatiquement → amortit la récession. En reprise : le mécanisme s'inverse."},
+  {k:"Maastricht (1992)",p:"Impose : déficit ≤ <b>3% du PIB</b> et dette publique ≤ <b>60% du PIB</b>."},
+  {k:"Chiffres du déficit public",p:"Excédents jusqu'en 1974. 1975 : <b>−2,2%</b>. 1980 : <b>0%</b> (équilibre). 1993 : <b>−6,5%</b>. 1997 : <b>−3,0%</b>. 2000 : <b>−1,5%</b>. 2003 : <b>−4,1%</b>. 2008 : <b>−3,4%</b>. Prévision 2009 : <b>−8,0%</b>."},
+  {k:"Chiffres de la dette publique",p:"1975-1980 : <b>20%</b> du PIB. 1984 : <b>30%</b>. 1991 : <b>37%</b>. 1998 : <b>60%</b>. 2003 : <b>63%</b>. 2008 : <b>67%</b>. 2009 : <b>79%</b>. 2010 : <b>82%</b>."},
+  {k:"Mécanisme de dégradation — (I) Augmentation des dépenses",p:"1er objectif : amortir les effets sociaux de la crise (création du RMI fin 80's, prise en charge des chômeurs, des personnes âgées, des handicapés, subventions aux entreprises). 2ème objectif : soutenir les entreprises pour éviter les délocalisations (infrastructures)."},
+  {k:"Mécanisme de dégradation — (II) Manque à gagner pour les recettes",p:"La crise entraîne une diminution des revenus → recettes fiscales diminuent. Jusqu'au milieu des 90's : gouvernements augmentaient les prélèvements obligatoires. Fin des 90's : décision de réduire les prélèvements fiscaux progressifs. Depuis les 00's : freinage de la hausse des cotisations sociales → manque à gagner structurel."}
+ ],dates:["Excédents jusqu'en 1974","1975 : −2,2%","1993 : −6,5%","2009 : −8%","Maastricht : 3% / 60%","Dette 2010 : 82%"]}
 ]},
-e6:{yr:"Chap. 2 §2",titre:"Panorama : une croissance ralentie",tag:"PIB, cycles de croissance, productivite, demande interieure.",branches:[
- {cls:"b-pol",ico:"📊",t:"PIB et croissance",nodes:[
-  {k:"PIB et taux de croissance",p:"Le <b>PIB</b> (Produit Interieur Brut) mesure la creation de richesse. Le <b>taux de croissance</b> est le taux de variation du PIB d'une annee sur l'autre."},
-  {k:"Vocabulaire des crises",p:"<b>Stagnation</b> : taux proche de 0. <b>Recession</b> : court terme, taux negatif. <b>Depression</b> : moyen/long terme, nombreuses recessions."}
+e6:{yr:"Chap. 2 §2",titre:"Panorama : une croissance ralentie",tag:"PIB, cycles, productivité, consommation des ménages, investissement.",branches:[
+ {cls:"b-pol",ico:"📊",t:"Définitions et vocabulaire",nodes:[
+  {k:"Stagnation",p:"Taux de croissance proche de 0 (pas plus de <b>0,5%</b> en France)."},
+  {k:"Récession",p:"Taux de croissance <b>négatif</b> sur une période courte (moins d'un an) — le PIB diminue."},
+  {k:"Dépression",p:"Moyen ou long terme, <b>plusieurs récessions successives</b>, diminution durable du PIB et du revenu."},
+  {k:"Croissance auto-entretenue",p:"La croissance s'alimente elle-même : progrès technique → productivité → investissement → revenus → consommation → ... Nommer le <b>phénomène du déversement (Alfred Sauvy)</b> : la croissance déplace des emplois d'un secteur vers un autre (agriculture → industrie → services)."}
  ]},
- {cls:"b-exe",ico:"🔁",t:"Les cycles de croissance",nodes:[
-  {k:"Cycle court (Kitchin)",p:"~2,5 ans, lie au <b>mouvement des stocks</b>."},
-  {k:"Cycle moyen (Juglar)",p:"6 a 10 ans, lie a l'<b>evolution de la demande</b>."},
-  {k:"Cycle long (Kondratiev)",p:"30 a 50 ans, rythme par les <b>innovations</b> (phenomene de Schumpeter)."}
+ {cls:"b-exe",ico:"🧮",t:"Le calcul du PIB — deux approches",nodes:[
+  {k:"Côté production : PIB = Σ(VA) + TVA + droits de douane",p:"La <b>VA</b> (Valeur Ajoutée) = production − consommation intermédiaire. La <b>CI</b> (Consommation Intermédiaire) = tout ce que l'entreprise achète AUX AUTRES entreprises (matières premières, énergie, composants...) — on la soustrait pour éviter les doubles comptes."},
+  {k:"Côté demande : PIB = CF + FBCF + ΔS + X − M",p:"<b>CF</b> = consommation finale des ménages. <b>FBCF</b> = Formation Brute de Capital Fixe (l'investissement). <b>ΔS</b> = variation des stocks. <b>X</b> = exportations. <b>M</b> = importations (qu'on soustrait car ce n'est pas de la production française)."},
+  {k:"Utilité de chaque approche",p:"La production montre <b>qui crée</b> la richesse. La demande montre <b>les moteurs</b> de la croissance (si la croissance stagne, on regarde quelle composante a baissé). Formule taux de variation : (valeur finale − valeur initiale) / valeur initiale."}
  ]},
- {cls:"b-cen",ico:"🧮",t:"Le calcul du PIB",nodes:[
-  {k:"Par la production",p:"<b>PIB = somme des VA + TVA + droits de douane</b>. <b>VA = production - consommation intermediaire</b>."},
-  {k:"Par la demande",p:"<b>PIB = CF + FBCF + delta S + X - M</b>. CF = consommation finale ; FBCF = investissement ; X = exportations ; M = importations."}
+ {cls:"b-cen",ico:"📅",t:"L'évolution du PIB — tous les chiffres",nodes:[
+  {k:"Les taux moyens par période",p:"Fin 60's-début 70's : <b>+5,2%/an</b>. 1974-1979 : <b>+2,7%</b>. 1980-1985 : <b>+1,4%</b>. 1986-1991 : <b>+3,5%</b>. 1991-1997 : <b>+0,6%</b>. 1998-2001 : <b>+3,1%</b>. 2002-2007 : <b>+1,8%</b>. 2008-2015 : finit à <b>+0,5%</b> (avec 2009 à ~<b>−3%</b>). 2016-2019 : <b>+1,7%</b> (estim.)."},
+  {k:"Années de récession",p:"<b>1975</b>, <b>1993</b>, <b>2009</b>."}
+ ],dates:["Fin 60's : +5,2%","1991-97 : +0,6%","2009 : ~−3%","Récessions : 1975, 1993, 2009"]},
+ {cls:"b-loc",ico:"🔀",t:"Les 3 périodes de blocage et le partage de la VA",nodes:[
+  {k:"1970-1983 — 2 obstacles",p:"(1) <b>Contrainte extérieure</b> : toute relance de la demande intérieure profite aux importations. (2) <b>Blocage de l'offre</b> : partage de la VA très favorable aux salaires — début 70's : <b>60% de la VA</b> pour les salaires ; début 83 : <b>66%</b> (indexation des salaires, SMIC, force syndicale) → manque de rentabilité → les entreprises n'investissent plus."},
+  {k:"1983-1990 — insuffisance de la demande intérieure",p:"La politique de rigueur porte sur les salaires → 1993 : salaires ne représentent plus que <b>56% de la VA</b>. C'est la <b>demande extérieure</b> qui tire la croissance."},
+  {k:"Depuis les 00's — croissance molle",p:"Côté offre : profits captés par les dividendes aux actionnaires → freine l'investissement. Côté demande : concurrence étrangère détourne la demande intérieure. Partage de la VA : stable autour de <b>58%</b>. La consommation des ménages se tient grâce au <b>recours croissant au crédit</b>."}
  ]},
- {cls:"b-loc",ico:"📅",t:"L'evolution du PIB",nodes:[
-  {k:"Les taux moyens",p:"Fin 60's : +5,2%/an. 1974-79 : +2,7%. 1991-97 : +0,6%. 2009 : ~-3% (recession). 2016-19 : +1,7% (estim.)."},
-  {k:"Les blocages depuis 1974",p:"(1) <b>Contrainte exterieure</b> : relance profite aux importations. (2) <b>Blocage de l'offre</b> : partage VA trop favorable aux salaires → manque de rentabilite → les entreprises n'investissent plus."}
- ],dates:["Fin 60's : +5,2%","1991-97 : +0,6%","Recessions : 1975, 1993, 2009"]},
- {cls:"b-arm",ico:"⚡",t:"La productivite",nodes:[
-  {k:"Definition",p:"Quantite de facteurs de production necessaire pour produire un certain volume de richesse. Dans le long terme : <b>gains de productivite</b> (progres technique)."},
-  {k:"La productivite comme amortisseur",p:"En crise, peu de gains → les entreprises ne licencient pas. En reprise, elles ne recrutent pas tout de suite. La France a la <b>productivite horaire la plus elevee</b> de l'OCDE."}
+ {cls:"b-arm",ico:"⚡",t:"La productivité — chiffres et explications",nodes:[
+  {k:"Évolution des gains de productivité",p:"30 Glorieuses : <b>+5%/an</b>. À partir de 1974 : divisés par 2 → <b>+2,5%</b>. Début des 90's : encore divisés par 2 → <b>+1,2%</b>. 2010 : ~<b>1%</b>. Aujourd'hui : ~<b>0,9%</b> (tendance commune à tous les pays de l'OCDE)."},
+  {k:"La France a la productivité horaire la plus élevée",p:"3 raisons : (1) L'emploi est concentré chez les <b>25-55 ans</b> (les plus productifs). (2) La <b>durée de travail par semaine</b> est sous la moyenne européenne → évite la saturation (productivité marginale diminue avec la durée). (3) Le <b>système de protection sociale</b> garantit une main-d'œuvre plus efficace — analyse à l'opposé de la théorie libérale."},
+  {k:"Variable d'ajustement de l'emploi",p:"En <b>crise</b> : peu de gains de productivité → les entreprises gardent leurs effectifs mais les font travailler moins efficacement (au lieu de licencier). En <b>reprise</b> : elles ne recrutent pas immédiatement → demandent à leurs salariés d'être plus efficaces. Exemple : en 2009, le chômage a <b>doublé aux États-Unis</b> (licenciements massifs). En France et en Allemagne, le chômage a <b>beaucoup moins augmenté</b> malgré la gravité de la crise."}
+ ]},
+ {cls:"b-key",ico:"🛒",t:"Consommation des ménages",nodes:[
+  {k:"Théorie du revenu permanent",p:"Le ménage essaie de <b>lisser sa consommation dans le temps</b>. Quelqu'un qui tombe au chômage continue à consommer (anticipe que c'est temporaire). Quelqu'un dont le revenu augmente ne consomme pas forcément plus (attend de voir si c'est durable)."},
+  {k:"Loi d'Engel",p:"Quand un ménage s'enrichit, la part consacrée aux dépenses de base (alimentation, logement) <b>diminue</b>. Il peut consacrer une part croissante à des dépenses de confort, de loisirs, d'épargne."},
+  {k:"Taux de croissance de la conso (moy. annuelle)",p:"1974-1979 : <b>+3,5%</b>. 1980-1985 : <b>+1,8%</b>. 1986-1990 : <b>+3,0%</b>. 1991-1997 : <b>+1,3%</b>. 1998-2001 : <b>+2,9%</b>. 2002-2007 : <b>+2,4%</b>. 2008 : <b>+1,0%</b>."},
+  {k:"Taux d'épargne",p:"1974 : <b>15%</b>. 1975 : <b>20%</b> (effet de précaution en période de crise — on épargne par peur de l'avenir). 1988 : <b>10%</b> (austérité salariale, fin de l'indexation → moins de revenus à épargner)."}
  ]}
 ]},
-e7:{yr:"Chap. 2 §3",titre:"Panorama : la liberalisation de l'economie francaise",tag:"A partir des 70's, le courant liberal redevient la base ideologique des politiques economiques.",branches:[
- {cls:"b-pol",ico:"🔀",t:"Le contexte du tournant",nodes:[
-  {k:"Un changement d'epoque",p:"Pendant les 30 Glorieuses, le courant liberal etait minoritaire. A partir des 70's, le liberalisme reprend de la vigueur dans les 80's. Pionniers : <b>Etats-Unis</b> (Reagan, 1980) et <b>Royaume-Uni</b> (Thatcher, 1979)."}
+e7:{yr:"Chap. 2 §3",titre:"Panorama : la libéralisation de l'économie française",tag:"À partir des 70's, le courant libéral redevient la base idéologique des politiques économiques.",branches:[
+ {cls:"b-pol",ico:"🔀",t:"Le contexte du tournant libéral",nodes:[
+  {k:"Un changement d'époque",p:"Pendant les 30 Glorieuses, le courant libéral était minoritaire. À partir des 70's, le libéralisme reprend de la vigueur. Pionniers : <b>États-Unis</b> (Reagan, 1980) et <b>Royaume-Uni</b> (Thatcher, 1979)."}
  ]},
- {cls:"b-exe",ico:"🗳️",t:"Chronologie francaise",nodes:[
-  {k:"1974-1976 - relance keynesienne (Chirac)",p:"1er choc petrolier. <b>Relance keynesienne</b> : soutien aux entreprises, au batiment, meilleure indemnisation des chomeurs. Efficace mais couteuse."},
-  {k:"1976-1981 - Raymond Barre",p:"Idees liberales : <b>liberation des prix</b>. Efficacite non prouvable (2nd choc petrolier 1979)."},
-  {k:"1981-1983 - la derniere relance",p:"Gouvernement socialiste : <b>relance par la demande</b>. Aggravation des desequilibres. La France dans le SME → conversion liberale sous le gouvernement Fabius."},
-  {k:"1983 a aujourd'hui - conversion liberale",p:"<b>Carre magique</b> des liberaux : maitrise de l'inflation, des finances publiques, equilibre exterieur, maintien du taux de change. Cout social eleve MAIS economies plus competitives."}
+ {cls:"b-exe",ico:"🗳️",t:"Chronologie française",nodes:[
+  {k:"1974-1976 — relance keynésienne (Chirac)",p:"1er choc pétrolier. <b>Relance keynésienne</b> : soutien aux entreprises, au bâtiment, meilleure indemnisation des chômeurs. Efficace mais coûteuse."},
+  {k:"1976-1981 — Raymond Barre",p:"Idées libérales : libération des prix (fin du gel imposé par l'État) → plus de concurrence → les prix vont baisser. Mise en forme à partir de 1978 : mesures libérales, pari sur la concurrence. Résultat : l'efficacité n'a pas pu être prouvée car le <b>2ème choc pétrolier de 1979</b> a tout perturbé. On ne saura jamais si la méthode Barre aurait fonctionné."},
+  {k:"1981-1983 — la dernière relance et le rôle du SME",p:"Gouvernement socialiste : <b>relance par la demande</b>. Aggravation des déséquilibres. Le <b>SME</b> (Système Monétaire Européen = taux de change fixe entre monnaies européennes) impose de maintenir le franc fort. Mais la relance crée de l'inflation → affaiblit le franc → incompatible avec le SME. Dilemme : quitter le SME ou changer de politique. Le gouvernement Fabius choisit de rester → <b>conversion libérale</b> justifiée par la contrainte européenne."},
+  {k:"1983 à aujourd'hui — conversion libérale",p:"Le <b>carré magique</b> des libéraux : 4 objectifs simultanés — (1) maîtrise de l'inflation, (2) maîtrise des finances publiques, (3) équilibre des échanges extérieurs, (4) maintien du taux de change. Résultat : début des 90's, <b>3 des 4 objectifs atteints</b> — seul l'équilibre des finances publiques continue de se dégrader."},
+  {k:"1997-2002 — gouvernement Jospin",p:"Gauche au pouvoir dans un cadre libéral (règles européennes). Expérimentations nouvelles : <b>emplois-jeunes</b> + <b>loi Aubry</b> (réduction du temps de travail aux 35h). Ces mesures réduisent le taux de chômage, mais dans les limites des règles libérales européennes."}
  ]},
- {cls:"b-cen",ico:"📉",t:"Le recul de l'Etat",nodes:[
-  {k:"Nationalisations puis privatisations",p:"<b>1981</b> : nationalisations (banque, industrie). <b>1986</b> : privatisations (l'Etat cede son capital)."},
-  {k:"La transformation des marches",p:"Marches de capitaux modernises ; marche du travail flexibilise ; <b>demantelement des monopoles</b> publics (traite de Maastricht)."}
+ {cls:"b-cen",ico:"📉",t:"Le recul de l'État",nodes:[
+  {k:"1981 — les nationalisations (Champions Nationaux)",p:"Objectif : créer de grandes entreprises modernes, <b>championnes</b> de l'investissement, de l'emploi ET de l'innovation — les faire passer sous contrôle public pour qu'elles n'externalisent pas et investissent dans la recherche."},
+  {k:"1986 — les privatisations",p:"L'État cède son capital. Les entreprises passent dans le secteur privé."},
+  {k:"Les 3 marchés transformés",p:"(1) <b>Marchés de capitaux</b> : modernisés à partir des 80's, renforcement de la concurrence, comportements plus libres. (2) <b>Marché du travail</b> : flexibilisation (salaires et horaires), les entreprises ne sont plus obligées d'aligner les salaires sur la hausse des prix. (3) <b>Démantèlement des monopoles</b> : sous l'impulsion de l'institution européenne, traité de Maastricht → les monopoles publics s'ouvrent à la concurrence."}
  ]},
- {cls:"b-loc",ico:"♻️",t:"Une economie mixte",nodes:[
-  {k:"Plus la nature que l'ampleur",p:"La liberalisation a necessite un travail juridique considerable. C'est la <b>nature</b> de l'intervention qui a change, pas tellement son <b>ampleur</b>."},
-  {k:"Les trois raisons",p:"(1) Des <b>instances de regulation</b> pour garantir des marches libres. (2) Des <b>depenses sociales</b> pour amortir les effets de la liberalisation. (3) L'Etat <b>aide massivement les entreprises</b> (<b>patriotisme industriel</b>)."}
+ {cls:"b-loc",ico:"♻️",t:"Une économie mixte — nature vs ampleur",nodes:[
+  {k:"La nuance centrale",p:"C'est plus la <b>nature</b> de l'intervention de l'État qui a changé que son <b>ampleur</b>. L'État intervient autant ou presque, mais différemment."},
+  {k:"Raison 1 — instances de régulation",p:"Pour garantir des marchés libres → il faut des <b>instances de régulation publiques</b> (État, Commission européenne, OMC) → inflation des textes de loi garantissant la concurrence."},
+  {k:"Raison 2 — amortir les effets sociaux",p:"Les politiques libérales ont des <b>effets sociaux sévères</b> (chômage, exclusion) → il a fallu des dépenses publiques pour les amortir."},
+  {k:"Raison 3 — patriotisme industriel",p:"Même moins producteur, l'État <b>aide massivement les entreprises</b> (plans de soutien, subventions, aide à la recherche, à l'embauche). C'est le <b>patriotisme industriel</b> : l'État intervient pour sauver les entreprises domestiques, empêcher les délocalisations."}
  ]}
 ]},
-e8:{yr:"Chap. 3 §1",titre:"International : mondialisation et commerce",tag:"La mondialisation, le debat protectionnisme vs libre-echange, et la regulation des echanges (GATT, OMC).",branches:[
+e8:{yr:"Chap. 3 §1",titre:"International : mondialisation et commerce",tag:"Libre-échange vs protectionnisme, régulation GATT/OMC, arguments des deux côtés.",branches:[
  {cls:"b-pol",ico:"🌐",t:"La mondialisation",nodes:[
-  {k:"Definition",p:"Phenomene d'augmentation des echanges economiques et culturels entre pays, renforçant l'<b>interdependance</b> des economies."},
-  {k:"Deux mondialisations",p:"<b>1re</b> : fin 19e s. (surtout financiere). <b>2e</b> : fin des 70's (plus complete, on est encore dedans)."},
-  {k:"Les faits",p:"Poids des exportations mondiales : de <b>20,3% a 31,6%</b> du PIB mondial. Emergence des pays du Sud (Chine = 1er exportateur mondial). Marginalisation des <b>PMA</b> (~50 pays)."}
+  {k:"Définition",p:"Phénomène d'augmentation des échanges économiques et culturels entre pays, renforçant l'<b>interdépendance</b> des économies."},
+  {k:"Deux mondialisations",p:"<b>1re</b> : fin 19e s. (surtout financière). <b>2e</b> : fin des 70's (plus complète, on est encore dedans)."},
+  {k:"Les faits",p:"Poids des exportations mondiales : de <b>20,3% à 31,6%</b> du PIB mondial. Émergence des pays du Sud (Chine = 1er exportateur mondial). Marginalisation des <b>PMA</b> (~50 pays)."}
  ],dates:["1re mondialisation : fin 19e","2e mondialisation : fin 70's","Exports : 20,3% → 31,6% du PIB"]},
  {cls:"b-exe",ico:"🚧",t:"Les formes de protectionnisme",nodes:[
-  {k:"Mesures tarifaires",p:"Principalement le <b>droit de douane</b> : droit <b>ad valorem</b> (% du prix) ou <b>specifique</b> (forfait sur les quantites)."},
-  {k:"Mesures non-tarifaires",p:"<b>Contingentements/quotas</b>, <b>embargos</b>, <b>mesures administratives</b> (normes techniques, sanitaires). Moins diminuees que les tarifs."},
-  {k:"Distorsions de concurrence",p:"<b>Preference nationale</b> dans les marches publics, <b>subventions aux exportations</b>, <b>dumping</b>, depreciation monetaire."}
+  {k:"Droits de douane — ad valorem",p:"S'exprime en <b>% du prix importé</b> (ex. 10% → si le produit coûte 100€, on ajoute 10€). Le plus courant."},
+  {k:"Droits de douane — spécifique",p:"<b>Somme forfaitaire</b> prélevée sur les quantités (ex. 5€ par kilo importé, quel que soit le prix)."},
+  {k:"Mesures non-tarifaires",p:"(1) Contingentements / quotas : limitent les quantités importées. (2) Embargos : interdiction totale. (3) Accords d'autolimitation des exportations. (4) Mesures administratives : normes techniques, sanitaires, droit du travail. (5) Formalités de dédouanement : retarder, compliquer. Ces mesures ont <b>moins diminué</b> que les droits de douane car elles permettent du protectionnisme <b>camouflé</b>."},
+  {k:"Distorsions de concurrence",p:"<b>Préférence nationale</b> dans les marchés publics (l'État achète préférentiellement aux entreprises domestiques). <b>Subventions aux exportations</b>. <b>Dumping</b> : vendre à l'étranger à un prix inférieur au prix d'origine, voire inférieur au coût de production. <b>Manipulation monétaire</b> : laisser sa monnaie se déprécier → exportations moins chères, importations plus chères (aujourd'hui <b>interdit par des normes internationales</b>)."}
  ]},
- {cls:"b-cen",ico:"✅",t:"Arguments pour le libre-echange",nodes:[
-  {k:"L'argument central",p:"Sous hypothese de concurrence pure et parfaite : le libre-echange conduit a une <b>allocation optimale des ressources</b> au niveau mondial. Condition : les pays se <b>specialisent</b> selon l'avantage comparatif."},
-  {k:"Theorie du droit de douane",p:"Le droit de douane entraine <b>toujours</b> une hausse des prix pour les consommateurs."}
+ {cls:"b-cen",ico:"✅",t:"Arguments pour le libre-échange",nodes:[
+  {k:"L'argument central",p:"Sous hypothèse de concurrence pure et parfaite : le libre-échange conduit à une <b>allocation optimale des ressources</b> au niveau mondial. Condition : les pays se <b>spécialisent</b> selon l'avantage comparatif."},
+  {k:"Théorie du droit de douane — étape par étape",p:"(1) Le droit de douane s'ajoute au prix importé → produits importés plus chers. (2) Les consommateurs se reportent sur les produits domestiques → demande domestique ↑. (3) L'offre domestique n'augmente pas aussi vite → prix domestiques ↑. (4) L'offre domestique finit par augmenter → utilise plus de matières premières → prix des MP ↑ → coûts ↑ → prix domestiques ↑ encore. → <b>Dans tous les cas</b>, le consommateur paie plus cher."},
+  {k:"L'effet Lloyd Metzler",p:"Pour les pays qui pèsent <b>très lourd</b> dans la demande mondiale d'un produit (ex. les États-Unis pour certaines matières premières), instaurer un droit de douane fait s'effondrer la demande mondiale → les prix mondiaux s'effondrent → malgré le droit de douane, le prix final (prix mondial + droit) reste <b>inférieur au prix domestique</b> → le droit de douane n'a pas protégé l'industrie nationale."}
  ]},
  {cls:"b-loc",ico:"🛡️",t:"Arguments pour le protectionnisme",nodes:[
-  {k:"List - industries naissantes",p:"<b>Friedrich List</b> : les avantages comparatifs sont <b>construits</b>. Un pays retardataire doit <b>proteger son industrie naissante</b> (protectionnisme educatif, <b>transitoire</b>), puis revenir au libre-echange."},
-  {k:"Emmanuel - l'echange inegal",p:"<b>Arghiri Emmanuel</b> : pays riches specialises dans le technologique, pays pauvres dans le primaire → <b>degradation des termes de l'echange</b> → ecart croissant."},
-  {k:"Les faits",p:"<b>Aucun pays ne s'est developpe sans protectionnisme</b> (Angleterre, Etats-Unis, Chine, Asie du Sud-Est). <b>Pas de correlation</b> entre ouverture et developpement (Bairoch, Krugman)."}
+  {k:"List — industrie naissante et économies d'échelle",p:"Les avantages comparatifs sont <b>construits</b>, pas naturels. Comment l'Angleterre a construit son avantage dans le textile ? (a) <b>Économies d'échelle</b> : plus on produit, moins le coût unitaire est élevé. (b) <b>Économies d'expérience</b> : plus on a d'expérience, plus on est efficace (courbe d'apprentissage). Un pays retardataire doit <b>protéger son industrie naissante</b> le temps qu'elle grandisse — protectionnisme <b>transitoire</b> (éducatif)."},
+  {k:"Emmanuel — l'échange inégal",p:"La spécialisation n'est <b>pas neutre</b>. 3 conséquences : (1) <b>Dépendance technologique</b> des pays pauvres. (2) <b>Dégradation des termes de l'échange</b> : les prix des biens technologiques montent beaucoup plus vite que les prix des biens primaires → l'écart se creuse. (<b>Termes de l'échange</b> = évolution relative des prix des biens échangés entre 2 pays). (3) <b>Épuisement des ressources productives</b> des pays pauvres (terre, sous-sol), tandis que les pays riches ont le savoir = ressource renouvelable → <b>spécialisation perverse</b>."},
+  {k:"Le malaise hollandais",p:"L'exploitation intensive d'une ressource naturelle enrichit dans un 1er temps → le pays se développe. Mais il néglige d'investir dans d'autres secteurs, ne se diversifie pas, oublie d'innover. Quand la ressource s'épuise (ou que son prix chute) → le pays n'a plus rien d'autre → il s'effondre."},
+  {k:"Les faits",p:"<b>Aucun pays ne s'est développé sans protectionnisme</b> (Angleterre, États-Unis, Chine, Asie du Sud-Est). Pas de corrélation entre ouverture et développement (<b>Bairoch, Krugman</b>)."}
  ]},
- {cls:"b-key",ico:"🤝",t:"La regulation : du GATT a l'OMC",nodes:[
-  {k:"Le GATT (1947)",p:"<b>General Agreement on Tariffs and Trade</b>. Principe du <b>multilateralisme</b>. 7 cycles. L'<b>Uruguay Round</b> (1986-1993) → <b>Accords de Marrakech</b> → creation de l'OMC."},
-  {k:"L'OMC (1995)",p:"Veritable institution. <b>Organe de reglement des differends</b>. 1 pays = 1 voix. Pas de <b>pouvoir coercitif</b>. Competences plus larges : agriculture, services, brevets."},
-  {k:"Les cycles bloques",p:"Cycle de <b>Doha</b> (2001) toujours pas abouti : blocage sur les services, agriculture, brevets, acces aux medicaments. D'ou le developpement du <b>bilateralisme</b>."}
- ],dates:["GATT : 1947","Uruguay Round : 1986-1993","OMC : 1995","Doha : 2001 (bloque)"]}
+ {cls:"b-key",ico:"🤝",t:"La régulation : du GATT à l'OMC",nodes:[
+  {k:"Le GATT (1947) — fonctionnement par cycles",p:"<b>7 cycles</b> de négociation, chacun se terminant par un accord <b>global</b> (tout ou rien — on ne peut pas séparer les accords). Avantage : solidité. Inconvénient : tant qu'il n'y a pas de signature finale, il n'y a pas d'avancement. Premiers cycles (droits de douane) : très efficaces. À partir de 1970 : cycles plus longs (plus de signataires + sujets plus politiques)."},
+  {k:"L'Uruguay Round et la naissance de l'OMC",p:"Uruguay Round (1986-1993) → <b>Accords de Marrakech</b> → fin du GATT → création de l'OMC (1995)."},
+  {k:"L'OMC — nouvelles compétences",p:"Agriculture, services (y compris services publics), droits de propriété intellectuelle (brevets), investissements des firmes multinationales. Désavantage pays en développement : il faut un <b>représentant permanent</b> à Genève → coûteux → les petits pays ne peuvent pas se le permettre."},
+  {k:"L'OMC — limites du pouvoir",p:"L'OMC n'a <b>pas de pouvoir coercitif</b> : si un pays condamné est très puissant, il peut passer outre. Dans ce cas, l'OMC peut accorder des <b>droits dérogatoires</b> au pays victime (droit de prendre des mesures de rétorsion)."},
+  {k:"Les cycles bloqués",p:"<b>Millénium round (1999)</b> : jamais ouvert — les pays du Sud refusaient (considéraient l'Uruguay Round trop défavorable). <b>Cycle de Doha (2001, Qatar)</b> : toujours pas abouti. 4 blocages : (1) libéralisation des services ; (2) fin des soutiens à l'agriculture européenne/américaine ; (3) désaccord sur les brevets (breveter le vivant) ; (4) accès aux médicaments génériques (SIDA, paludisme)."},
+  {k:"Le bilatéralisme (depuis fin des 90's)",p:"Face au blocage multilatéral, les pays signent des accords 2 à 2. Plus rapide mais l'<b>équité est loin d'être garantie</b> (les petits pays négocient en position de faiblesse)."}
+ ],dates:["GATT : 1947","Uruguay Round : 1986-1993","OMC : 1995","Doha : 2001 (bloqué)"]}
 ]},
-e9:{yr:"Chap. 3 §2",titre:"International : strategies des firmes et developpement",tag:"Comment un pays se developpe : les etapes de Rostow, le consensus de Washington et le consensus de Pekin.",branches:[
- {cls:"b-pol",ico:"🪜",t:"Les etapes du developpement (Rostow, 1960)",nodes:[
-  {k:"5 etapes",p:"(1) <b>Societe traditionnelle</b> (agriculture, peu d'innovation) ; (2) <b>Conditions prealables</b> (entrepreneurs, modernisation agricole) ; (3) <b>Decollage / take-off</b> (~20 ans, passage a l'industrie) ; (4) <b>Maturite</b> (diffusion des techniques) ; (5) <b>Consommation de masse</b> (services dominants, inegalites reduites, protection sociale)."},
-  {k:"Limites",p:"Inspiree du cas europeen, difficilement transposable aux pays en developpement d'apres la 2GM. Elle voit le developpement comme quelque chose de <b>controle</b>."}
+e9:{yr:"Chap. 3 §2",titre:"International : stratégies de développement",tag:"Comment un pays se développe : Rostow, consensus de Washington et consensus de Pékin.",branches:[
+ {cls:"b-pol",ico:"🪜",t:"Les étapes du développement (Rostow, 1960)",nodes:[
+  {k:"Étape 1 — Société traditionnelle",p:"Agriculture, peu de transport, peu d'innovation (routine). Hiérarchie sociale établie, sociétés conservatrices."},
+  {k:"Étape 2 — Conditions préalables",p:"Découvertes techniques → entrepreneurs apparaissent, ouverture vers l'extérieur. Reste agricole mais productivité agricole ↑, croissance démographique < croissance éco. <b>Structure politique centralisée</b> se met en place."},
+  {k:"Étape 3 — Décollage (take-off)",p:"Phase courte (~<b>20 ans</b>), bascule agriculture → industrie, investissement ↑ dans l'industrie, spécialisation économique. <b>Cadre politique favorable</b> (les dirigeants soutiennent les changements)."},
+  {k:"Étape 4 — Maturité",p:"Longue période de diffusion, spécialisation se confirme. <b>Réformes politiques et sociales</b> visant redistribution et cohésion sociale."},
+  {k:"Étape 5 — Consommation de masse",p:"Services dominants, revenu par habitant ↑, inégalités se réduisent. <b>Protection sociale</b> se met en place (fonctionnement démocratique)."},
+  {k:"Problème 1 — Inspirée du cas européen",p:"Difficilement transposable aux pays en voie de développement d'après-guerre (contextes trop différents, trajectoires historiques divergentes)."},
+  {k:"Problème 2 — Développement contrôlé",p:"La théorie voit le développement comme quelque chose de <b>contrôlé et linéaire</b> → ignore les résistances, les crises, les trajectoires non-linéaires."}
  ]},
  {cls:"b-exe",ico:"🏦",t:"Le consensus de Washington (1989)",nodes:[
-  {k:"L'origine",p:"En 1989, la <b>Banque Mondiale</b> dessine un modele de developpement a suivre pour obtenir ses prets : ensemble de mesures de <b>liberalisation</b>."},
-  {k:"Les mesures",p:"Ouverture au libre-echange, aux capitaux, aux IDE ; reduction des depenses publiques ; privatisations ; degager des recettes d'exportation pour rembourser la dette."},
-  {k:"Le bilan - severe",p:"Plans d'<b>ajustement structurel</b> : consequences sociales severes partout. Tres peu de pays ont reussi leur decollage. Dans beaucoup, endettement augmente et niveau de vie baisse."}
+  {k:"L'origine",p:"En 1989, la <b>Banque Mondiale</b> dessine un modèle de développement à suivre pour obtenir ses prêts. Le nom du plan : <b>plan d'ajustement structurel</b>."},
+  {k:"Les 6 mesures",p:"(1) Ouverture au <b>libre-échange</b>. (2) Ouverture aux <b>mouvements de capitaux</b>. (3) Ouverture aux <b>investissements directs étrangers</b>. (4) <b>Réduction des dépenses publiques</b>. (5) <b>Privatisation</b> des entreprises publiques. (6) Dégager des <b>recettes d'exportation</b> pour rembourser la dette."},
+  {k:"Le bilan — sévère",p:"Service public touché → dégradé. Stagnation voire baisse des salaires. Régression de la <b>petite paysannerie</b> au profit des cultures d'exportation. Dans beaucoup de pays : <b>l'endettement a augmenté</b> et le <b>niveau de vie a baissé</b>. Très peu de pays ont réussi à faire décoller leur économie via ce modèle."}
  ]},
- {cls:"b-cen",ico:"🐉",t:"Le consensus de Pekin",nodes:[
-  {k:"Le principe",p:"Integration dans les echanges mondiaux avec <b>independance vis-a-vis des creanciers du Nord</b>."},
-  {k:"Les mesures",p:"Conquete des marches etrangers (<b>avantage de cout du travail</b>) ; limitation de la demande interieure ; cohesion sociale ; epargne interieure abondante ; <b>depenses publiques</b> de long terme (education, recherche) ; ouverture IDE <b>ciblee</b> (haute VA) ; soutien aux firmes domestiques."},
-  {k:"Est-ce un modele ?",p:"C'est essentiellement le developpement de la <b>Chine</b>. Difficile a transposer partout, et pose un probleme de <b>partage des ressources</b>."}
+ {cls:"b-cen",ico:"🐉",t:"Le consensus de Pékin",nodes:[
+  {k:"Le principe",p:"Intégration dans les échanges mondiaux avec <b>indépendance vis-à-vis des créanciers du Nord</b>."},
+  {k:"Les 7 mesures",p:"(1) Conquête des marchés étrangers par des biens manufacturés grâce à un <b>avantage de coût du travail</b>. (2) <b>Limitation de la demande intérieure</b> pour maintenir l'avantage salarial. (3) Maintien de la <b>cohésion sociale</b> en contrepartie (régime draconien). (4) <b>Épargne intérieure abondante</b> → pas besoin d'emprunter à l'étranger. (5) <b>Dépenses publiques</b> de long terme : éducation, recherche, coopération technologique. (6) Ouverture aux <b>IDE ciblés</b> (seulement dans les secteurs à forte valeur ajoutée). (7) <b>Soutien public aux firmes domestiques</b> pour en faire des multinationales."},
+  {k:"S'agit-il vraiment d'un modèle ?",p:"C'est essentiellement le développement de la <b>Chine</b>. Pas sûr que tous les pays puissent évoluer de la même façon. Et le développement très accéléré pose un problème de <b>partage des ressources planétaires</b> (énergie, matières premières, eau)."}
  ]}
 ]},
-eA:{yr:"Special",titre:"Les auteurs et les courants",tag:"Qui est qui : pour chaque courant, les auteurs et ce qu'ils ont apporte.",branches:[
- {cls:"b-pol",ico:"🕊️",t:"Courant LIBERAL - ecole classique",nodes:[
-  {k:"Adam Smith",p:"Fondateur du courant liberal (fin 18e). <b>Main invisible</b> : en suivant son interet personnel, l'individu sert l'interet general. En commerce : theorie de l'<b>avantage absolu</b>."},
-  {k:"David Ricardo",p:"Theorie de l'<b>avantage comparatif</b> : meme un pays moins efficace dans toutes les productions a interet a echanger. Fondateur du <b>libre-echange</b>. Theorie de la valeur-travail."},
-  {k:"Jean-Baptiste Say",p:"Loi de Say : <b>toute offre cree sa propre demande</b>."},
-  {k:"John Stuart Mill",p:"Auteur de l'ecole classique liberale."}
+eA:{yr:"Spécial",titre:"Les auteurs et les courants",tag:"Qui est qui : pour chaque courant, les auteurs et ce qu'ils ont apporté.",branches:[
+ {cls:"b-pol",ico:"🕊️",t:"Courant LIBÉRAL — école classique",nodes:[
+  {k:"Adam Smith",p:"Fondateur du courant libéral (fin 18e). <b>Main invisible</b> : en suivant son intérêt personnel, l'individu sert l'intérêt général. En commerce : théorie de l'<b>avantage absolu</b>."},
+  {k:"David Ricardo",p:"Théorie de l'<b>avantage comparatif</b> : même un pays moins efficace dans toutes les productions a intérêt à échanger. Fondateur du <b>libre-échange</b>. Théorie de la valeur-travail."},
+  {k:"Jean-Baptiste Say",p:"Loi de Say : <b>toute offre crée sa propre demande</b>."},
+  {k:"John Stuart Mill",p:"Auteur de l'école classique libérale."}
  ]},
- {cls:"b-exe",ico:"📐",t:"Courant LIBERAL - ecole neoclassique",nodes:[
-  {k:"Leon Walras et Alfred Marshall",p:"Fondateurs de l'ecole neoclassique. La valeur depend de l'<b>utilite</b> et de la <b>rarete</b>. Theoreme <b>HOS</b> (egalisation des prix des facteurs)."},
-  {k:"Hayek",p:"Grand nom neoclassique du 20e s. Partisan du marche contre l'intervention de l'Etat."},
-  {k:"Milton Friedman",p:"Ecole de Chicago, les <b>monetaristes</b>. La monnaie est neutre. La creation monetaire artificielle cree de l'inflation."}
+ {cls:"b-exe",ico:"📐",t:"Courant LIBÉRAL — école néoclassique",nodes:[
+  {k:"Léon Walras et Alfred Marshall",p:"Fondateurs de l'école néoclassique. La valeur dépend de l'<b>utilité</b> et de la <b>rareté</b>. Théorème <b>HOS</b> (égalisation des prix des facteurs)."},
+  {k:"Hayek",p:"Grand nom néoclassique du 20e s. Partisan du marché contre l'intervention de l'État."},
+  {k:"Milton Friedman",p:"École de Chicago, les <b>monétaristes</b>. La monnaie est neutre. La création monétaire artificielle crée de l'inflation. Théorie quantitative de la monnaie."}
  ]},
  {cls:"b-cen",ico:"⚒️",t:"Courant MARXISTE",nodes:[
-  {k:"Karl Marx",p:"<em>Le Capital</em> (milieu 19e). <b>Plus-value</b> (exploitation salariale), <b>baisse tendancielle du taux de profit</b>, <b>autodestruction du capitalisme</b>, <b>armee industrielle de reserve</b>. L'Etat sert la bourgeoisie."},
-  {k:"Lenine",p:"<b>Internationalisation du capital</b> : le capitalisme cherche des approvisionnements bon marche via un rapport <b>imperialiste</b>."},
-  {k:"Rosa Luxemburg",p:"Le capitalisme cherche des <b>debouches</b> dans les pays precapitalistes via un rapport de <b>domination imperialiste</b>."},
-  {k:"Arghiri Emmanuel",p:"<b>Echange inegal</b> : pays riches dans le technologique, pays pauvres dans le primaire → <b>degradation des termes de l'echange</b>."}
+  {k:"Karl Marx",p:"<em>Le Capital</em> (milieu 19e). <b>Plus-value</b> (exploitation salariale), <b>baisse tendancielle du taux de profit</b>, <b>autodestruction du capitalisme</b>, <b>armée industrielle de réserve</b>. L'État sert la bourgeoisie."},
+  {k:"Lénine",p:"<b>Internationalisation du capital</b> : le capitalisme cherche des approvisionnements bon marché via un rapport <b>impérialiste</b>."},
+  {k:"Rosa Luxemburg",p:"Le capitalisme cherche des <b>débouchés</b> dans les pays précapitalistes via un rapport de <b>domination impérialiste</b> qui exclut les concurrents."},
+  {k:"Arghiri Emmanuel",p:"<b>Échange inégal</b> : pays riches dans le technologique, pays pauvres dans le primaire → <b>dégradation des termes de l'échange</b> → spécialisation perverse."}
  ]},
- {cls:"b-loc",ico:"📘",t:"Courant KEYNESIEN",nodes:[
-  {k:"John Maynard Keynes",p:"<em>La Theorie generale</em>. Pas de vrai marche du travail ; <b>chomage involontaire</b> = anticipations pessimistes ; <b>multiplicateur d'investissement</b> (I → S) ; monnaie <b>non neutre</b> ; <b>role central de l'Etat</b> (3 missions, Policy mix). A inspire le New Deal, les 30 Glorieuses et la comptabilite nationale."}
+ {cls:"b-loc",ico:"📘",t:"Courant KEYNÉSIEN",nodes:[
+  {k:"John Maynard Keynes",p:"<em>La Théorie générale</em>. Pas de vrai marché du travail ; <b>chômage involontaire</b> = anticipations pessimistes ; <b>multiplicateur d'investissement</b> (I → S) ; monnaie <b>non neutre</b>, préférence pour la liquidité ; <b>rôle central de l'État</b> (redistribution verticale/horizontale, grands travaux, Policy mix). A inspiré le New Deal, les 30 Glorieuses et la comptabilité nationale."}
  ]},
  {cls:"b-key",ico:"👥",t:"Autres auteurs",nodes:[
-  {k:"Friedrich List",p:"Theorie des <b>industries naissantes</b> / protectionnisme educatif (transitoire)."},
+  {k:"Friedrich List",p:"Théorie des <b>industries naissantes</b> / protectionnisme éducatif (transitoire). Les avantages comparatifs se construisent via économies d'échelle et d'expérience."},
   {k:"Abraham Maslow",p:"La <b>pyramide des besoins</b> (5 niveaux)."},
-  {k:"Gossen",p:"Loi de l'<b>utilite marginale decroissante</b>."},
-  {k:"Schumpeter",p:"L'<b>innovation</b> et la destruction creatrice. A la base des cycles longs de Kondratiev."},
+  {k:"Gossen",p:"Loi de l'<b>utilité marginale décroissante</b>."},
+  {k:"Schumpeter",p:"L'<b>innovation</b> et la destruction créatrice. À la base des cycles longs de Kondratiev."},
   {k:"Kitchin / Juglar / Kondratiev",p:"Les trois types de <b>cycles</b> : court ~2,5 ans (stocks) / moyen 6-10 ans (demande) / long 30-50 ans (innovations)."},
-  {k:"Rostow",p:"Les <b>5 etapes du developpement</b> (1960)."},
-  {k:"Paul Bairoch et Paul Krugman",p:"Absence de correlation entre <b>ouverture</b> commerciale et <b>developpement</b>."}
+  {k:"Rostow",p:"Les <b>5 étapes du développement</b> (1960)."},
+  {k:"Alfred Sauvy",p:"Le <b>phénomène du déversement</b> : la croissance déplace les emplois d'un secteur vers un autre (agriculture → industrie → services)."},
+  {k:"Paul Bairoch et Paul Krugman",p:"Absence de corrélation entre <b>ouverture</b> commerciale et <b>développement</b>."}
+ ]}
+]},
+eC:{yr:"Boîte à outils",titre:"Les mécanismes-clés",tag:"8 concepts qui traversent tout le cours et méritent leur propre espace.",branches:[
+ {cls:"b-pol",ico:"🔄",t:"1. Le multiplicateur keynésien",nodes:[
+  {k:"Schéma complet",p:"(1) État investit <b>100</b> → (2) revenus distribués : 100 → (3) partagés : 80 conso + 20 épargne → (4) la conso (80) déclenche nouveaux investissements → revenus 80 → (5) partagés : 64 conso + 16 épargne → ... → processus s'arrête quand la somme est négligeable."},
+  {k:"La conclusion",p:"La somme de toute l'épargne cumulée = l'investissement de départ (100). Formule : <b>I → S</b>. C'est l'investissement qui crée l'épargne. À l'inverse des libéraux (S → I)."}
+ ]},
+ {cls:"b-exe",ico:"💨",t:"2. La spirale inflationniste",nodes:[
+  {k:"Le mécanisme",p:"Prix ↑ → salaires ↑ (pour maintenir le pouvoir d'achat) → coûts de production ↑ → prix ↑ → salaires ↑ → ... Sans rupture du mécanisme, la spirale <b>s'auto-entretient indéfiniment</b>."},
+  {k:"Comment en sortir",p:"La France en est sortie en 1983 par la <b>suppression de l'indexation des salaires sur les prix</b> + politique de rigueur monétaire."}
+ ]},
+ {cls:"b-cen",ico:"💴",t:"3. La théorie quantitative de la monnaie",nodes:[
+  {k:"Le principe",p:"Si la quantité de monnaie augmente plus vite que la richesse réellement produite → les prix montent. La monnaie supplémentaire ne crée pas de richesse, elle <b>dilue</b> la valeur de la monnaie existante."},
+  {k:"La conséquence",p:"Injecter de la monnaie sans croissance réelle → <b>inflation</b>. C'est l'argument libéral contre la création monétaire artificielle."}
+ ]},
+ {cls:"b-loc",ico:"⬛",t:"4. Le carré magique",nodes:[
+  {k:"Les 4 objectifs",p:"(1) Maîtrise de l'<b>inflation</b>. (2) Équilibre des <b>finances publiques</b>. (3) Équilibre des <b>échanges extérieurs</b>. (4) Maintien du <b>taux de change</b>."},
+  {k:"La difficulté",p:"On cherche à atteindre les 4 <b>simultanément</b> — ce qui est difficile car ils sont parfois en tension. Résultat en France : début des 90's, 3/4 atteints — seul l'équilibre budgétaire échoue."}
+ ]},
+ {cls:"b-arm",ico:"📊",t:"5. Le partage de la valeur ajoutée",nodes:[
+  {k:"Le fil rouge du chapitre 2",p:"La part des salaires dans la VA détermine les dynamiques de chaque période : <b>Début 70's : 60%</b> pour les salaires. <b>Début 83 : 66%</b> (trop élevé → manque de rentabilité). <b>1993 : 56%</b> (rigueur → demande insuffisante). <b>Aujourd'hui : 58%</b> stable mais profits captés par les dividendes."}
+ ]},
+ {cls:"b-pol",ico:"🔁",t:"6. Le stabilisateur automatique",nodes:[
+  {k:"Mécanisme",p:"Joue <b>automatiquement, sans décision politique</b> : en crise, les recettes fiscales baissent automatiquement + les dépenses sociales augmentent automatiquement → soutient l'économie. En reprise : l'inverse se produit automatiquement → évite la surchauffe."},
+  {k:"L'enjeu keynésien vs libéral",p:"<b>Keynésiens</b> : c'est un mécanisme salutaire (le déficit est normal en crise). <b>Libéraux</b> : tout déficit est dangereux, même automatique."}
+ ]},
+ {cls:"b-exe",ico:"🔀",t:"7. Les termes de l'échange",nodes:[
+  {k:"Définition",p:"Relation réciproque entre 2 pays — on regarde l'<b>évolution relative du prix du bien exporté</b> par rapport au prix du bien importé. Si les prix de mes exportations augmentent moins vite que les prix de mes importations → mes termes de l'échange se dégradent → je dois exporter <b>plus</b> pour importer autant."},
+  {k:"Application",p:"Concept clé pour comprendre l'échange inégal d'Emmanuel : les pays pauvres spécialisés dans le primaire voient leurs termes de l'échange se dégrader structurellement."}
+ ]},
+ {cls:"b-cen",ico:"📏",t:"8. Le taux d'ouverture",nodes:[
+  {k:"Formule",p:"<b>(X + M) / PIB × 100</b>. Mesure l'importance du commerce international dans l'économie."},
+  {k:"Le paradoxe",p:"Les pays avec le taux d'ouverture le plus <b>faible</b> sont souvent les pays les plus <b>riches</b> (dont l'économie est dominée par le marché intérieur). Les pays émergents ont un taux élevé."}
+ ]}
+]},
+eD:{yr:"Synthèse",titre:"Le grand débat",tag:"Ce que le cours formule implicitement : faut-il laisser faire ou intervenir ?",branches:[
+ {cls:"b-pol",ico:"⚖️",t:"La question fondatrice du cours",nodes:[
+  {k:"Le fil conducteur",p:"Tout le cours tourne autour d'une seule question : <b>faut-il laisser faire les marchés ou intervenir ?</b> Chaque chapitre en est une illustration différente."},
+  {k:"Le présupposé commun",p:"Les 3 courants partagent le même point de départ : tous les acteurs sont motivés par leur intérêt personnel. Ils divergent sur la <b>réponse à apporter</b>."}
+ ]},
+ {cls:"b-exe",ico:"🗣️",t:"Les 3 réponses",nodes:[
+  {k:"Libéraux — oui, laisser faire",p:"Les marchés s'autorégulent (main invisible). Toute intervention est nuisible. L'équilibre émerge spontanément. L'État doit s'effacer."},
+  {k:"Marxistes — non, le capitalisme se détruit",p:"Le capitalisme ne peut pas s'autoréguler car sa logique interne (plus-value, concurrence) le conduit inéluctablement à sa propre destruction. Le laisser faire, c'est accepter sa logique destructrice."},
+  {k:"Keynésiens — non, mais le capitalisme peut être sauvé",p:"Les marchés ne s'autorégulent pas spontanément → chômage involontaire, instabilité. Mais le capitalisme est un bon système s'il est régulé par l'État. Le profit est légitime, l'État est le correcteur des défaillances."}
+ ]},
+ {cls:"b-cen",ico:"📅",t:"Illustration 1 — L'histoire économique française (Chap. 2)",nodes:[
+  {k:"Le va-et-vient historique",p:"L'histoire éco française depuis 1974 est l'histoire de cette tension : périodes keynésiennes (1975, 1981-83) → virage libéral (1983) → maintenu jusqu'à aujourd'hui avec des parenthèses (Jospin 1997-2002, crise 2008-09)."},
+  {k:"Un laboratoire réel",p:"Chaque période est un test : quand les libéraux dominent, on réduit l'État. Quand les crises éclatent (2008), on injecte massivement. Personne ne va jamais jusqu'au bout de ses principes."}
+ ]},
+ {cls:"b-loc",ico:"🌐",t:"Illustration 2 — Le commerce international (Chap. 3)",nodes:[
+  {k:"Le même débat, appliqué aux échanges",p:"<b>Libre-échange</b> = laisser faire les marchés internationaux. <b>Protectionnisme</b> = intervenir pour protéger l'économie nationale. Le débat est identique, mais à l'échelle internationale."},
+  {k:"La réalité",p:"Même les pays qui prônent le libre-échange pratiquent des formes de protectionnisme (subventions agricoles UE/USA, droits de douane ciblés). Et les pays qui se protègent ouvrent progressivement. Là aussi, personne ne va au bout de ses principes."}
+ ]}
+]},
+eE:{yr:"Contexte",titre:"Le modèle fordiste",tag:"Le terme 'fin du modèle fordiste' est mentionné dans le cours. Voici ce qu'il signifie.",branches:[
+ {cls:"b-pol",ico:"🏭",t:"Qu'est-ce que le fordisme ?",nodes:[
+  {k:"Définition",p:"Modèle économique et social des <b>30 Glorieuses (1945-1975)</b> : production de masse standardisée (chaîne de montage), salaires élevés (les ouvriers doivent pouvoir acheter ce qu'ils produisent), État-providence fort (redistribution), croissance forte et régulière."},
+  {k:"Le nom",p:"Vient de <b>Henry Ford</b>, fondateur de Ford Motor Company — premier à appliquer ce modèle à grande échelle dans les années 1910-1920."}
+ ]},
+ {cls:"b-exe",ico:"♻️",t:"Pourquoi ça marche ?",nodes:[
+  {k:"Le cercle vertueux",p:"Production de masse → <b>économies d'échelle</b> → prix bas → accessibles aux ouvriers bien payés → forte demande → production de masse → ... Le système s'alimente lui-même."},
+  {k:"La clé de voûte",p:"Les ouvriers sont à la fois <b>producteurs ET consommateurs</b>. Henry Ford le formulait ainsi : 'mes ouvriers doivent pouvoir acheter ma voiture'. Si les salaires sont trop bas, personne n'achète → la production s'effondre."}
+ ]},
+ {cls:"b-cen",ico:"💥",t:"Pourquoi ça s'arrête ?",nodes:[
+  {k:"La crise de 1974 (chocs pétroliers)",p:"La hausse du prix de l'énergie brise le cercle vertueux : les coûts de production explosent, les prix ne peuvent plus rester bas, la demande baisse."},
+  {k:"La concurrence internationale",p:"L'émergence des pays à bas salaires (Asie du Sud-Est) remet en cause le modèle : impossible de maintenir des salaires élevés face à des concurrents payant 10x moins."},
+  {k:"Les rigidités deviennent un handicap",p:"L'indexation des salaires, le salaire minimum, la force syndicale — qui étaient des stabilisateurs — deviennent des obstacles à l'adaptation face à la concurrence internationale."}
+ ]},
+ {cls:"b-loc",ico:"🔀",t:"L'après-fordisme",nodes:[
+  {k:"Le passage au modèle libéral",p:"Après 1983 en France : passage à un modèle plus flexible, fondé sur la concurrence internationale. Les salaires ne sont plus indexés. La protection de l'emploi se réduit. L'État se retire."},
+  {k:"Le coût social",p:"Le modèle libéral est plus compétitif mais <b>moins protecteur</b>. Il crée des gains de compétitivité mais aussi du chômage, des inégalités, et une instabilité accrue. C'est le dilemme central du chapitre 2."}
  ]}
 ]}
 };
@@ -885,6 +1018,7 @@ function renderGpeTableau(){
 
 Object.keys(GPE).forEach(id=>renderRegime(id,GPE));
 renderGpeTableau();
+['eC','eD','eE'].forEach(id=>renderRegime(id,GPE));
 
 document.querySelectorAll('nav').forEach(nav=>{
   nav.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
