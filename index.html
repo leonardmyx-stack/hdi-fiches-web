@@ -133,6 +133,11 @@
   .train-answer.show{max-height:500px;border-left-color:var(--gold);}
   .train-answer .label{user-select:none;}
   .train-answer p{font-size:.95rem;line-height:1.6;margin:0;color:var(--ink);}
+  /* SUBJECT SWITCHER */
+  .subj-bar{background:var(--ink);display:flex;justify-content:center;gap:6px;padding:8px 12px;}
+  .subj-btn{font-family:'Fraunces',serif;font-weight:700;color:rgba(255,255,255,.45);background:none;border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:8px 22px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px;transition:all .2s;line-height:1.2;}
+  .subj-btn .subj-label{font-size:.68rem;font-weight:400;opacity:.65;}
+  .subj-btn.active{background:rgba(255,255,255,.14);color:var(--parch);border-color:rgba(255,255,255,.3);}
   @media(min-width:620px){h1{font-size:2.5rem;}.reg-banner h2{font-size:1.8rem;}}
 </style>
 </head>
@@ -145,7 +150,12 @@
   <div class="credit">✦ Fiche de révision faite pour toi ✦</div>
 </header>
 
-<nav id="nav">
+<div class="subj-bar">
+  <button class="subj-btn active" data-s="hdi">📜 HDI<span class="subj-label">Histoire des Institutions</span></button>
+  <button class="subj-btn" data-s="gpe">📊 GPE<span class="subj-label">Grands Problèmes Éco.</span></button>
+</div>
+
+<nav id="nav-hdi">
   <button class="tab active" data-v="recit">📜 Le Récit<span class="yr">toute l'histoire</span></button>
   <button class="tab" data-v="r1">Mérovingiens<span class="yr">481–751</span></button>
   <button class="tab" data-v="r2">Carolingiens<span class="yr">751–987</span></button>
@@ -156,6 +166,20 @@
   <button class="tab" data-v="r7">Monarchie absolue<span class="yr">1661–1789</span></button>
   <button class="tab" data-v="quiz">🎯 Quizz<span class="yr">révision</span></button>
   <button class="tab" data-v="train">✍️ Entraînement<span class="yr">rédaction</span></button>
+</nav>
+
+<nav id="nav-gpe" style="display:none">
+  <button class="tab active" data-v="e1">Introduction<span class="yr">les questions</span></button>
+  <button class="tab" data-v="e2">Courant libéral<span class="yr">Chap. 1</span></button>
+  <button class="tab" data-v="e3">Courant marxiste<span class="yr">Chap. 1</span></button>
+  <button class="tab" data-v="e4">Courant keynésien<span class="yr">Chap. 1</span></button>
+  <button class="tab" data-v="e5">Panorama : crise<span class="yr">Chap. 2</span></button>
+  <button class="tab" data-v="e6">Panorama : croissance<span class="yr">Chap. 2</span></button>
+  <button class="tab" data-v="e7">Panorama : libéralisation<span class="yr">Chap. 2</span></button>
+  <button class="tab" data-v="e8">International : commerce<span class="yr">Chap. 3</span></button>
+  <button class="tab" data-v="e9">International : développement<span class="yr">Chap. 3</span></button>
+  <button class="tab" data-v="eA">Auteurs et courants<span class="yr">spécial</span></button>
+  <button class="tab" data-v="eB">Tableau des courants<span class="yr">récap</span></button>
 </nav>
 
 <main>
@@ -245,6 +269,18 @@
 
 <section class="view" id="quiz"></section>
 <section class="view" id="train"></section>
+
+<section class="view" id="e1"></section>
+<section class="view" id="e2"></section>
+<section class="view" id="e3"></section>
+<section class="view" id="e4"></section>
+<section class="view" id="e5"></section>
+<section class="view" id="e6"></section>
+<section class="view" id="e7"></section>
+<section class="view" id="e8"></section>
+<section class="view" id="e9"></section>
+<section class="view" id="eA"></section>
+<section class="view" id="eB"></section>
 
 </main>
 
@@ -571,8 +607,8 @@ const REGIMES = {
   ]}
 };
 
-function renderRegime(id){
-  const r=REGIMES[id]; if(!r) return;
+function renderRegime(id,data){
+  const r=(data||REGIMES)[id]; if(!r) return;
   let html=`<div class="reg-banner"><div class="yr">${r.yr}</div><h2>${r.titre}</h2><div class="tag">${r.tag}</div></div>`;
   html+=`<div class="ctrl"><button data-act="all" data-id="${id}">Tout déplier</button><button data-act="none" data-id="${id}">Tout replier</button></div>`;
   html+=`<div class="hint">↓ touche chaque branche pour la déplier</div><div class="mind">`;
@@ -586,20 +622,303 @@ function renderRegime(id){
   html+=`</div><div class="footer">Régime suivant en haut de l'écran →</div>`;
   document.getElementById(id).innerHTML=html;
 }
-Object.keys(REGIMES).forEach(renderRegime);
+Object.keys(REGIMES).forEach(id=>renderRegime(id,REGIMES));
 
-const tabs=document.querySelectorAll('.tab');
-const views=document.querySelectorAll('.view');
-tabs.forEach(t=>t.addEventListener('click',()=>{
-  tabs.forEach(x=>x.classList.remove('active'));
-  views.forEach(v=>v.classList.remove('active'));
-  t.classList.add('active');
-  const vid=t.dataset.v;
-  document.getElementById(vid).classList.add('active');
-  if(vid==='quiz') renderQuiz();
-  if(vid==='train') renderTrain();
-  window.scrollTo({top:0,behavior:'smooth'});
-}));
+// ============ GPE DATA ============
+const GPE={
+e1:{yr:"Introduction",titre:"Au depart : les questions economiques",tag:"L'eco est une science sociale. Deux grandes questions structurent toute la reflexion des economistes.",branches:[
+ {cls:"b-pol",ico:"🧭",t:"Les 3 branches de la science economique",nodes:[
+  {k:"L'economie descriptive",p:"Analyse du systeme eco tel qu'il est, sans jugement. Mesure des phenomenes par des indicateurs (ex : le taux de chomage). En apparence neutre, mais debat sur la <b>definition des indicateurs</b>."},
+  {k:"L'economie politique",p:"Interpretation des phenomenes eco : comprendre et determiner leur origine et leurs causes. Les outils sont les <b>theories economiques</b>, qui sont des grilles de lecture des phenomenes."},
+  {k:"La politique economique",p:"L'action publique dans le domaine eco. Pas seulement l'Etat, mais aussi les acteurs infranationaux et supranationaux. Les economistes jouent le role de conseillers du prince."},
+  {k:"Macro / micro",p:"Le niveau <b>macro</b> = analyse du systeme eco dans son ensemble. Le niveau <b>micro</b> = analyse au niveau de l'acteur. On se place en micro ou en macro suivant l'acteur considere (entreprise, menage, administration)."}
+ ]},
+ {cls:"b-exe",ico:"🎯",t:"Q1 - Les objectifs economiques d'une societe moderne",nodes:[
+  {k:"Une societe moderne",p:"Societe ou chacun produit plus que ce qui est necessaire a sa propre consommation : il y a un <b>surplus</b>, qui conduit a la specialisation et au developpement des echanges."},
+  {k:"L'objectif central",p:"L'objectif eco d'une societe moderne est la <b>satisfaction des besoins de la population</b>. Toutes les questions eco prennent en compte cette problematique."},
+  {k:"Qu'est-ce qu'un besoin ?",p:"La definition d'un besoin est une <b>convention</b> : un debat dans une societe donnee qui doit deboucher sur un consensus."},
+  {k:"Exemple : la Securite sociale",p:"Vision minimaliste : la SS donne un filet de securite minimal. Autre ecole : la SS doit permettre a celui qui a un accident social de garder le meme niveau de revenu qu'avant."}
+ ]},
+ {cls:"b-cen",ico:"🪜",t:"La pyramide des besoins (Maslow)",nodes:[
+  {k:"5 niveaux, par ordre d'urgence",p:"(1) <b>besoins physiologiques</b> ; (2) <b>besoins de securite</b> ; (3) <b>besoins d'appartenance</b> ; (4) <b>besoins d'estime</b> ; (5) <b>besoins de realisation</b>."},
+  {k:"Usages de la grille",p:"Analyses historiques, comparatives, et analyse des actes economiques. Ex : le <b>travail</b> satisfait un besoin d'appartenance."}
+ ]},
+ {cls:"b-loc",ico:"⚙️",t:"Comment satisfaire les besoins",nodes:[
+  {k:"Produire et faire circuler",p:"Il faut <b>produire</b> des biens et services, mais aussi <b>echanger</b>. Questions : motivations, profit, debouches, ressources disponibles ?"},
+  {k:"Les facteurs de production",p:"(1) Le <b>travail</b> ; (2) le <b>capital</b> (argent + facteurs techniques) ; (3) les <b>ressources naturelles</b> (terre, eau, sous-sol, air)."},
+  {k:"La circulation et la repartition",p:"Concerne le commerce, la monnaie, et les revenus necessaires pour acceder aux biens. Pose le probleme de la <b>repartition des revenus</b>."}
+ ]},
+ {cls:"b-key",ico:"⚖️",t:"Q2 - Interet personnel vs interet de la societe (les 3 courants)",nodes:[
+  {k:"Le presuppose",p:"Ce qui motive l'individu, c'est son <b>interet personnel</b>. La reponse a cette question fonde les principaux courants."},
+  {k:"Reponse liberale (positive)",p:"<b>Adam Smith</b> : en agissant selon son interet personnel, l'individu satisfait l'interet general → le <b>laisser-faire</b>. Le marche coordonne les actions ; l'interet general = l'<b>equilibre</b>."},
+  {k:"Reponse marxiste (negative)",p:"<b>Marx</b> : les individus ne naissent pas egaux. Si on laisse faire, les plus favorises exploitent les moins favorises. → <b>lutte des classes</b>, remettre en cause la propriete privee des moyens de production."},
+  {k:"Reponse keynesienne",p:"<b>Keynes</b> reprend la critique de Marx MAIS le <b>profit est legitime</b>. Il faut <b>reguler</b> le capitalisme. Qui regule ? L'<b>Etat</b>."}
+ ]}
+]},
+e2:{yr:"Chap. 1",titre:"Le courant liberal",tag:"Deux ecoles (classique et neoclassique) unies par une confiance totale dans les marches.",branches:[
+ {cls:"b-pol",ico:"🏫",t:"Les deux ecoles liberales",nodes:[
+  {k:"L'ecole classique",p:"Fin 17e s. a moitie 19e s. : <b>Adam Smith</b> (main invisible), <b>David Ricardo</b>, <b>Jean-Baptiste Say</b> (francais), <b>John Stuart Mill</b>."},
+  {k:"L'ecole neoclassique",p:"2nde moitie 19e s. jusqu'a aujourd'hui. Fondateurs : <b>Leon Walras</b>, <b>Alfred Marshall</b>. Au 20e s. : <b>Hayek</b> et l'ecole de Chicago avec <b>Friedman</b>."},
+  {k:"Point commun",p:"<b>Confiance totale dans les marches</b>. Desaccords sur la valeur et les prix."}
+ ]},
+ {cls:"b-exe",ico:"💰",t:"La valeur et les prix",nodes:[
+  {k:"Classiques (valeur-travail)",p:"La <b>valeur d'echange</b> depend de la quantite de travail necessaire a la fabrication. Le prix se forme a partir de la valeur, module par l'offre et la demande."},
+  {k:"Neoclassiques (utilite + rarete)",p:"La valeur depend de l'<b>utilite</b> et de la <b>rarete</b>. Pour eux, le <b>prix se confond avec la valeur</b>."},
+  {k:"Loi de Gossen",p:"Un individu dans le desert confere une utilite enormeau 1er verre d'eau, puis cette utilite diminue → <b>utilite marginale decroissante</b>."}
+ ]},
+ {cls:"b-cen",ico:"📉",t:"Le chomage",nodes:[
+  {k:"Le marche du travail",p:"Rencontre entre l'offre (travailleurs) et la demande (entreprises) → <b>equilibre</b> au <b>salaire d'equilibre</b>. Tous ceux qui veulent travailler a ce salaire trouvent un emploi."},
+  {k:"Chomage volontaire",p:"Personnes qui n'acceptent pas le salaire d'equilibre. Les neoclassiques veulent <b>supprimer les salaires sociaux</b> (lutte contre l'assistanat)."},
+  {k:"Chomage de masse",p:"Cause : les <b>rigidites</b> (ex : salaire minimum). Solution : <b>restaurer le marche</b> sans contraintes → salaires baissent → plus de chomage de masse."}
+ ]},
+ {cls:"b-loc",ico:"🌍",t:"L'echange international",nodes:[
+  {k:"Smith - avantage absolu",p:"Si A est plus efficace pour le bien 1 et B pour le bien 2 : specialisation mutuelle gagnante. Si un pays est moins efficace dans les deux : selon Smith, autarcie."},
+  {k:"Ricardo - avantage comparatif",p:"Meme dans le cas de l'autarcie, les deux pays ont interet a echanger. Condition : se specialiser dans le bien ou l'on a le <b>plus fort avantage comparatif</b> (ou le moindre desavantage)."},
+  {k:"Theoreme HOS",p:"Si les pays respectent l'avantage comparatif → <b>egalisation des prix des facteurs de production</b> partout dans le monde."}
+ ]},
+ {cls:"b-arm",ico:"🏦",t:"Epargne, investissement et monnaie",nodes:[
+  {k:"L'epargne cree l'investissement (S → I)",p:"Pour les liberaux, c'est l'<b>epargne qui cree l'investissement</b>. Tout investissement doit avoir au prealable une epargne."},
+  {k:"La monnaie - un voile neutre",p:"La monnaie est un <b>voile neutre</b> : un simple outil. Creer de la monnaie artificiellement creerait de l'<b>inflation</b> sans relancer l'economie."}
+ ]},
+ {cls:"b-key",ico:"🏛️",t:"Le role de l'Etat",nodes:[
+  {k:"Contre l'intervention",p:"La <b>main invisible</b> permet l'equilibre ; une intervention de l'Etat est une main visible, nuisible a l'eco."},
+  {k:"Les exceptions",p:"Certains liberaux acceptent des cas d'intervention, mais partent toujours de l'idee que l'Etat <b>n'intervient pas</b> par defaut."}
+ ]}
+]},
+e3:{yr:"Chap. 1",titre:"Le courant marxiste",tag:"Reference : Le Capital de Marx. Un courant d'analyse et de critique, peu de mise en pratique.",branches:[
+ {cls:"b-pol",ico:"📕",t:"Presentation",nodes:[
+  {k:"Un courant critique",p:"La grande reference est <b>Le Capital</b> de Marx. Ce courant est reste un courant d'analyse et de critique. Aujourd'hui, peu d'economistes marxistes."},
+  {k:"La valeur et le prix",p:"Marx <b>adhere a la theorie de Ricardo</b> : la valeur varie selon les couts de production (valeur-travail)."}
+ ]},
+ {cls:"b-exe",ico:"⛓️",t:"Le capitalisme et la plus-value",nodes:[
+  {k:"Le mecanisme de la plus-value",p:"Le salaire est fixe selon les <b>besoins de subsistance</b> du travailleur. Quand le salarie produit une valeur superieure au salaire verse, cet excedent appartient au capitaliste : c'est la <b>plus-value</b>."},
+  {k:"Reinvestissement",p:"Ce profit est reinvesti pour refaire du profit → le capitalisme se perpetue."}
+ ]},
+ {cls:"b-cen",ico:"💥",t:"Baisse tendancielle du taux de profit et autodestruction",nodes:[
+  {k:"Le renforcement de la concurrence",p:"Le profit attire plus de producteurs → concurrence. Pour lutter : (1) <b>faire baisser les salaires</b> ; (2) <b>mecaniser</b> (substitution du capital au travail)."},
+  {k:"Les deux problemes",p:"(1) <b>Sous-consommation</b> : baisse des salaires → baisse de la demande. (2) Le travail a de moins en moins d'importance, <b>or c'est le travail qui est source de la plus-value</b>."},
+  {k:"L'autodestruction",p:"Crises de <b>sous-consommation et de surproduction</b> de plus en plus graves → l'<b>autodestruction du capitalisme</b>."}
+ ]},
+ {cls:"b-loc",ico:"👷",t:"Le chomage",nodes:[
+  {k:"L'armee industrielle de reserve",p:"La mecanisation cree du chomage. Marx appelle cela l'<b>armee industrielle de reserve</b> : rappelee hors des crises, elle retourne au chomage en periode de crise. Cette armee grossit → chomage durable croissant."}
+ ]},
+ {cls:"b-arm",ico:"🌐",t:"L'echange international",nodes:[
+  {k:"Lenine",p:"Le capitalisme sort de son pays pour trouver des approvisionnements <b>moins chers</b> dans les pays precapitalistes → rapport <b>imperialiste</b> (fixation des prix, des quantites) → imperialisme, colonisation, guerre."},
+  {k:"Rosa Luxemburg",p:"Le capitalisme cherche des <b>debouches</b> a l'etranger. Il doit y creer le salariat pour rendre la population solvable → rapport de <b>domination imperialiste</b>."}
+ ]},
+ {cls:"b-key",ico:"🏛️",t:"Le role de l'Etat",nodes:[
+  {k:"Une institution bourgeoise",p:"Marx est tres reticent envers l'Etat : c'est une institution du capitalisme, au service de la <b>classe bourgeoise</b>. La societe ideale = societe de <b>petits producteurs independants</b>."}
+ ]}
+]},
+e4:{yr:"Chap. 1",titre:"Le courant keynesien",tag:"Keynes : La Theorie generale. A inspire le New Deal et les 30 Glorieuses.",branches:[
+ {cls:"b-pol",ico:"📘",t:"Presentation",nodes:[
+  {k:"L'auteur et l'influence",p:"<b>Keynes</b>, auteur de <em>La Theorie generale de l'emploi, de l'interet et de la monnaie</em>. Le <b>New Deal</b> est inspire par ses etudes. Les idees keynesiennes ont inspire les <b>30 Glorieuses</b>. A la base de la <b>comptabilite nationale</b> (PIB, etc.)."}
+ ]},
+ {cls:"b-exe",ico:"📉",t:"Le chomage",nodes:[
+  {k:"Pas de vrai marche du travail",p:"Keynes observe qu'aux Etats-Unis, malgre la baisse des salaires depuis la crise, le chomage augmente. L'offre et la demande de travail ne se confrontent pas directement."},
+  {k:"Les entreprises decident",p:"Ce sont les <b>demandeurs de la force de travail</b> qui decident de la quantite de travail et du salaire. Les offreurs n'ont pas de pouvoir → pas d'equilibre possible."},
+  {k:"Le chomage involontaire",p:"Cause : les entreprises utilisent <b>peu de travail</b> parce qu'elles font des <b>anticipations pessimistes</b> sur leurs debouches → elles produisent peu."},
+  {k:"La solution - soutenir la demande",p:"Distribuer des revenus, baisser les impots sur le revenu, <b>politique des grands travaux</b> ; cote entreprises, <b>baisser les taux d'interet</b>."}
+ ]},
+ {cls:"b-cen",ico:"🔄",t:"Epargne et investissement - le multiplicateur",nodes:[
+  {k:"L'investissement amene l'epargne (I → S)",p:"Pour Keynes, c'est l'<b>investissement qui amene l'epargne</b> (inverse des liberaux)."},
+  {k:"Le multiplicateur d'investissement",p:"Tout supplement d'investissement entraine un supplement d'activite → supplement de <b>revenu</b> → se partage entre consommation et epargne → la consommation suscite de nouveaux investissements, etc."},
+  {k:"Le bouclage",p:"Tout le supplement d'epargne cumule est egal a l'investissement de depart. L'Etat peut se substituer si le secteur prive n'investit pas."}
+ ]},
+ {cls:"b-loc",ico:"💵",t:"La monnaie",nodes:[
+  {k:"La monnaie n'est pas neutre",p:"Keynes s'oppose aux liberaux. En crise, il existe une <b>preference pour la liquidite</b> : les menages mettent de l'argent de cote par peur de l'avenir."},
+  {k:"La monnaie sterile",p:"Cette monnaie n'est pas disponible pour l'activite eco. En grave crise → manque de monnaie. Il faut creer un <b>climat de confiance</b> et defavoriser l'epargne sterile."}
+ ]},
+ {cls:"b-key",ico:"🏛️",t:"Le role de l'Etat",nodes:[
+  {k:"Trois missions en periode de crise",p:"(1) <b>Redistribution</b> des revenus (verticale et horizontale) ; (2) <b>production et investissement</b> public (grands travaux) ; (3) <b>encadrement des marches</b> et incitation."},
+  {k:"Le Policy mix",p:"Combinaison de deux leviers : la <b>politique budgetaire</b> (prelevements, budget) et la <b>politique monetaire</b> (monnaie, taux d'interet)."}
+ ]}
+]},
+e5:{yr:"Chap. 2 §1",titre:"Panorama : les indicateurs de la crise",tag:"Economie descriptive de la France depuis les 70's. Quatre indicateurs : inflation, chomage, echanges exterieurs, finances publiques.",branches:[
+ {cls:"b-pol",ico:"📈",t:"L'inflation",nodes:[
+  {k:"Definition et categories",p:"L'inflation = la <b>hausse des prix a la consommation</b>. Categories : 1 chiffre = <b>rampante</b> ; 2 chiffres = <b>galopante</b> ; plus de 2 chiffres = <b>hyperinflation</b>."},
+  {k:"1re periode (milieu 60's → 1983) - forte inflation",p:"Inflation galopante. Cinq facteurs : <b>inflation par la demande</b>, <b>inflation importee</b> (chocs petroliers 1973-74 et 1979), <b>inflation par les couts</b> (indexation des salaires sur les prix → spirale), <b>inflation par anticipation</b>, <b>politique monetaire keynesienne</b> inefficace."},
+  {k:"2e periode (apres 1983) - desinflation",p:"<b>Desinflation</b> rapide puis maintien d'une inflation tres faible. Facteurs : contre-choc petrolier, concurrence internationale, <b>politique de desinflation competitive</b> (suppression de l'indexation des salaires, politique de rigueur)."}
+ ],dates:["Chocs petroliers : 1973 et 1979","Desinflation : apres 1983","Deflation auj. ~1,1%"]},
+ {cls:"b-exe",ico:"📉",t:"Le chomage",nodes:[
+  {k:"L'evolution",p:"Avant 1974 : faible. 1974-86 : hausse de 3,8% a 9%. 1990-97 : progression rapide a 10,9%. Depuis 2007 : reprise de la progression (~11%)."},
+  {k:"Les caracteristiques francaises",p:"Touches : jeunes, femmes, seniors, non-qualifies. Depuis les 90's : <b>chomage des cadres</b>. France se distingue par le <b>chomage de longue duree</b> (40% des chomeurs depuis plus d'1 an)."}
+ ],dates:["Avant 1974 faible","1974-86 : 3,8% → 9%","1990-97 : → 10,9%","Auj. ~11%","40% de longue duree"]},
+ {cls:"b-cen",ico:"🚢",t:"Les echanges exterieurs",nodes:[
+  {k:"1974-1991 - deficit",p:"Produits francais pas assez competitifs (<b>prix</b> et <b>hors-prix</b>). Les relances keynesiennes profitent aux importations."},
+  {k:"1991-2004 - excedents",p:"Competitivite francaise s'ameliore. Stagnation eco 1991-97, demande interieure peu dynamique."},
+  {k:"Apres 2004 - retour du deficit",p:"Consommation favorable aux importations ; <b>euro s'appecie face au dollar</b> ; concurrence-prix de la Chine ; politique allemande limite ses importations."}
+ ],dates:["1974-1991 deficit","1991-2004 excedents","Apres 2004 deficit","Fin 2012 : -45 Mrd euros"]},
+ {cls:"b-loc",ico:"🏦",t:"Les finances publiques",nodes:[
+  {k:"Definitions",p:"Trois acteurs : <b>Etat</b>, <b>collectivites territoriales</b>, <b>administrations de securite sociale</b>. Solde negatif = <b>deficit public</b>."},
+  {k:"Le debat keynesiens / liberaux",p:"<b>Keynesiens</b> : deficit = <b>stabilisateur automatique</b> (normal en crise). <b>Liberaux</b> : tout deficit est dangereux."},
+  {k:"Maastricht (1992)",p:"Impose : deficit inferieur ou egal a <b>3% du PIB</b> et dette publique inferieure ou egal a <b>60% du PIB</b>."}
+ ],dates:["Exced. jusqu'en 1974","Jamais excedent depuis 1975","Maastricht : 3% / 60%","Dette 2010 : 82%"]}
+]},
+e6:{yr:"Chap. 2 §2",titre:"Panorama : une croissance ralentie",tag:"PIB, cycles de croissance, productivite, demande interieure.",branches:[
+ {cls:"b-pol",ico:"📊",t:"PIB et croissance",nodes:[
+  {k:"PIB et taux de croissance",p:"Le <b>PIB</b> (Produit Interieur Brut) mesure la creation de richesse. Le <b>taux de croissance</b> est le taux de variation du PIB d'une annee sur l'autre."},
+  {k:"Vocabulaire des crises",p:"<b>Stagnation</b> : taux proche de 0. <b>Recession</b> : court terme, taux negatif. <b>Depression</b> : moyen/long terme, nombreuses recessions."}
+ ]},
+ {cls:"b-exe",ico:"🔁",t:"Les cycles de croissance",nodes:[
+  {k:"Cycle court (Kitchin)",p:"~2,5 ans, lie au <b>mouvement des stocks</b>."},
+  {k:"Cycle moyen (Juglar)",p:"6 a 10 ans, lie a l'<b>evolution de la demande</b>."},
+  {k:"Cycle long (Kondratiev)",p:"30 a 50 ans, rythme par les <b>innovations</b> (phenomene de Schumpeter)."}
+ ]},
+ {cls:"b-cen",ico:"🧮",t:"Le calcul du PIB",nodes:[
+  {k:"Par la production",p:"<b>PIB = somme des VA + TVA + droits de douane</b>. <b>VA = production - consommation intermediaire</b>."},
+  {k:"Par la demande",p:"<b>PIB = CF + FBCF + delta S + X - M</b>. CF = consommation finale ; FBCF = investissement ; X = exportations ; M = importations."}
+ ]},
+ {cls:"b-loc",ico:"📅",t:"L'evolution du PIB",nodes:[
+  {k:"Les taux moyens",p:"Fin 60's : +5,2%/an. 1974-79 : +2,7%. 1991-97 : +0,6%. 2009 : ~-3% (recession). 2016-19 : +1,7% (estim.)."},
+  {k:"Les blocages depuis 1974",p:"(1) <b>Contrainte exterieure</b> : relance profite aux importations. (2) <b>Blocage de l'offre</b> : partage VA trop favorable aux salaires → manque de rentabilite → les entreprises n'investissent plus."}
+ ],dates:["Fin 60's : +5,2%","1991-97 : +0,6%","Recessions : 1975, 1993, 2009"]},
+ {cls:"b-arm",ico:"⚡",t:"La productivite",nodes:[
+  {k:"Definition",p:"Quantite de facteurs de production necessaire pour produire un certain volume de richesse. Dans le long terme : <b>gains de productivite</b> (progres technique)."},
+  {k:"La productivite comme amortisseur",p:"En crise, peu de gains → les entreprises ne licencient pas. En reprise, elles ne recrutent pas tout de suite. La France a la <b>productivite horaire la plus elevee</b> de l'OCDE."}
+ ]}
+]},
+e7:{yr:"Chap. 2 §3",titre:"Panorama : la liberalisation de l'economie francaise",tag:"A partir des 70's, le courant liberal redevient la base ideologique des politiques economiques.",branches:[
+ {cls:"b-pol",ico:"🔀",t:"Le contexte du tournant",nodes:[
+  {k:"Un changement d'epoque",p:"Pendant les 30 Glorieuses, le courant liberal etait minoritaire. A partir des 70's, le liberalisme reprend de la vigueur dans les 80's. Pionniers : <b>Etats-Unis</b> (Reagan, 1980) et <b>Royaume-Uni</b> (Thatcher, 1979)."}
+ ]},
+ {cls:"b-exe",ico:"🗳️",t:"Chronologie francaise",nodes:[
+  {k:"1974-1976 - relance keynesienne (Chirac)",p:"1er choc petrolier. <b>Relance keynesienne</b> : soutien aux entreprises, au batiment, meilleure indemnisation des chomeurs. Efficace mais couteuse."},
+  {k:"1976-1981 - Raymond Barre",p:"Idees liberales : <b>liberation des prix</b>. Efficacite non prouvable (2nd choc petrolier 1979)."},
+  {k:"1981-1983 - la derniere relance",p:"Gouvernement socialiste : <b>relance par la demande</b>. Aggravation des desequilibres. La France dans le SME → conversion liberale sous le gouvernement Fabius."},
+  {k:"1983 a aujourd'hui - conversion liberale",p:"<b>Carre magique</b> des liberaux : maitrise de l'inflation, des finances publiques, equilibre exterieur, maintien du taux de change. Cout social eleve MAIS economies plus competitives."}
+ ]},
+ {cls:"b-cen",ico:"📉",t:"Le recul de l'Etat",nodes:[
+  {k:"Nationalisations puis privatisations",p:"<b>1981</b> : nationalisations (banque, industrie). <b>1986</b> : privatisations (l'Etat cede son capital)."},
+  {k:"La transformation des marches",p:"Marches de capitaux modernises ; marche du travail flexibilise ; <b>demantelement des monopoles</b> publics (traite de Maastricht)."}
+ ]},
+ {cls:"b-loc",ico:"♻️",t:"Une economie mixte",nodes:[
+  {k:"Plus la nature que l'ampleur",p:"La liberalisation a necessite un travail juridique considerable. C'est la <b>nature</b> de l'intervention qui a change, pas tellement son <b>ampleur</b>."},
+  {k:"Les trois raisons",p:"(1) Des <b>instances de regulation</b> pour garantir des marches libres. (2) Des <b>depenses sociales</b> pour amortir les effets de la liberalisation. (3) L'Etat <b>aide massivement les entreprises</b> (<b>patriotisme industriel</b>)."}
+ ]}
+]},
+e8:{yr:"Chap. 3 §1",titre:"International : mondialisation et commerce",tag:"La mondialisation, le debat protectionnisme vs libre-echange, et la regulation des echanges (GATT, OMC).",branches:[
+ {cls:"b-pol",ico:"🌐",t:"La mondialisation",nodes:[
+  {k:"Definition",p:"Phenomene d'augmentation des echanges economiques et culturels entre pays, renforçant l'<b>interdependance</b> des economies."},
+  {k:"Deux mondialisations",p:"<b>1re</b> : fin 19e s. (surtout financiere). <b>2e</b> : fin des 70's (plus complete, on est encore dedans)."},
+  {k:"Les faits",p:"Poids des exportations mondiales : de <b>20,3% a 31,6%</b> du PIB mondial. Emergence des pays du Sud (Chine = 1er exportateur mondial). Marginalisation des <b>PMA</b> (~50 pays)."}
+ ],dates:["1re mondialisation : fin 19e","2e mondialisation : fin 70's","Exports : 20,3% → 31,6% du PIB"]},
+ {cls:"b-exe",ico:"🚧",t:"Les formes de protectionnisme",nodes:[
+  {k:"Mesures tarifaires",p:"Principalement le <b>droit de douane</b> : droit <b>ad valorem</b> (% du prix) ou <b>specifique</b> (forfait sur les quantites)."},
+  {k:"Mesures non-tarifaires",p:"<b>Contingentements/quotas</b>, <b>embargos</b>, <b>mesures administratives</b> (normes techniques, sanitaires). Moins diminuees que les tarifs."},
+  {k:"Distorsions de concurrence",p:"<b>Preference nationale</b> dans les marches publics, <b>subventions aux exportations</b>, <b>dumping</b>, depreciation monetaire."}
+ ]},
+ {cls:"b-cen",ico:"✅",t:"Arguments pour le libre-echange",nodes:[
+  {k:"L'argument central",p:"Sous hypothese de concurrence pure et parfaite : le libre-echange conduit a une <b>allocation optimale des ressources</b> au niveau mondial. Condition : les pays se <b>specialisent</b> selon l'avantage comparatif."},
+  {k:"Theorie du droit de douane",p:"Le droit de douane entraine <b>toujours</b> une hausse des prix pour les consommateurs."}
+ ]},
+ {cls:"b-loc",ico:"🛡️",t:"Arguments pour le protectionnisme",nodes:[
+  {k:"List - industries naissantes",p:"<b>Friedrich List</b> : les avantages comparatifs sont <b>construits</b>. Un pays retardataire doit <b>proteger son industrie naissante</b> (protectionnisme educatif, <b>transitoire</b>), puis revenir au libre-echange."},
+  {k:"Emmanuel - l'echange inegal",p:"<b>Arghiri Emmanuel</b> : pays riches specialises dans le technologique, pays pauvres dans le primaire → <b>degradation des termes de l'echange</b> → ecart croissant."},
+  {k:"Les faits",p:"<b>Aucun pays ne s'est developpe sans protectionnisme</b> (Angleterre, Etats-Unis, Chine, Asie du Sud-Est). <b>Pas de correlation</b> entre ouverture et developpement (Bairoch, Krugman)."}
+ ]},
+ {cls:"b-key",ico:"🤝",t:"La regulation : du GATT a l'OMC",nodes:[
+  {k:"Le GATT (1947)",p:"<b>General Agreement on Tariffs and Trade</b>. Principe du <b>multilateralisme</b>. 7 cycles. L'<b>Uruguay Round</b> (1986-1993) → <b>Accords de Marrakech</b> → creation de l'OMC."},
+  {k:"L'OMC (1995)",p:"Veritable institution. <b>Organe de reglement des differends</b>. 1 pays = 1 voix. Pas de <b>pouvoir coercitif</b>. Competences plus larges : agriculture, services, brevets."},
+  {k:"Les cycles bloques",p:"Cycle de <b>Doha</b> (2001) toujours pas abouti : blocage sur les services, agriculture, brevets, acces aux medicaments. D'ou le developpement du <b>bilateralisme</b>."}
+ ],dates:["GATT : 1947","Uruguay Round : 1986-1993","OMC : 1995","Doha : 2001 (bloque)"]}
+]},
+e9:{yr:"Chap. 3 §2",titre:"International : strategies des firmes et developpement",tag:"Comment un pays se developpe : les etapes de Rostow, le consensus de Washington et le consensus de Pekin.",branches:[
+ {cls:"b-pol",ico:"🪜",t:"Les etapes du developpement (Rostow, 1960)",nodes:[
+  {k:"5 etapes",p:"(1) <b>Societe traditionnelle</b> (agriculture, peu d'innovation) ; (2) <b>Conditions prealables</b> (entrepreneurs, modernisation agricole) ; (3) <b>Decollage / take-off</b> (~20 ans, passage a l'industrie) ; (4) <b>Maturite</b> (diffusion des techniques) ; (5) <b>Consommation de masse</b> (services dominants, inegalites reduites, protection sociale)."},
+  {k:"Limites",p:"Inspiree du cas europeen, difficilement transposable aux pays en developpement d'apres la 2GM. Elle voit le developpement comme quelque chose de <b>controle</b>."}
+ ]},
+ {cls:"b-exe",ico:"🏦",t:"Le consensus de Washington (1989)",nodes:[
+  {k:"L'origine",p:"En 1989, la <b>Banque Mondiale</b> dessine un modele de developpement a suivre pour obtenir ses prets : ensemble de mesures de <b>liberalisation</b>."},
+  {k:"Les mesures",p:"Ouverture au libre-echange, aux capitaux, aux IDE ; reduction des depenses publiques ; privatisations ; degager des recettes d'exportation pour rembourser la dette."},
+  {k:"Le bilan - severe",p:"Plans d'<b>ajustement structurel</b> : consequences sociales severes partout. Tres peu de pays ont reussi leur decollage. Dans beaucoup, endettement augmente et niveau de vie baisse."}
+ ]},
+ {cls:"b-cen",ico:"🐉",t:"Le consensus de Pekin",nodes:[
+  {k:"Le principe",p:"Integration dans les echanges mondiaux avec <b>independance vis-a-vis des creanciers du Nord</b>."},
+  {k:"Les mesures",p:"Conquete des marches etrangers (<b>avantage de cout du travail</b>) ; limitation de la demande interieure ; cohesion sociale ; epargne interieure abondante ; <b>depenses publiques</b> de long terme (education, recherche) ; ouverture IDE <b>ciblee</b> (haute VA) ; soutien aux firmes domestiques."},
+  {k:"Est-ce un modele ?",p:"C'est essentiellement le developpement de la <b>Chine</b>. Difficile a transposer partout, et pose un probleme de <b>partage des ressources</b>."}
+ ]}
+]},
+eA:{yr:"Special",titre:"Les auteurs et les courants",tag:"Qui est qui : pour chaque courant, les auteurs et ce qu'ils ont apporte.",branches:[
+ {cls:"b-pol",ico:"🕊️",t:"Courant LIBERAL - ecole classique",nodes:[
+  {k:"Adam Smith",p:"Fondateur du courant liberal (fin 18e). <b>Main invisible</b> : en suivant son interet personnel, l'individu sert l'interet general. En commerce : theorie de l'<b>avantage absolu</b>."},
+  {k:"David Ricardo",p:"Theorie de l'<b>avantage comparatif</b> : meme un pays moins efficace dans toutes les productions a interet a echanger. Fondateur du <b>libre-echange</b>. Theorie de la valeur-travail."},
+  {k:"Jean-Baptiste Say",p:"Loi de Say : <b>toute offre cree sa propre demande</b>."},
+  {k:"John Stuart Mill",p:"Auteur de l'ecole classique liberale."}
+ ]},
+ {cls:"b-exe",ico:"📐",t:"Courant LIBERAL - ecole neoclassique",nodes:[
+  {k:"Leon Walras et Alfred Marshall",p:"Fondateurs de l'ecole neoclassique. La valeur depend de l'<b>utilite</b> et de la <b>rarete</b>. Theoreme <b>HOS</b> (egalisation des prix des facteurs)."},
+  {k:"Hayek",p:"Grand nom neoclassique du 20e s. Partisan du marche contre l'intervention de l'Etat."},
+  {k:"Milton Friedman",p:"Ecole de Chicago, les <b>monetaristes</b>. La monnaie est neutre. La creation monetaire artificielle cree de l'inflation."}
+ ]},
+ {cls:"b-cen",ico:"⚒️",t:"Courant MARXISTE",nodes:[
+  {k:"Karl Marx",p:"<em>Le Capital</em> (milieu 19e). <b>Plus-value</b> (exploitation salariale), <b>baisse tendancielle du taux de profit</b>, <b>autodestruction du capitalisme</b>, <b>armee industrielle de reserve</b>. L'Etat sert la bourgeoisie."},
+  {k:"Lenine",p:"<b>Internationalisation du capital</b> : le capitalisme cherche des approvisionnements bon marche via un rapport <b>imperialiste</b>."},
+  {k:"Rosa Luxemburg",p:"Le capitalisme cherche des <b>debouches</b> dans les pays precapitalistes via un rapport de <b>domination imperialiste</b>."},
+  {k:"Arghiri Emmanuel",p:"<b>Echange inegal</b> : pays riches dans le technologique, pays pauvres dans le primaire → <b>degradation des termes de l'echange</b>."}
+ ]},
+ {cls:"b-loc",ico:"📘",t:"Courant KEYNESIEN",nodes:[
+  {k:"John Maynard Keynes",p:"<em>La Theorie generale</em>. Pas de vrai marche du travail ; <b>chomage involontaire</b> = anticipations pessimistes ; <b>multiplicateur d'investissement</b> (I → S) ; monnaie <b>non neutre</b> ; <b>role central de l'Etat</b> (3 missions, Policy mix). A inspire le New Deal, les 30 Glorieuses et la comptabilite nationale."}
+ ]},
+ {cls:"b-key",ico:"👥",t:"Autres auteurs",nodes:[
+  {k:"Friedrich List",p:"Theorie des <b>industries naissantes</b> / protectionnisme educatif (transitoire)."},
+  {k:"Abraham Maslow",p:"La <b>pyramide des besoins</b> (5 niveaux)."},
+  {k:"Gossen",p:"Loi de l'<b>utilite marginale decroissante</b>."},
+  {k:"Schumpeter",p:"L'<b>innovation</b> et la destruction creatrice. A la base des cycles longs de Kondratiev."},
+  {k:"Kitchin / Juglar / Kondratiev",p:"Les trois types de <b>cycles</b> : court ~2,5 ans (stocks) / moyen 6-10 ans (demande) / long 30-50 ans (innovations)."},
+  {k:"Rostow",p:"Les <b>5 etapes du developpement</b> (1960)."},
+  {k:"Paul Bairoch et Paul Krugman",p:"Absence de correlation entre <b>ouverture</b> commerciale et <b>developpement</b>."}
+ ]}
+]}
+};
+
+const GPE_TABLEAU_STYLE=`<style>.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:0 5px 16px -12px var(--shadow);}table.courants{border-collapse:collapse;width:100%;min-width:580px;font-size:.9rem;}table.courants th,table.courants td{border:1px solid var(--line);padding:10px 13px;vertical-align:top;text-align:left;}table.courants thead th{background:var(--ink);color:var(--parch);font-family:'Fraunces',serif;font-weight:600;}table.courants tbody th{background:var(--parch-2);font-family:'Fraunces',serif;font-weight:600;color:var(--ink);white-space:nowrap;}table.courants tbody tr:nth-child(even) td{background:#f7efdd;}.ppl{color:var(--gold);font-style:italic;}</style>`;
+
+const GPE_TABLEAU_HTML=`<div class="reg-banner"><div class="yr">Special</div><h2>Tableau recapitulatif des courants</h2><div class="tag">Les trois grands courants, leurs auteurs, et en quoi ils consistent.</div></div><div class="tbl-wrap"><table class="courants"><thead><tr><th>Courant</th><th>Auteurs</th><th>En quoi ca consiste</th></tr></thead><tbody><tr><th>Liberal (classique)</th><td class="ppl">Adam Smith, David Ricardo, Jean-Baptiste Say, John Stuart Mill</td><td>Confiance totale dans le marche et la <b>main invisible</b>. Laisser-faire. Valeur = travail. Libre-echange (avantage absolu/comparatif). <b>S → I</b>. Monnaie neutre. Etat minimal.</td></tr><tr><th>Liberal (neoclassique)</th><td class="ppl">Leon Walras, Alfred Marshall, Hayek, Milton Friedman</td><td>Meme confiance dans le marche. Valeur = <b>utilite + rarete</b> (prix = valeur). Theoreme HOS. Monetarisme. Etat minimal, supprimer les rigidites.</td></tr><tr><th>Marxiste</th><td class="ppl">Karl Marx, Lenine, Rosa Luxemburg, Arghiri Emmanuel</td><td>Interet personnel <b>incompatible</b> avec l'interet general. <b>Plus-value</b> = exploitation. Baisse tendancielle du taux de profit → <b>autodestruction du capitalisme</b>. Imperialisme. L'Etat sert la bourgeoisie.</td></tr><tr><th>Keynesien</th><td class="ppl">John Maynard Keynes</td><td>Le capitalisme se <b>regule</b> (ne se detruit pas) mais le profit est legitime. <b>Chomage involontaire</b> = anticipations pessimistes. Soutenir la demande. Multiplicateur (<b>I → S</b>). Monnaie non neutre. <b>Etat regulateur</b> (Policy mix).</td></tr></tbody></table></div>`;
+
+function renderGpeTableau(){
+  const sec=document.getElementById('eB');
+  if(!sec||sec.dataset.rendered)return;
+  sec.innerHTML=GPE_TABLEAU_STYLE+'<div style="max-width:780px;margin:0 auto;padding:22px 16px;">'+GPE_TABLEAU_HTML+'</div>';
+  sec.dataset.rendered='1';
+}
+
+Object.keys(GPE).forEach(id=>renderRegime(id,GPE));
+renderGpeTableau();
+
+document.querySelectorAll('nav').forEach(nav=>{
+  nav.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+    nav.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    t.classList.add('active');
+    const vid=t.dataset.v;
+    const sec=document.getElementById(vid);
+    if(sec) sec.classList.add('active');
+    if(vid==='quiz') renderQuiz();
+    if(vid==='train') renderTrain();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }));
+});
+
+// Subject switcher
+document.querySelectorAll('.subj-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const s=btn.dataset.s;
+    document.querySelectorAll('.subj-btn').forEach(b=>b.classList.toggle('active',b.dataset.s===s));
+    const hdiNav=document.getElementById('nav-hdi');
+    const gpeNav=document.getElementById('nav-gpe');
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    if(s==='hdi'){
+      hdiNav.style.display='flex';gpeNav.style.display='none';
+      const at=hdiNav.querySelector('.tab.active')||hdiNav.querySelector('.tab');
+      if(at){at.classList.add('active');document.getElementById(at.dataset.v)?.classList.add('active');}
+    }else{
+      hdiNav.style.display='none';gpeNav.style.display='flex';
+      const at=gpeNav.querySelector('.tab.active')||gpeNav.querySelector('.tab');
+      if(at){at.classList.add('active');document.getElementById(at.dataset.v)?.classList.add('active');}
+    }
+  });
+});
 
 document.addEventListener('click',e=>{
   const head=e.target.closest('.branch-head');
